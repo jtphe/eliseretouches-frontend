@@ -194,9 +194,21 @@
     text-align: center;
 }
 
+.section-creations {
+    color: white;
+    text-align: center;
+    font-family: "Adobe Garamond Pro";
+}
+
 .title-location {
     font-weight: bold;
     margin-top: 6rem;
+}
+
+.title-creations {
+    font-weight: bold;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
 }
 
 .adress-location {
@@ -210,6 +222,10 @@
 
 .carousel .item {
     height: 300px;
+}
+
+.carousel-inner {
+    height: 600px !important;
 }
 
 .time-table-title {
@@ -475,6 +491,10 @@ li {
     .title-location {
         font-size: 2.5rem;
     }
+    .title-creations {
+        font-size: 2.5rem;
+        padding: 0 3rem;
+    }
     .adress-location {
         font-size: 2rem;
     }
@@ -530,6 +550,13 @@ li {
     }
     .btn-lg {
         font-size: 13px !important;
+    }
+    .carousel-inner {
+        height: 400px !important;
+    }
+    .title-creations {
+        font-size: 2rem;
+        padding: 0 2rem;
     }
 }
 
