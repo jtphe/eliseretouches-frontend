@@ -115,11 +115,11 @@ if (isset($_POST['mailform'])) {
                             </div>
 
                             <!-- Form actions -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <div class="col-md-12 text-right">
                                     <button type="submit" name="mailform" class="btn btn-primary btn-lg">Envoyez</button>
                                 </div>
-                            </div>
+                            </div> -->
                         </fieldset>
                     </form>
                 </div>
