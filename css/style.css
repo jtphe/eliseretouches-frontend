@@ -8,14 +8,23 @@
     src: url(./font/BrannbollBold.ttf);
 }
 
+li {
+    list-style-type: circle !important;
+}
+
 .alert-info {
     padding: 2rem;
     font-size: 1.5rem;
     color: #ff7675;
+    text-align: justify;
 }
 
 .alert-info--text {
     margin: 0;
+}
+
+.alert-info--text-thanks{
+    text-align: left;
 }
 
 .body-erh {
