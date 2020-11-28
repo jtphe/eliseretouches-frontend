@@ -80,7 +80,7 @@
                     Vendredi : <span class="hours">10h-12h / 14h-18h</span>
                 </li>
                 <li>
-                    Samedi : <span class="shop-close">Fermé</span>
+                    Samedi : <span class="hours">10h-12h</span>
                 </li>
                 <li>
                     Dimanche : <span class="shop-close">Fermé</span>
