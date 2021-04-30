@@ -84,49 +84,52 @@ if (isset($_POST['mailform'])) {
     </div>
     <div class="container contact-us">
         <div class="row section-contact">
-            <div class="col-md-6 col-md-offset-3 contact-form">
+            <!-- <div class="col-md-6 col-md-offset-3 contact-form">
                 <div class="well well-sm">
                     <form class="form-horizontal" action="" method="post">
                         <fieldset>
                             <legend class="text-center contact-form--title">Envoyez moi un message !</legend>
 
                             <!-- Name input-->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Nom</label>
                                 <div class="col-md-9">
                                     <input id="name" name="name" type="text" placeholder="Votre nom" class="form-control">
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Email input-->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-3 control-label" for="email">Votre e-mail</label>
                                 <div class="col-md-9">
                                     <input id="email" name="email" type="text" placeholder="Votre email" class="form-control">
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Message body -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-3 control-label" for="message">Votre message</label>
                                 <div class="col-md-9">
                                     <textarea class="form-control" id="message" name="message" placeholder="Écrivez votre message ici..." rows="5"></textarea>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Form actions -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <div class="col-md-12 text-right">
                                     <button type="submit" name="mailform" class="btn btn-primary btn-lg">Envoyez</button>
                                 </div>
                             </div>
                         </fieldset>
                     </form>
-                </div>
-            </div>
+                </div> -->
+            <!-- </div>  -->
             <div class="contact-info">
                 <h3 style="color: rgb(255, 255, 255);">Me contacter</h3>
+                <h4 style="color: rgb(255, 255, 255);">Téléphone 📞</h4>
                 <a href="tel:+33615567047" target="_blank" rel="noopener noreferrer" style="color: rgb(211, 211, 211);">+33 6 15 56 70 47</a>
+                <h4 style="color: rgb(255, 255, 255);">Mail 📧</h4>
+                <a href="mailto:contact@eliseretouches.com" style="color: rgb(255, 255, 255);">Cliquez ici pour envoyer un e-mail </a>
             </div>
         </div>
     </div>
