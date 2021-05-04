@@ -128,8 +128,8 @@ if (isset($_POST['mailform'])) {
                 <h3 style="color: rgb(255, 255, 255);">Me contacter</h3>
                 <h4 style="color: rgb(255, 255, 255);">Téléphone 📞</h4>
                 <a href="tel:+33615567047" target="_blank" rel="noopener noreferrer" style="color: rgb(211, 211, 211);">+33 6 15 56 70 47</a>
-                <h4 style="color: rgb(255, 255, 255);">Mail 📧</h4>
-                <a href="mailto:contact@eliseretouches.com" style="color: rgb(255, 255, 255);">Cliquez ici pour envoyer un e-mail </a>
+                <!-- <h4 style="color: rgb(255, 255, 255);">Mail 📧</h4>
+                <a href="mailto:contact@eliseretouches.com" style="color: rgb(255, 255, 255);">Cliquez ici pour envoyer un e-mail </a> -->
             </div>
         </div>
     </div>
