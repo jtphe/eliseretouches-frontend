@@ -1,0 +1,4 @@
+# Réécriture des URLs pour enlever .html
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
