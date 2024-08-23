@@ -4,18 +4,18 @@
   --secondary-color: #ff7675;
   --text-color-light: white;
   --text-color-dark: #0a3761;
-  --font-family-primary: "Sonder Regular";
-  --font-family-secondary: "Adobe Garamond Pro";
+  --font-family-primary: "Brannboll Bold";
+  --font-family-secondary: "Sonder Regular";
 }
 
 /* Fonts */
 @font-face {
-  font-family: var(--font-family-secondary);
-  src: url(../font/AGarmondPro-Regular.otf);
+  font-family: "Brannboll Bold";
+  src: url(../font/BrannbollBold.ttf);
 }
 
 @font-face {
-  font-family: var(--font-family-primary);
+  font-family: "Sonder Regular";
   src: url(../font/SonderRegular.otf);
 }
 
@@ -28,10 +28,18 @@ body {
 
 li {
   list-style-type: none;
+  font-family: var(--font-family-secondary);
 }
 
 a {
   text-decoration: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0;
 }
 
 .alert-info {
@@ -99,7 +107,7 @@ a {
 .company-name {
   color: var(--text-color-light);
   font-family: var(--font-family-primary);
-  font-size: 2.5rem; /* Ajustez la taille du texte selon les besoins */
+  font-size: 3.5rem; /* Ajustez la taille du texte selon les besoins */
   font-weight: 300;
   margin: 0;
   padding: 0; /* Réduisez le padding si nécessaire */
