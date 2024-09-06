@@ -1,629 +1,262 @@
+/* Définir les variantes de la police */
 @font-face {
-    font-family: "Adobe Garamond Pro";
-    src: url(./font/AGarmondPro-Regular.otf);
+  font-family: "AGaramondPro";
+  src: url("../font/AGaramondPro-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Brannboll Bold";
-    src: url(./font/BrannbollBold.ttf);
+  font-family: "AGaramondPro";
+  src: url("../font/AGaramondPro-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: bold;
 }
 
-li {
-    list-style-type: circle !important;
+@font-face {
+  font-family: "AGaramondPro";
+  src: url("../font/AGaramondPro-Italic.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
 }
 
-.alert-info {
-    padding: 2rem;
+@font-face {
+  font-family: "AGaramondPro";
+  src: url("../font/AGaramondPro-BoldItalic.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Définir les variantes de Brannboll */
+@font-face {
+  font-family: "Brannboll";
+  src: url("../font/BrannbollCourant.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brannboll";
+  src: url("../font/BrannbollBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Appliquer AGaramondPro pour le texte général */
+body,
+p,
+ul,
+ol,
+blockquote,
+footer {
+  font-family: "AGaramondPro", serif;
+  color: #333;
+}
+
+a,
+span,
+.service p,
+.testimonial p {
+  font-family: "AGaramondPro", serif;
+}
+
+/* Appliquer Brannboll pour les titres et éléments spécifiques */
+header,
+.navbar-brand,
+.hero h1,
+.hero h2,
+.section-title,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Brannboll", sans-serif;
+  color: #0a3761; /* Couleur principale pour les titres */
+}
+
+/* Exemple spécifique */
+footer {
+  font-family: "AGaramondPro", serif;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "AGaramondPro", serif;
+  color: #333;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* En-tête */
+.bg-custom {
+  background: #0a3761 !important; /* Couleur de fond du header */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffd700;
+}
+
+/* Bannière Principale */
+.hero {
+  background: url("background-hero.jpg") no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero iframe {
+  max-width: 100%;
+  height: auto;
+  border: none;
+}
+
+/* Services */
+#services {
+  padding: 3rem 1rem;
+  background-color: #f8f9fa;
+}
+
+#services h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #0a3761; /* Couleur principale */
+}
+
+.service {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.service h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #0a3761; /* Couleur principale */
+}
+
+.service p {
+  font-size: 1rem;
+}
+
+.service a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.service a:hover {
+  text-decoration: underline;
+}
+
+/* Témoignages */
+#testimonials {
+  padding: 3rem 1rem;
+}
+
+blockquote {
+  background: #f4f4f4;
+  padding: 1rem;
+  border-left: 5px solid #0a3761; /* Couleur principale */
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+blockquote p {
+  margin: 0;
+  color: #333;
+}
+
+/* Galerie */
+#gallery {
+  padding: 3rem 1rem;
+  background-color: #f8f9fa;
+}
+
+#gallery h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  color: #0a3761; /* Couleur principale */
+}
+
+.gallery-items img {
+  border-radius: 5px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* Pied de Page */
+footer {
+  background: #0a3761; /* Couleur principale */
+  color: #fff;
+  text-align: center;
+  padding: 1rem 1rem;
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+footer .socials {
+  margin-top: 0.5rem;
+}
+
+.social-icon {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.social-icon:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+
+  .hero h2 {
     font-size: 1.5rem;
-    color: #ff7675;
-    text-align: justify;
-}
-
-.alert-info--text {
-    margin: 0;
-}
-
-.alert-info--text-thanks{
-    text-align: left;
-}
-
-.body-erh {
-    background-color: #0A3761;
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-.navbar {
-    margin-bottom: 0;
-}
-
-.enterprise-name {
-    color: white;
-    pointer-events: none;
-}
-
-.company-name {
-    color: white;
-    font-weight: 300;
-    font-size: 3.5rem;
-    line-height: 3rem;
-    padding: 15px 15px;
-    margin: 0;
-    font-family: "Brannboll Bold";
-}
-
-.section-logo {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.logo-img {
-    padding-top: 0.5rem;
-}
-
-.item-header {
-    color: white;
-    font-size: 1.6rem;
-    line-height: 3.5rem !important;
-    font-weight: 150;
-}
-
-.item-header:hover {
-    color: #0A3761;
-    font-weight: 400;
-}
-
-#toggle-button {
-    border-color: white;
-}
-
-.toggle-bar {
-    background-color: white !important;
-}
-
-.welcome-intro {
-    padding-top: 15rem;
-    padding-bottom: 16rem;
-    background: url("../media/wallpaper.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 50rem;
-    color: #0A3761;
-}
-
-.welcome-intro-text {
-    width: 38rem;
-    margin: auto;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-family: "Brannboll Bold";
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-.welcome-intro-company {
-    font-size: 5rem;
-    font-family: "Brannboll Bold";
-}
-
-.welcome-presentation {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 45%;
-    padding-left: 3.5rem;
-    color: white;
-}
-
-.section-presentation {
-    text-align: justify;
-    padding-top: 6rem;
-    padding-left: 35rem;
-}
-
-.who-am-i {
-    font-size: 3rem;
-    font-weight: 500;
-    line-height: 1;
-    margin-top: 0;
-}
-
-.who-am-i-text {
-    font-size: 2rem;
-    font-weight: 80;
-    text-align: justify;
-}
-
-.pdp-img {
-    width: 18rem;
-    height: auto;
-}
-
-#elise-pdp {
-    background-color: #042340;
-    border: #042340;
-}
-
-.section-testimonial {
-    color: white;
-    width: 78rem;
-    text-align: justify;
-    margin: 3rem auto 0 auto;
-}
-
-.elina-testi {
-    border: none;
-    font-size: 2rem;
-    font-weight: 80;
-}
-
-.testi-text {
-    font-family: "Adobe Garamond Pro"
-}
-
-.testimonial-author {
-    color: white;
-}
-
-.footer-erh {
-    background-color: white;
-    height: 8rem;
-    text-align: center
-}
-
-.section-social {
-    width: 50%;
-    margin: 0 auto;
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 1.5rem;
-}
-
-.contact-us {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-}
-
-#facebook {
-    margin: auto;
-}
-
-#linkedin {
-    margin: auto;
-}
-
-#mail {
-    margin: auto;
-}
-
-.section-location {
-    color: white;
-    text-align: center;
-}
-
-.section-creations {
-    color: white;
-    text-align: center;
-    font-family: "Adobe Garamond Pro";
-}
-
-.title-location {
-    font-weight: bold;
-    margin-top: 6rem;
-}
-
-.title-creations {
-    font-weight: bold;
-    margin-top: 6rem;
-    margin-bottom: 6rem;
-}
-
-.adress-location {
-    margin-bottom: 20px;
-    font-family: "Adobe Garamond Pro";
-}
-
-#map {
-    text-align: center;
-}
-
-.carousel .item {
-    height: 300px;
-}
-
-.carousel-inner {
-    height: 600px !important;
-}
-
-.time-table-title {
-    color: white;
-    text-align: center;
-    font-weight: bold;
-}
-
-.time-table-list {
-    padding-left: 0;
-    margin-bottom: 6rem;
-}
-
-.time-table-content {
-    color: white;
-    text-align: center;
-    font-size: 2.5rem;
-}
-
-.hours {
-    font-weight: lighter;
-    font-family: "Adobe Garamond Pro"
-}
-
-.shop-close {
-    font-weight: bold;
-    font-family: "Adobe Garamond Pro"
-}
-
-li {
-    list-style-type: none;
-}
-
-.test {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.section-price {
-    color: white;
-    display: flex;
-    flex-direction: column;
-}
-
-.table-price {
-    width: 40%;
-    color: #0A3761;
-    background-color: rgba(255, 255, 255, 0.8);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
-
-.title-price {
-    font-weight: bold;
-}
-
-.text-left {
-    font-family: "Adobe Garamond Pro" !important;
-}
-
-.more-details {
-    font-size: 3rem;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-family: "Adobe Garamond Pro";
-}
-
-.button-more-details {
-    font-size: 2rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.section-contact {
-    display: flex;
-    flex-direction: row;
-}
-
-.contact-form {
-    margin-left: 4%;
-    padding-right: 4rem;
-}
-
-.contact-info {
-    border-left: solid white;
-    padding-left: 4rem;
-}
-
-@media screen and (max-width: 1920px) {
-    .section-presentation {
-        padding-left: 52rem;
-    }
-    .section-testimonial {
-        width: 85rem;
-        margin: 3rem 29% 0 auto;
-    }
-}
-
-@media screen and (max-width: 1440px) {
-    .section-presentation {
-        padding-left: 33rem;
-    }
-    .section-testimonial {
-        width: 78rem;
-        margin: 3rem auto 0 auto;
-    }
-}
-
-@media screen and (max-width: 1287px) {
-    .welcome-presentation {
-        width: 50%;
-    }
-    .section-presentation {
-        padding-left: 32rem;
-    }
-    .section-testimonial {
-        margin: 3rem 19rem 0 auto;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .section-presentation {
-        padding-left: 23rem;
-    }
-}
-
-@media screen and (max-width: 1100px) {
-    .pdp-img {
-        width: 15rem;
-    }
-    .welcome-presentation {
-        width: 60%;
-    }
-    .section-presentation {
-        padding-left: 8rem;
-    }
-    .section-testimonial {
-        margin: 3rem 0 0 6rem;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .pdp-img {
-        width: 12rem;
-    }
-    .welcome-presentation {
-        width: 70%;
-    }
-    .section-presentation {
-        padding-left: 10rem;
-    }
-    .section-testimonial {
-        width: 100%;
-        margin: 0;
-    }
-    .elina-testi {
-        width: 80%;
-        font-size: 1.5rem;
-        margin: 0 auto;
-        padding: 3rem 0 2rem 0;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    #toggle-button {
-        margin-top: 18px;
-    }
-    .erh-header {
-        padding-bottom: 1rem;
-    }
-    .company-name {
-        padding-top: 20px;
-        font-size: 2.5rem;
-    }
-    .logo-img {
-        padding: 1rem 0 1rem 1rem;
-    }
-    .pdp-img {
-        width: 8rem;
-    }
-    .who-am-i-text {
-        font-size: 1.5rem;
-    }
-    .who-am-i {
-        font-size: 2rem;
-        font-weight: 600;
-    }
-    .section-testimonial {
-        margin: 0;
-    }
-    .elina-testi {
-        width: 90%;
-        margin: 0 auto;
-        font-size: 1.5rem;
-    }
-    .contact-form {
-        margin-left: 8%;
-    }
-}
-
-@media screen and (max-width: 655px) {
-    .welcome-presentation {
-        width: 75%;
-    }
-    .table-price {
-        width: 85%;
-    }
-    .more-details {
-        font-size: 2.5rem;
-    }
-    .button-more-details {
-        font-size: 2rem;
-    }
-}
-
-@media screen and (max-width: 555px) {
-    .section-presentation {
-        padding-left: 6rem;
-    }
-    .welcome-presentation {
-        padding-left: 1rem;
-        width: 75%;
-    }
-    .pdp-img {
-        width: 6rem;
-    }
-    .map-display {
-        width: 400px;
-        height: auto;
-    }
-    .pictures-carousel {
-        width: 400px !important;
-    }
-    .more-details {
-        font-size: 2rem;
-        margin-left: 4rem;
-        margin-right: 4rem;
-    }
-    .button-more-details {
-        font-size: 1.5rem;
-    }
-    .table-price {
-        font-size: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .who-am-i-text {
-        font-size: 1rem;
-    }
-    .who-am-i {
-        font-size: 1.5rem;
-    }
-    .section-presentation {
-        padding-left: 4rem;
-    }
-    .testi-text {
-        font-size: 1.2rem;
-    }
-    .title-location {
-        font-size: 2.5rem;
-    }
-    .title-creations {
-        font-size: 2.5rem;
-        padding: 0 3rem;
-    }
-    .adress-location {
-        font-size: 2rem;
-    }
-    .time-table-title {
-        font-size: 2.5rem;
-    }
-    .time-table-content {
-        font-size: 2rem;
-    }
-}
-
-@media screen and (max-width: 414px) {
-    .welcome-intro-text {
-        font-size: 2.5rem;
-    }
-    .welcome-intro-company {
-        font-size: 4rem;
-    }
-    .welcome-intro {
-        height: 35rem;
-    }
-    .fb_icon, .link_icon, .mail_icon {
-        width: 38px;
-        height: auto;
-    }
-    .footer-erh {
-        height: 6rem;
-    }
-    .section-social {
-        padding-top: 1rem;
-    }
-    .map-display {
-        width: 300px;
-        height: auto;
-    }
-    .pictures-carousel {
-        width: 300px !important;
-    }
-    .carousel .item {
-        height: 200px;
-    }
-    .section-contact {
-        flex-direction: column;
-    }
-    .contact-info {
-        border: none;
-        text-align: center;
-        padding-left: 0;
-    }
-    .contact-form {
-        margin-left: 0;
-        padding-right: 15px;
-    }
-    .btn-lg {
-        font-size: 13px !important;
-    }
-    .carousel-inner {
-        height: 400px !important;
-    }
-    .title-creations {
-        font-size: 2rem;
-        padding: 0 2rem;
-    }
-}
-
-@media screen and (max-width: 380px) {
-    .welcome-intro-text {
-        width: 32rem;
-    }
-    .section-presentation {
-        padding-left: 2rem;
-    }
-    .welcome-presentation {
-        width: 75%;
-    }
-    .btn-lg {
-        font-size: 10px !important;
-    }
-    .contact-form--title {
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .welcome-intro-text {
-        font-size: 2.5rem;
-        width: 25rem;
-    }
-    .welcome-intro-company {
-        font-size: 3rem;
-    }
-    .welcome-intro {
-        height: 25rem;
-    }
-    .section-presentation {
-        padding-left: 1rem;
-    }
-    .company-name {
-        font-size: 2rem;
-    }
-    .fb_icon, .link_icon, .mail_icon {
-        width: 30px;
-        height: auto;
-    }
-    .title-location {
-        font-size: 2rem;
-    }
-    .adress-location {
-        font-size: 1.5rem;
-    }
-    .more-details {
-        font-size: 1.5rem;
-    }
-    .button-more-details {
-        font-size: 1rem;
-    }
-    .table-price {
-        margin-top: 0;
-    }
-    .contact-form--title {
-        font-size: 18px !important;
-    }
+  }
+
+  #services .col-md-4,
+  #gallery .col-md-4 {
+    margin-bottom: 1rem;
+  }
+
+  .service,
+  .gallery-items img {
+    padding: 0.5rem;
+  }
 }
