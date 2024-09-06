@@ -26,6 +26,10 @@ body {
   background-color: var(--primary-color);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 li {
   list-style-type: none;
   font-family: var(--font-family-secondary);
@@ -33,6 +37,11 @@ li {
 
 a {
   text-decoration: none;
+}
+
+p {
+  font-family: var(--font-family-secondary);
+  font-size: 12px;
 }
 
 .container {
@@ -65,8 +74,10 @@ a {
   padding: 1rem 0;
 }
 
-.navbar-collapse {
-  margin-top: 1rem;
+.navbar-header {
+  display: flex;
+  justify-content: space-between; /* Sépare les éléments de chaque côté */
+  align-items: center;
 }
 
 .navbar-header,
@@ -291,20 +302,72 @@ a {
     margin: 0;
   }
   .navbar-header {
-    flex-direction: row; /* Align items in a row on mobile */
-  }
-  .section-logo {
-    order: 1; /* Move logo and company name to the right */
-    margin-left: auto;
-    margin-right: 2rem;
     flex-direction: row;
+    justify-content: space-between; /* Sépare les éléments à gauche et à droite */
+    width: 100%; /* Prend la largeur complète du viewport */
+    max-width: 100%;
   }
+
+  .section-logo {
+    margin-left: auto; /* Pousse le bloc logo et nom à droite */
+    margin-right: 0; /* Assure qu'il n'y a pas de marge à droite */
+    order: 2;
+    flex-direction: row-reverse; /* Inverse l'ordre des éléments */
+  }
+
   .company-name {
-    order: 1; /* Place company name before logo on small screens */
-    margin-right: 0; /* Ensure no extra margin is added */
+    font-size: 2.5rem; /* Ajuste la taille du texte */
   }
-  .logo-img {
-    order: 2; /* Place logo after company name on small screens */
+
+  .logo-img img {
+    width: 40px; /* Ajuste la taille du logo si nécessaire */
+    height: auto;
+  }
+
+  .navbar {
+    position: relative; /* Assure que les éléments internes sont bien positionnés */
+  }
+
+  .navbar-collapse {
+    display: none; /* Cache le menu par défaut */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    z-index: 10;
+    padding: 10px 0;
+  }
+
+  .container > .navbar-collapse {
+    margin: 0;
+  }
+
+  /* Affiche le menu lorsque la classe "in" est présente */
+  .navbar-collapse.collapse.in {
+    display: flex; /* Change de "block" à "flex" pour conserver le layout */
+  }
+
+  .nav > li {
+    display: block;
+    text-align: center; /* Centrer les liens de navigation */
+    width: 100%; /* Chaque élément prend toute la largeur */
+    padding: 10px 0; /* Espacement entre les éléments du menu */
+  }
+
+  .navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Assurer que le logo et le nom de l'entreprise sont bien positionnés */
+  .section-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
