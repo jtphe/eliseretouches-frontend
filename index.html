@@ -14,50 +14,27 @@
   </head>
   <body>
     <!-- En-tête -->
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-custom">
-        <a class="navbar-brand" href="#">Elise Retouches</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#services">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">À Propos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#gallery">Galerie</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+    <div id="header"></div>
 
     <!-- Bannière Principale -->
     <section class="hero">
       <div class="container">
         <h2>Redonnez vie à vos vêtements avec nos retouches sur mesure</h2>
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/watch?v=McMatlvAY40"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
+        <section class="video-section">
+          <div class="video-container">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/McMatlvAY40?si=-O83NOb9B167CdM2"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </section>
       </div>
     </section>
 
@@ -72,14 +49,14 @@
               Redonnez une nouvelle vie à vos vêtements avec nos retouches
               expertes.
             </p>
-            <a href="#">En savoir plus</a>
+            <a href="./services.html">En savoir plus</a>
           </div>
         </div>
         <div class="col-md-4 text-center">
           <div class="service">
             <h3>Ajustements</h3>
             <p>Nous ajustons vos vêtements pour un fit parfait.</p>
-            <a href="#">En savoir plus</a>
+            <a href="./services.html">En savoir plus</a>
           </div>
         </div>
         <div class="col-md-4 text-center">
@@ -88,7 +65,7 @@
             <p>
               Réparations minutieuses pour prolonger la vie de vos vêtements.
             </p>
-            <a href="#">En savoir plus</a>
+            <a href="./services.html">En savoir plus</a>
           </div>
         </div>
       </div>
@@ -99,17 +76,21 @@
       <h2 class="text-center">Avis Clients</h2>
       <blockquote class="blockquote">
         <p>
-          "Un service impeccable et des retouches parfaites ! Je recommande
-          vivement."
+          "La couturière est vraiment géniale, elle a été super gentille de
+          faire ma retouche rapidement avant que je parte en vacances ! En plus
+          je me suis trompée de jour pour le récupérer et elle s’est arrangée
+          pour que je puisse le récupérer alors qu’elle ne travaillait pas ce
+          jour là ! Je recommande vivement, la retouche est parfaite ❤️ Merci
+          encore ❤️"
         </p>
-        <footer class="blockquote-footer">- Client Satisfait</footer>
+        <footer class="blockquote-footer">Emma Pfalzgraf</footer>
       </blockquote>
       <blockquote class="blockquote">
         <p>
-          "Excellent travail et accueil chaleureux. Mon pantalon est comme
-          neuf."
+          "Une dame très accueillante, honnête et compétente, donne de bons
+          conseils."
         </p>
-        <footer class="blockquote-footer">- Autre Client</footer>
+        <footer class="blockquote-footer">B PL</footer>
       </blockquote>
     </section>
 
@@ -118,37 +99,48 @@
       <h2 class="text-center">Galerie</h2>
       <div class="row">
         <div class="col-md-4">
-          <img src="example1.jpg" class="img-fluid" alt="Retouche 1" />
+          <img
+            src="./media/photos/Homepage_gallery_1.jpg"
+            class="img-fluid"
+            alt="Retouche 1"
+          />
         </div>
         <div class="col-md-4">
-          <img src="example2.jpg" class="img-fluid" alt="Retouche 2" />
+          <img
+            src="./media/photos/Homepage_gallery_2.jpg"
+            class="img-fluid"
+            alt="Retouche 2"
+          />
         </div>
         <div class="col-md-4">
-          <img src="example3.jpg" class="img-fluid" alt="Retouche 3" />
+          <img
+            src="./media/photos/Homepage_gallery_3.jpg"
+            class="img-fluid"
+            alt="Retouche 3"
+          />
         </div>
       </div>
     </section>
 
     <!-- Pied de Page -->
-    <footer>
-      <div class="container">
-        <p>
-          &copy; 2024 Elise Retouches |
-          <a href="mailto:contact@atelierderetouches.com"
-            >contact@atelierderetouches.com</a
-          >
-          | 123 Rue de l'Atelier, Paris
-        </p>
-        <div class="socials">
-          <a href="#" class="social-icon">Facebook</a>
-          <a href="#" class="social-icon">Instagram</a>
-        </div>
-      </div>
-    </footer>
+    <div id="footer"></div>
 
     <!-- Lien vers Bootstrap JS et jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      function loadHTML(file, elementId) {
+        fetch(file)
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById(elementId).innerHTML = data
+          })
+          .catch((error) => console.error("Error loading HTML:", error))
+      }
+
+      loadHTML("header.html", "header")
+      loadHTML("footer.html", "footer")
+    </script>
   </body>
 </html>
