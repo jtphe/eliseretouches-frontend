@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact - Elise Retouches</title>
+    <!-- Lien vers Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -11,51 +12,63 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div id="header"></div>
+    <!-- Inclusion du header -->
+    <header></header>
 
-    <main>
-      <section class="container">
-        <h2 class="text-center">Contact</h2>
-        <form>
-          <div class="form-group">
-            <label for="name">Nom</label>
-            <input type="text" class="form-control" id="name" required />
+    <!-- Section principale "Contact" -->
+    <section id="contact" class="container my-5">
+      <h2 class="text-center mb-4">Contactez-Nous</h2>
+      <div class="row">
+        <!-- Informations de contact -->
+        <div class="col-md-6">
+          <h3>Nous Contacter</h3>
+          <p>
+            Vous pouvez nous contacter par téléphone, sur Facebook, ou nous
+            rendre visite à notre atelier :
+          </p>
+          <ul>
+            <li>
+              Téléphone :
+              <a class="contact" href="tel:+33615567047">0615567047</a>
+            </li>
+            <li>
+              Facebook :
+              <a
+                class="contact"
+                href="https://www.facebook.com/eliseretouches"
+                target="_blank"
+                >Elise Retouches</a
+              >
+            </li>
+            <li>Adresse : 6 Place Arnold, 67000 Strasbourg</li>
+          </ul>
+        </div>
+        <!-- Carte Google Maps -->
+        <div class="col-md-6">
+          <h3>Où Nous Trouver</h3>
+          <div class="map-responsive">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!3m2!1sfr!2sfr!4v1725964659153!5m2!1sfr!2sfr!6m8!1m7!1sPnipE_dzTUaa_rYxVEnX0Q!2m2!1d48.58509757360929!2d7.770681716576582!3f326.2456445616025!4f2.6762706310296807!5f0.7820865974627469"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" required />
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea
-              class="form-control"
-              id="message"
-              rows="4"
-              required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Envoyer</button>
-        </form>
-      </section>
-    </main>
+        </div>
+      </div>
+    </section>
 
-    <div id="footer"></div>
+    <!-- Inclusion du footer -->
+    <footer></footer>
 
+    <!-- Lien vers Bootstrap JS et jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-      function loadHTML(file, elementId) {
-        fetch(file)
-          .then((response) => response.text())
-          .then((data) => {
-            document.getElementById(elementId).innerHTML = data
-          })
-          .catch((error) => console.error("Error loading HTML:", error))
-      }
-
-      loadHTML("header.html", "header")
-      loadHTML("footer.html", "footer")
-    </script>
+    <!-- Script pour inclure les fichiers de header et footer -->
+    <script src="script.js"></script>
   </body>
 </html>

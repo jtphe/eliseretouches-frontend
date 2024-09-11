@@ -9,42 +9,44 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css"
+    />
+
     <link rel="stylesheet" href="./css/style.css" />
-    <!-- Lien vers votre fichier CSS -->
   </head>
   <body>
     <!-- En-tête -->
-    <div id="header"></div>
+    <header></header>
 
     <!-- Bannière Principale -->
-    <section class="hero">
+    <section class="hero text-center">
       <div class="container">
-        <h2>Redonnez vie à vos vêtements avec nos retouches sur mesure</h2>
-        <section class="video-section">
-          <div class="video-container">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/McMatlvAY40?si=-O83NOb9B167CdM2"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            >
-            </iframe>
-          </div>
-        </section>
+        <h1>Redonnez vie à vos vêtements</h1>
+        <p class="lead">Spécialiste en retouches sur mesure</p>
+        <a href="#services" class="cta-btn">Découvrez nos services</a>
+        <div class="video-container mt-4">
+          <iframe
+            src="https://www.youtube.com/embed/McMatlvAY40?si=-O83NOb9B167CdM2"
+            title="Vidéo présentation Elise Retouches"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
     </section>
 
     <!-- Présentation des Services -->
-    <section id="services" class="container">
-      <h2 class="text-center">Nos Services</h2>
+    <section id="services" class="container py-5 px-5">
+      <h2 class="text-center mb-5">Nos Services</h2>
       <div class="row">
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center mb-4">
           <div class="service">
-            <h3>Retouche de Vêtements</h3>
+            <div class="service-header">
+              <i class="bi bi-scissors service-icon"></i>
+              <h3>Retouche de Vêtements</h3>
+            </div>
             <p>
               Redonnez une nouvelle vie à vos vêtements avec nos retouches
               expertes.
@@ -52,16 +54,22 @@
             <a href="./services.html">En savoir plus</a>
           </div>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center mb-4">
           <div class="service">
-            <h3>Ajustements</h3>
+            <div class="service-header">
+              <i class="bi bi-rulers service-icon"></i>
+              <h3>Ajustements</h3>
+            </div>
             <p>Nous ajustons vos vêtements pour un fit parfait.</p>
             <a href="./services.html">En savoir plus</a>
           </div>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center mb-4">
           <div class="service">
-            <h3>Réparation</h3>
+            <div class="service-header">
+              <i class="bi bi-bandaid service-icon"></i>
+              <h3>Réparation</h3>
+            </div>
             <p>
               Réparations minutieuses pour prolonger la vie de vos vêtements.
             </p>
@@ -73,46 +81,28 @@
 
     <!-- Témoignages -->
     <section id="testimonials" class="container">
-      <h2 class="text-center">Avis Clients</h2>
-      <blockquote class="blockquote">
-        <p>
-          "La couturière est vraiment géniale, elle a été super gentille de
-          faire ma retouche rapidement avant que je parte en vacances ! En plus
-          je me suis trompée de jour pour le récupérer et elle s’est arrangée
-          pour que je puisse le récupérer alors qu’elle ne travaillait pas ce
-          jour là ! Je recommande vivement, la retouche est parfaite ❤️ Merci
-          encore ❤️"
-        </p>
-        <footer class="blockquote-footer">Emma Pfalzgraf</footer>
-      </blockquote>
-      <blockquote class="blockquote">
-        <p>
-          "Une dame très accueillante, honnête et compétente, donne de bons
-          conseils."
-        </p>
-        <footer class="blockquote-footer">B PL</footer>
-      </blockquote>
+      <!-- Le contenu de testimony.html sera chargé ici -->
     </section>
 
     <!-- Galerie -->
-    <section id="gallery" class="container">
-      <h2 class="text-center">Galerie</h2>
+    <section id="gallery" class="container my-4">
+      <h2 class="text-center mb-4">Galerie</h2>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
           <img
             src="./media/photos/Homepage_gallery_1.jpg"
             class="img-fluid"
             alt="Retouche 1"
           />
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
           <img
             src="./media/photos/Homepage_gallery_2.jpg"
             class="img-fluid"
             alt="Retouche 2"
           />
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
           <img
             src="./media/photos/Homepage_gallery_3.jpg"
             class="img-fluid"
@@ -120,27 +110,24 @@
           />
         </div>
       </div>
+
+      <!-- Bouton pour en voir plus -->
+      <div class="text-center mt-4">
+        <a href="./gallery.html" class="btn btn-primary btn-lg btn-seemore"
+          >En voir plus</a
+        >
+      </div>
     </section>
 
     <!-- Pied de Page -->
-    <div id="footer"></div>
+    <footer></footer>
+
+    <button id="back-to-top-btn" title="Remonter en haut">&#8679;</button>
 
     <!-- Lien vers Bootstrap JS et jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-      function loadHTML(file, elementId) {
-        fetch(file)
-          .then((response) => response.text())
-          .then((data) => {
-            document.getElementById(elementId).innerHTML = data
-          })
-          .catch((error) => console.error("Error loading HTML:", error))
-      }
-
-      loadHTML("header.html", "header")
-      loadHTML("footer.html", "footer")
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -11,34 +11,131 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div id="header"></div>
+    <header></header>
 
     <main>
-      <section class="container">
+      <section class="container py-5">
         <h2 class="text-center">Galerie</h2>
-        <div class="row">
-          <!-- Contenu Galerie -->
+        <div class="row mx-3">
+          <div class="gallery-grid">
+            <div
+              class="gallery-item"
+              data-toggle="modal"
+              data-target="#imageModal"
+              data-src="./media/photos/gallery/1.png"
+            >
+              <img src="./media/photos/gallery/1.png" alt="Photo 1" />
+            </div>
+            <div
+              class="gallery-item"
+              data-toggle="modal"
+              data-target="#imageModal"
+              data-src="./media/photos/gallery/2.png"
+            >
+              <img src="./media/photos/gallery/2.png" alt="Photo 2" />
+            </div>
+            <div
+              class="gallery-item"
+              data-toggle="modal"
+              data-target="#imageModal"
+              data-src="./media/photos/gallery/3.png"
+            >
+              <img src="./media/photos/gallery/3.png" alt="Photo 3" />
+            </div>
+            <div
+              class="gallery-item"
+              data-toggle="modal"
+              data-target="#imageModal"
+              data-src="./media/photos/gallery/8.jpg"
+            >
+              <img src="./media/photos/gallery/8.jpg" alt="Photo 8" />
+            </div>
+            <div
+              class="gallery-item"
+              data-toggle="modal"
+              data-target="#imageModal"
+              data-src="./media/photos/gallery/9.jpg"
+            >
+              <img src="./media/photos/gallery/9.jpg" alt="Photo 9" />
+            </div>
+            <div
+              class="gallery-item"
+              data-toggle="modal"
+              data-target="#imageModal"
+              data-src="./media/photos/gallery/4.png"
+            >
+              <img src="./media/photos/gallery/4.png" alt="Photo 4" />
+            </div>
+            <div
+              class="gallery-item"
+              data-toggle="modal"
+              data-target="#imageModal"
+              data-src="./media/photos/gallery/7.jpg"
+            >
+              <img src="./media/photos/gallery/7.jpg" alt="Photo 7" />
+            </div>
+            <div
+              class="gallery-item"
+              data-toggle="modal"
+              data-target="#imageModal"
+              data-src="./media/photos/gallery/6.png"
+            >
+              <img src="./media/photos/gallery/6.png" alt="Photo 6" />
+            </div>
+            <div
+              class="gallery-item"
+              data-toggle="modal"
+              data-target="#imageModal"
+              data-src="./media/photos/gallery/5.png"
+            >
+              <img src="./media/photos/gallery/5.png" alt="Photo 5" />
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
-    <div id="footer"></div>
+    <!-- Modal pour la prévisualisation d'image -->
+    <div
+      class="modal fade"
+      id="imageModal"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <img id="modalImage" src="" alt="Image Preview" class="img-fluid" />
+          </div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <footer></footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
     <script>
-      function loadHTML(file, elementId) {
-        fetch(file)
-          .then((response) => response.text())
-          .then((data) => {
-            document.getElementById(elementId).innerHTML = data
-          })
-          .catch((error) => console.error("Error loading HTML:", error))
-      }
+      // Script pour changer l'image du modal lors du clic sur une image de la galerie
+      const galleryItems = document.querySelectorAll(".gallery-item")
+      const modalImage = document.getElementById("modalImage")
 
-      loadHTML("header.html", "header")
-      loadHTML("footer.html", "footer")
+      galleryItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          const src = this.getAttribute("data-src")
+          modalImage.src = src
+        })
+      })
     </script>
   </body>
 </html>

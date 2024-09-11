@@ -50,6 +50,7 @@ ol,
 blockquote,
 footer {
   font-family: "AGaramondPro", serif;
+  font-style: normal;
   color: #333;
 }
 
@@ -64,7 +65,6 @@ span,
 header,
 .navbar-brand,
 .hero h1,
-.hero h2,
 .section-title,
 h1,
 h2,
@@ -72,8 +72,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Brannboll", sans-serif;
+  font-family: "AGaramondPro", sans-serif;
   color: #0a3761; /* Couleur principale pour les titres */
+  font-weight: bold;
 }
 
 /* Exemple spécifique */
@@ -112,33 +113,43 @@ body {
   color: #ffd700;
 }
 
-/* Bannière Principale */
+/* Hero Section */
 .hero {
-  background: url("background-hero.jpg") no-repeat center center;
-  background-size: cover;
-  color: #fff;
-  text-align: center;
-  padding: 2rem 1rem;
+  background-color: #0a3761;
+  color: white;
+  padding: 20px; /* Ajuste le padding autour de la section */
+  padding-bottom: 40px; /* Augmente le padding en bas de la section */
 }
 
-.hero h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff; /* Assure que le titre est bien blanc */
 }
 
-.hero iframe {
-  max-width: 100%;
-  height: auto;
-  border: none;
+.hero p {
+  color: #f0f0f0; /* Ajuste la couleur du texte de paragraphe si nécessaire */
 }
 
+.hero .cta-btn {
+  padding: 10px 20px;
+  background-color: white;
+  color: #0a3761;
+  font-size: 1.2rem;
+  border-radius: 24px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+/* Conteneur pour iframe vidéo responsive */
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* Ratio 16:9 */
+  padding-bottom: 56.25%; /* Ratio d'aspect 16:9 (100% / 16 * 9 = 56.25%) */
   height: 0;
   overflow: hidden;
   max-width: 100%;
-  background: #000;
+  background: #000; /* Optionnel : couleur de fond pour l'iframe avant le chargement */
+  border-radius: 15px;
 }
 
 .video-container iframe {
@@ -147,20 +158,158 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  border: none;
+}
+
+/* Section Services */
+#services {
+  padding: 60px 0;
+}
+
+.service {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.service h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.service p {
+  font-size: 1rem;
+}
+
+.service .btn {
+  margin-top: 10px;
+}
+
+.btn-seemore {
+  border-radius: 24px;
+}
+
+/* Back to top button */
+#back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #f3a712;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: none;
+  z-index: 1000;
+}
+
+#back-to-top-btn.show {
+  display: block;
 }
 
 .blockquote-footer {
-  color: #ffffff;
+  margin-top: 4px;
+  background-color: transparent;
+  font-style: italic;
+  color: #0a3761;
 }
 
 .copyright {
   color: #ffffff;
 }
 
+.btn-primary {
+  background-color: #0a3761;
+  border-color: #0a3761;
+}
+
+.btn-primary:hover {
+  background-color: #08405c;
+  border-color: #08405c;
+}
+
+.btn-primary:active {
+  background-color: #08405c !important;
+  border-color: #08405c !important;
+}
+
+.navbar-logo {
+  width: 40px;
+  height: auto;
+  margin-right: 10px; /* Ajuste la marge selon le besoin */
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center; /* Aligne verticalement le texte et le logo */
+}
+
+.logo + span,
+.logo + a {
+  margin-left: 8px; /* Ajoute un peu d'espace entre le logo et le texte si nécessaire */
+}
+
+.socials {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.socials img {
+  width: 5vw; /* 5% of the viewport width */
+  height: auto; /* Keeps the aspect ratio */
+}
+
+/* Style pour rendre la carte responsive */
+.map-responsive {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 56.25%; /* Ratio d'aspect 16:9 */
+  height: 0;
+  max-width: 100%;
+  margin-top: 20px; /* Optionnel : ajustez selon vos besoins */
+}
+
+.map-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contact {
+  color: #0a3761;
+}
+
+#back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none; /* Masqué par défaut */
+  background-color: #f4d03f; /* Couleur du bouton (bleu bootstrap ou personnalisation) */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%; /* Bouton rond */
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease-in-out;
+}
+
+#back-to-top-btn:hover {
+  background-color: #f4d03f; /* Changement de couleur au survol */
+}
+
 /* Services */
 #services {
-  padding: 3rem 1rem;
-  background-color: #f8f9fa;
+  padding: 60px 0; /* Ajuste le padding supérieur et inférieur de la section */
+  margin-top: 60px; /* Ajoute de l'espace au-dessus de la section */
+  background-color: #f9f9f9; /* Couleur de fond pour mieux voir l'espacement */
+  border-radius: 15px;
 }
 
 #services h2 {
@@ -169,38 +318,45 @@ body {
   color: #0a3761; /* Couleur principale */
 }
 
+/* Style pour les icônes et le contenu des services */
 .service {
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column; /* Aligne les éléments en colonne */
+  align-items: center; /* Centre le contenu horizontalement */
+  text-align: center; /* Centre le texte */
+  border-radius: 15px;
+}
+
+.service-header {
+  display: flex;
+  align-items: center; /* Aligne l'icône et le titre verticalement */
+  gap: 10px; /* Espacement entre l'icône et le titre */
+}
+
+.service-icon {
+  font-size: 1.5rem; /* Taille de l'icône */
+  color: #0a3761; /* Couleur de l'icône */
 }
 
 .service h3 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  color: #0a3761; /* Couleur principale */
+  margin: 0; /* Enlève la marge au-dessus et en-dessous du titre */
 }
 
 .service p {
-  font-size: 1rem;
+  margin: 10px 0; /* Marge au-dessus et en-dessous du texte de description */
 }
 
 .service a {
-  display: inline-block;
-  margin-top: 0.5rem;
-  text-decoration: none;
-  color: #007bff;
-}
-
-.service a:hover {
-  text-decoration: underline;
+  color: #0a3761; /* Couleur du texte */
+  font-weight: bold; /* Texte en gras */
+  text-decoration: none; /* Supprime le soulignement */
+  margin-top: 10px; /* Marge au-dessus du lien */
+  display: inline-block; /* Assure que le lien s'affiche correctement */
 }
 
 /* Témoignages */
 #testimonials {
-  padding: 3rem 1rem;
+  padding: 3rem 0;
 }
 
 blockquote {
@@ -209,6 +365,8 @@ blockquote {
   border-left: 5px solid #0a3761; /* Couleur principale */
   margin-bottom: 1.5rem;
   font-style: italic;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 blockquote p {
@@ -218,8 +376,9 @@ blockquote p {
 
 /* Galerie */
 #gallery {
-  padding: 3rem 1rem;
+  padding: 3rem 2rem;
   background-color: #f8f9fa;
+  border-radius: 15px;
 }
 
 #gallery h2 {
@@ -229,8 +388,9 @@ blockquote p {
   color: #0a3761; /* Couleur principale */
 }
 
-.gallery-items img {
-  border-radius: 5px;
+#gallery img {
+  border-radius: 5px; /* Assurez-vous que les coins sont arrondis */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box-shadow pour les images de la galerie */
   max-width: 100%;
   height: auto;
   margin-bottom: 1rem;
@@ -238,34 +398,135 @@ blockquote p {
 
 /* Pied de Page */
 footer {
-  background: #0a3761; /* Couleur principale */
-  color: #fff;
-  text-align: center;
-  padding: 1rem 1rem;
-  margin-top: auto;
+  background: #0a3761; /* Couleur de fond du footer */
+  color: #fff; /* Couleur du texte */
+  padding: 1rem; /* Espacement interne */
+  text-align: center; /* Aligne le texte au centre */
 }
 
-footer p {
-  margin: 0;
-  font-size: 0.9rem;
+.container {
+  max-width: 1140px; /* Largeur maximale du conteneur */
+  margin: 0 auto; /* Centre le conteneur */
+  padding: 0 1rem; /* Espacement horizontal */
 }
 
-footer .socials {
-  margin-top: 0.5rem;
+.copyright {
+  margin: 0; /* Retire les marges par défaut */
+  font-size: 0.9rem; /* Taille du texte */
+}
+
+.copyright a {
+  text-decoration: none; /* Supprime le soulignement des liens */
+}
+
+.copyright a:hover {
+  text-decoration: underline; /* Sous-ligne au survol */
+}
+
+.socials {
+  margin-top: 1rem; /* Espacement au-dessus des icônes sociales */
 }
 
 .social-icon {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 0.5rem;
-  font-size: 1.2rem;
+  display: inline-block; /* Affiche les icônes en ligne */
+  margin: 0 0.5rem; /* Espacement entre les icônes */
 }
 
-.social-icon:hover {
-  text-decoration: underline;
+.social-icon img {
+  width: 24px; /* Largeur des icônes */
+  height: auto; /* Conserve les proportions */
 }
 
-/* Responsive Design */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+  gap: 10px; /* Espace entre les images */
+}
+
+.gallery-item img {
+  width: 100%; /* Rend les images responsive */
+  height: auto;
+  display: block; /* Évite l'espace sous les images */
+}
+
+/* Styles pour le modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-dialog {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  min-height: 100vh; /* Assure que la modal prenne la hauteur complète de l'écran */
+}
+
+.modal-content {
+  position: relative; /* Assure que le bouton de fermeture soit positionné par rapport à la modal */
+  border-radius: 9px; /* Enlève les coins arrondis si nécessaire */
+}
+
+.modal-body {
+  padding: 0; /* Enlève le padding pour que l'image remplisse entièrement le modal */
+}
+.modal.show {
+  display: flex;
+}
+
+.modal img {
+  max-width: 100%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 48px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  opacity: 1;
+}
+
+.modal .close:hover {
+  color: #f0f0f0;
+}
+
+/* Computer */
+@media (min-width: 1200px) {
+  /* Pour les écrans très larges */
+  .socials img {
+    width: 2vw !important; /* Un peu plus petit pour grands écrans */
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  /* Tablettes en mode paysage ou petits écrans */
+  .blockquote {
+    margin: 1rem 1rem; /* Ajoute un espacement vertical */
+  }
+
+  #services {
+    border-radius: 0; /* Suppression du border-radius pour les petits écrans */
+  }
+
+  #gallery {
+    border-radius: 0; /* Suppression du border-radius pour les petits écrans */
+  }
+}
+
+/* Phone */
 @media (max-width: 768px) {
   .navbar-brand {
     font-size: 1.25rem;
@@ -283,5 +544,53 @@ footer .socials {
   .service,
   .gallery-items img {
     padding: 0.5rem;
+  }
+
+  blockquote {
+    font-size: 1rem; /* Réduit la taille de la police pour les écrans mobiles */
+    margin: 15px 0; /* Réduit l'espacement autour des blockquotes */
+  }
+
+  blockquote p {
+    font-size: 0.9rem; /* Réduit la taille du texte à l'intérieur du blockquote */
+  }
+
+  blockquote footer {
+    font-size: 0.8rem; /* Réduit la taille de la police pour les pieds de page des blockquotes */
+    padding: 5px 0; /* Réduit le padding pour que le texte ne soit pas trop espacé */
+  }
+
+  #about img {
+    margin-bottom: 15px; /* Ajuster l'espace pour les écrans plus petits */
+  }
+
+  .socials img {
+    width: 10vw !important; /* Plus grand sur mobile */
+  }
+
+  #testimonials {
+    padding: 3rem 1rem; /* Padding vertical en version mobile */
+  }
+
+  #testimonials h2 {
+    font-size: 1.5rem; /* Réduire la taille du titre si nécessaire */
+    padding-bottom: 1rem; /* Espacement sous le titre */
+  }
+
+  .container {
+    padding: 0 0.5rem; /* Réduit l'espacement horizontal sur petits écrans */
+  }
+
+  .copyright {
+    font-size: 0.8rem; /* Réduit la taille du texte sur petits écrans */
+    line-height: 1.4; /* Augmente l'interligne pour plus de lisibilité */
+  }
+
+  .socials {
+    margin-top: 0.5rem; /* Réduit l'espacement au-dessus des icônes sociales */
+  }
+
+  .social-icon img {
+    width: 20px; /* Réduit la taille des icônes sociales sur petits écrans */
   }
 }
