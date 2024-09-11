@@ -1,67 +1,226 @@
-/* Définir les variantes de la police */
+/* Définir les variantes de la police Playfair Display */
 @font-face {
-  font-family: "AGaramondPro";
-  src: url("../font/AGaramondPro-Regular.otf") format("opentype");
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "AGaramondPro";
-  src: url("../font/AGaramondPro-Bold.otf") format("opentype");
-  font-weight: bold;
-  font-style: bold;
-}
-
-@font-face {
-  font-family: "AGaramondPro";
-  src: url("../font/AGaramondPro-Italic.otf") format("opentype");
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Italic.ttf") format("truetype");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "AGaramondPro";
-  src: url("../font/AGaramondPro-BoldItalic.otf") format("opentype");
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-BoldItalic.ttf") format("truetype");
   font-weight: bold;
   font-style: italic;
 }
 
-/* Définir les variantes de Brannboll */
 @font-face {
-  font-family: "Brannboll";
-  src: url("../font/BrannbollCourant.ttf") format("truetype");
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Définir les variantes de la police Poppins */
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Brannboll";
-  src: url("../font/BrannbollBold.ttf") format("truetype");
+  font-family: "Poppins";
+  src: url("../font/Poppins-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 
-/* Appliquer AGaramondPro pour le texte général */
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* Appliquer Playfair Display pour le texte général */
 body,
 p,
 ul,
 ol,
 blockquote,
 footer {
-  font-family: "AGaramondPro", serif;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   color: #333;
 }
 
-a,
 span,
-.service p,
 .testimonial p {
-  font-family: "AGaramondPro", serif;
+  font-family: "PlayfairDisplay", serif;
 }
 
-/* Appliquer Brannboll pour les titres et éléments spécifiques */
+/* Appliquer Playfair Display en gras pour les titres et éléments spécifiques */
 header,
 .navbar-brand,
 .hero h1,
@@ -72,22 +231,139 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "AGaramondPro", sans-serif;
+  font-family: "PlayfairDisplay", serif;
   color: #0a3761; /* Couleur principale pour les titres */
-  font-weight: bold;
+  font-weight: 800; /* Appliquer la version bold */
+  font-style: italic;
 }
 
 /* Exemple spécifique */
 footer {
-  font-family: "AGaramondPro", serif;
+  font-family: "PlayfairDisplay", serif;
+  font-weight: 800;
 }
 
 html,
 body {
   height: 100%;
   margin: 0;
-  font-family: "AGaramondPro", serif;
-  color: #333;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* En-tête */
+.bg-custom {
+  background: #0a3761 !important; /* Couleur de fond du header */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #ffffff !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffd700;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #0a3761;
+  color: white;
+  padding: 20px; /* Ajuste le padding autour de la section */
+  padding-bottom: 40px; /* Augmente le padding en bas de la section */
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff; /* Assure que le titre est bien blanc */
+}
+
+.hero p {
+  color: #f0f0f0; /* Ajuste la couleur du texte de paragraphe si nécessaire */
+}
+
+.hero .cta-btn {
+  font-family: "Poppins", sans-serif;
+  padding: 10px 20px;
+  background-color: white;
+  color: #0a3761;
+  font-size: 1.2rem;
+  border-radius: 24px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* Ratio d'aspect 16:9 */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000; /* Couleur de fond avant chargement */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 15px; /* Coins arrondis */
+}
+
+/* Section Services */
+#services {
+  padding: 60px 0;
+}
+
+.service {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Témoignages */
+#testimonials {
+  padding: 60px 0;
+}
+
+.testimonial {
+  border-left: 5px solid #0a3761;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* Footer */
+footer {
+  background-color: #0a3761;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer a {
+  color: #ffd700;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
 body {
@@ -141,15 +417,15 @@ body {
   margin-top: 20px;
 }
 
-/* Conteneur pour iframe vidéo responsive */
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* Ratio d'aspect 16:9 (100% / 16 * 9 = 56.25%) */
+  padding-bottom: 56.25%; /* Ratio d'aspect 16:9 */
   height: 0;
   overflow: hidden;
   max-width: 100%;
-  background: #000; /* Optionnel : couleur de fond pour l'iframe avant le chargement */
+  background: #000; /* Couleur de fond avant chargement */
   border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
 }
 
 .video-container iframe {
@@ -159,6 +435,7 @@ body {
   width: 100%;
   height: 100%;
   border: none;
+  border-radius: 15px; /* Coins arrondis */
 }
 
 /* Section Services */
@@ -211,6 +488,7 @@ body {
 }
 
 .blockquote-footer {
+  font-family: "PlayfairDisplay", serif;
   margin-top: 4px;
   background-color: transparent;
   font-style: italic;
@@ -262,14 +540,14 @@ body {
   height: auto; /* Keeps the aspect ratio */
 }
 
-/* Style pour rendre la carte responsive */
 .map-responsive {
   position: relative;
-  overflow: hidden;
-  padding-bottom: 56.25%; /* Ratio d'aspect 16:9 */
+  padding-bottom: 56.25%; /* Aspect ratio 16:9 */
   height: 0;
+  overflow: hidden;
   max-width: 100%;
-  margin-top: 20px; /* Optionnel : ajustez selon vos besoins */
+  background: #f5f5f5; /* Couleur de fond si l'iframe est vide ou en chargement */
+  border-radius: 8px; /* Bords arrondis */
 }
 
 .map-responsive iframe {
@@ -278,10 +556,34 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  border: 0; /* Retire la bordure par défaut de l'iframe */
 }
 
 .contact {
   color: #0a3761;
+}
+
+.contact-info ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.contact-info li {
+  margin-bottom: 10px; /* Espace entre les éléments de la liste */
+  line-height: 1.5; /* Améliore la lisibilité */
+}
+
+.contact-info .hours ul {
+  padding-left: 20px; /* Indentation pour les horaires */
+  margin-bottom: 0;
+}
+
+.contact-info .hours li {
+  margin-bottom: 5px; /* Espace entre les horaires */
+}
+
+.fa-map-marker-alt {
+  margin-right: 4px;
 }
 
 #back-to-top-btn {
@@ -348,7 +650,6 @@ body {
 
 .service a {
   color: #0a3761; /* Couleur du texte */
-  font-weight: bold; /* Texte en gras */
   text-decoration: none; /* Supprime le soulignement */
   margin-top: 10px; /* Marge au-dessus du lien */
   display: inline-block; /* Assure que le lien s'affiche correctement */
@@ -370,6 +671,7 @@ blockquote {
 }
 
 blockquote p {
+  font-size: 1rem;
   margin: 0;
   color: #333;
 }
@@ -402,6 +704,7 @@ footer {
   color: #fff; /* Couleur du texte */
   padding: 1rem; /* Espacement interne */
   text-align: center; /* Aligne le texte au centre */
+  margin-top: auto;
 }
 
 .container {
@@ -413,6 +716,7 @@ footer {
 .copyright {
   margin: 0; /* Retire les marges par défaut */
   font-size: 0.9rem; /* Taille du texte */
+  font-weight: 500;
 }
 
 .copyright a {
@@ -500,6 +804,11 @@ footer {
 
 .modal .close:hover {
   color: #f0f0f0;
+}
+
+i.fas,
+i.fab {
+  color: #0a3761; /* Utilise la couleur principale définie */
 }
 
 /* Computer */

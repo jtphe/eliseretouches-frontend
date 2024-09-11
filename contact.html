@@ -9,6 +9,11 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <!-- Lien vers Font Awesome pour les icônes -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
@@ -17,7 +22,6 @@
 
     <!-- Section principale "Contact" -->
     <section id="contact" class="container my-5">
-      <h2 class="text-center mb-4">Contactez-Nous</h2>
       <div class="row">
         <!-- Informations de contact -->
         <div class="col-md-6">
@@ -26,13 +30,13 @@
             Vous pouvez nous contacter par téléphone, sur Facebook, ou nous
             rendre visite à notre atelier :
           </p>
-          <ul>
+          <ul class="list-unstyled">
             <li>
-              Téléphone :
+              <i class="fas fa-phone-alt"></i> Téléphone :
               <a class="contact" href="tel:+33615567047">0615567047</a>
             </li>
             <li>
-              Facebook :
+              <i class="fab fa-facebook"></i> Facebook :
               <a
                 class="contact"
                 href="https://www.facebook.com/eliseretouches"
@@ -40,7 +44,23 @@
                 >Elise Retouches</a
               >
             </li>
-            <li>Adresse : 6 Place Arnold, 67000 Strasbourg</li>
+            <li class="location">
+              <i class="fas fa-map-marker-alt"></i> Adresse : 6 Place Arnold,
+              67000 Strasbourg
+            </li>
+            <!-- Horaires d'ouverture -->
+            <li class="hours">
+              <i class="fas fa-clock"></i> Horaires d'ouverture :
+              <ul>
+                <li>Lundi : 10h-12h / 14h-18h</li>
+                <li>Mardi : 10h-12h / 14h-18h</li>
+                <li>Mercredi : Fermé</li>
+                <li>Jeudi : 10h-12h / 14h-18h</li>
+                <li>Vendredi : 10h-12h / 14h-18h</li>
+                <li>Samedi : 10h-12h</li>
+                <li>Dimanche : Fermé</li>
+              </ul>
+            </li>
           </ul>
         </div>
         <!-- Carte Google Maps -->
