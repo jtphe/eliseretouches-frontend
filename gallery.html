@@ -13,82 +13,118 @@
   <body>
     <header></header>
 
-    <main>
+    <main class="main-content">
       <section class="container py-5">
         <h2 class="text-center">Galerie</h2>
-        <div class="row mx-3">
+        <div class="row">
           <div class="gallery-grid">
             <div
               class="gallery-item"
               data-toggle="modal"
               data-target="#imageModal"
-              data-src="./media/photos/gallery/1.png"
+              data-src="./media/photos/gallery/1.jpeg"
             >
-              <img src="./media/photos/gallery/1.png" alt="Photo 1" />
+              <img
+                src="./media/photos/gallery/1.jpeg"
+                alt="Enseigne Elise Retouches"
+                loading="lazy"
+              />
             </div>
             <div
               class="gallery-item"
               data-toggle="modal"
               data-target="#imageModal"
-              data-src="./media/photos/gallery/2.png"
+              data-src="./media/photos/gallery/2.jpeg"
             >
-              <img src="./media/photos/gallery/2.png" alt="Photo 2" />
+              <img
+                src="./media/photos/gallery/2.jpeg"
+                alt="Devanture Elise Retouches"
+                loading="lazy"
+              />
             </div>
             <div
               class="gallery-item"
               data-toggle="modal"
               data-target="#imageModal"
-              data-src="./media/photos/gallery/3.png"
+              data-src="./media/photos/gallery/3.jpeg"
             >
-              <img src="./media/photos/gallery/3.png" alt="Photo 3" />
+              <img
+                src="./media/photos/gallery/3.jpeg"
+                alt="Dressing habits clients ER"
+                loading="lazy"
+              />
             </div>
             <div
               class="gallery-item"
               data-toggle="modal"
               data-target="#imageModal"
-              data-src="./media/photos/gallery/8.jpg"
+              data-src="./media/photos/gallery/8.jpeg"
             >
-              <img src="./media/photos/gallery/8.jpg" alt="Photo 8" />
+              <img
+                src="./media/photos/gallery/8.jpeg"
+                alt="Bobines machine ER"
+                loading="lazy"
+              />
             </div>
             <div
               class="gallery-item"
               data-toggle="modal"
               data-target="#imageModal"
-              data-src="./media/photos/gallery/9.jpg"
+              data-src="./media/photos/gallery/9.jpeg"
             >
-              <img src="./media/photos/gallery/9.jpg" alt="Photo 9" />
+              <img
+                src="./media/photos/gallery/9.jpeg"
+                alt="Pantalon gris retouches ER"
+                loading="lazy"
+              />
             </div>
             <div
               class="gallery-item"
               data-toggle="modal"
               data-target="#imageModal"
-              data-src="./media/photos/gallery/4.png"
+              data-src="./media/photos/gallery/4.jpeg"
             >
-              <img src="./media/photos/gallery/4.png" alt="Photo 4" />
+              <img
+                src="./media/photos/gallery/4.jpeg"
+                alt="Rangement bobines ER"
+                loading="lazy"
+              />
             </div>
             <div
               class="gallery-item"
               data-toggle="modal"
               data-target="#imageModal"
-              data-src="./media/photos/gallery/7.jpg"
+              data-src="./media/photos/gallery/7.jpeg"
             >
-              <img src="./media/photos/gallery/7.jpg" alt="Photo 7" />
+              <img
+                src="./media/photos/gallery/7.jpeg"
+                alt="Elise en train de travailler une robe"
+                loading="lazy"
+              />
             </div>
             <div
               class="gallery-item"
               data-toggle="modal"
               data-target="#imageModal"
-              data-src="./media/photos/gallery/6.png"
+              data-src="./media/photos/gallery/6.jpeg"
             >
-              <img src="./media/photos/gallery/6.png" alt="Photo 6" />
+              <img
+                src="./media/photos/gallery/6.jpeg"
+                alt="Elise avec une cliente"
+                loading="lazy"
+              />
             </div>
             <div
               class="gallery-item"
               data-toggle="modal"
               data-target="#imageModal"
-              data-src="./media/photos/gallery/5.png"
+              data-src="./media/photos/gallery/5.jpeg"
             >
-              <img src="./media/photos/gallery/5.png" alt="Photo 5" />
+              <img
+                src="./media/photos/gallery/5.jpeg"
+                alt="Elise analyse un pantalon pour enfant"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
@@ -106,7 +142,16 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-body">
-            <img id="modalImage" src="" alt="Image Preview" class="img-fluid" />
+            <div class="modal-body position-relative">
+              <button class="arrow-btn left" id="prevBtn">&#8249;</button>
+              <img
+                id="modalImage"
+                src=""
+                alt="Image Preview"
+                class="img-fluid"
+              />
+              <button class="arrow-btn right" id="nextBtn">&#8250;</button>
+            </div>
           </div>
           <button
             type="button"
@@ -129,12 +174,46 @@
       // Script pour changer l'image du modal lors du clic sur une image de la galerie
       const galleryItems = document.querySelectorAll(".gallery-item")
       const modalImage = document.getElementById("modalImage")
+      const prevBtn = document.getElementById("prevBtn")
+      const nextBtn = document.getElementById("nextBtn")
+      let currentIndex = 0 // Pour garder la trace de l'image actuelle
 
-      galleryItems.forEach((item) => {
+      const imageSources = Array.from(galleryItems).map((item) =>
+        item.getAttribute("data-src")
+      )
+
+      galleryItems.forEach((item, index) => {
         item.addEventListener("click", function () {
           const src = this.getAttribute("data-src")
           modalImage.src = src
+          currentIndex = index // Mettre à jour l'index de l'image actuelle
         })
+      })
+
+      // Fonction pour afficher l'image précédente
+      function showPrevImage() {
+        currentIndex =
+          (currentIndex - 1 + imageSources.length) % imageSources.length
+        modalImage.src = imageSources[currentIndex]
+      }
+
+      // Fonction pour afficher l'image suivante
+      function showNextImage() {
+        currentIndex = (currentIndex + 1) % imageSources.length
+        modalImage.src = imageSources[currentIndex]
+      }
+
+      // Gérer les clics sur les boutons fléchés
+      prevBtn.addEventListener("click", showPrevImage)
+      nextBtn.addEventListener("click", showNextImage)
+
+      // Gérer les flèches gauche et droite du clavier
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowRight") {
+          showNextImage() // Passer à l'image suivante
+        } else if (event.key === "ArrowLeft") {
+          showPrevImage() // Passer à l'image précédente
+        }
       })
     </script>
   </body>

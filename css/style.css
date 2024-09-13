@@ -217,7 +217,7 @@ footer {
 
 span,
 .testimonial p {
-  font-family: "PlayfairDisplay", serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Appliquer Playfair Display en gras pour les titres et éléments spécifiques */
@@ -254,6 +254,10 @@ body {
   flex-direction: column;
 }
 
+.main-content {
+  flex: 1;
+}
+
 /* En-tête */
 .bg-custom {
   background: #0a3761 !important; /* Couleur de fond du header */
@@ -268,10 +272,6 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #ffffff !important;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #ffd700;
 }
 
 /* Hero Section */
@@ -290,6 +290,7 @@ body {
 
 .hero p {
   color: #f0f0f0; /* Ajuste la couleur du texte de paragraphe si nécessaire */
+  margin-bottom: 2rem;
 }
 
 .hero .cta-btn {
@@ -300,7 +301,7 @@ body {
   font-size: 1.2rem;
   border-radius: 24px;
   text-decoration: none;
-  margin-top: 20px;
+  margin-vertical: 20px;
 }
 
 .video-container {
@@ -311,7 +312,7 @@ body {
   max-width: 100%;
   background: #000; /* Couleur de fond avant chargement */
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
 }
 
 .video-container iframe {
@@ -324,40 +325,92 @@ body {
   border-radius: 15px; /* Coins arrondis */
 }
 
-/* Section Services */
-#services {
-  padding: 60px 0;
-}
-
-.service {
-  background-color: #f9f9f9;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 /* Section Témoignages */
 #testimonials {
   padding: 60px 0;
 }
 
-.testimonial {
-  border-left: 5px solid #0a3761;
-  padding-left: 20px;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-
 /* Footer */
 footer {
-  background-color: #0a3761;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
+  background-color: #0a3761; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 20px 0; /* Espacement interne */
 }
 
-footer a {
-  color: #ffd700;
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-hours {
+  flex: 1;
+}
+
+.footer-hours p {
+  font-family: "PlayfairDisplay", serif;
+  font-weight: 600;
+  color: white; /* Couleur dorée pour les titres */
+  margin-bottom: 0.5rem;
+}
+
+.footer-hours ul {
+  color: #ffffff;
+  padding: 0;
+  list-style: none; /* Retire les puces */
+}
+
+.footer-hours ul li {
+  margin-bottom: 0.2rem; /* Espacement entre les horaires */
+}
+
+.hours-title {
+  font-family: "PlayfairDisplay", serif;
+  font-weight: 800; /* Plus grand et en gras */
+  color: #ffffff; /* Couleur blanche */
+  margin-bottom: 1rem; /* Espacement inférieur */
+  font-size: 1.2rem; /* Taille de police plus grande */
+}
+
+.footer-info {
+  text-align: right;
+  flex: 1;
+}
+
+.footer-info .copyright {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.footer-info a {
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
+
+.socials {
+  margin-top: 0.5rem; /* Espacement au-dessus des icônes sociales */
+  display: flex; /* Flexbox pour les icônes sociales */
+  justify-content: flex-end; /* Aligner à droite */
+}
+
+.social-icon {
+  margin: 0 0.5rem; /* Espacement entre les icônes */
+}
+
+.social-icon img {
+  width: 24px; /* Largeur des icônes */
+  height: auto; /* Conserve les proportions */
 }
 
 html,
@@ -385,10 +438,6 @@ body {
   color: #ffffff !important;
 }
 
-.navbar-nav .nav-link:hover {
-  color: #ffd700;
-}
-
 /* Hero Section */
 .hero {
   background-color: #0a3761;
@@ -407,37 +456,6 @@ body {
   color: #f0f0f0; /* Ajuste la couleur du texte de paragraphe si nécessaire */
 }
 
-.hero .cta-btn {
-  padding: 10px 20px;
-  background-color: white;
-  color: #0a3761;
-  font-size: 1.2rem;
-  border-radius: 24px;
-  text-decoration: none;
-  margin-top: 20px;
-}
-
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* Ratio d'aspect 16:9 */
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
-  background: #000; /* Couleur de fond avant chargement */
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 15px; /* Coins arrondis */
-}
-
 /* Section Services */
 #services {
   padding: 60px 0;
@@ -447,7 +465,7 @@ body {
   background-color: #f9f9f9;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
 }
 
 .service h3 {
@@ -467,13 +485,19 @@ body {
   border-radius: 24px;
 }
 
+/* Style pour les titres des informations de contact */
+.title-contact {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500; /* Gras mais plus fin */
+}
+
 /* Back to top button */
 #back-to-top-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
   padding: 10px 15px;
-  background-color: #f3a712;
+  background-color: #457b9d;
   color: white;
   border: none;
   border-radius: 50%;
@@ -495,10 +519,6 @@ body {
   color: #0a3761;
 }
 
-.copyright {
-  color: #ffffff;
-}
-
 .btn-primary {
   background-color: #0a3761;
   border-color: #0a3761;
@@ -518,6 +538,7 @@ body {
   width: 40px;
   height: auto;
   margin-right: 10px; /* Ajuste la marge selon le besoin */
+  border-radius: 8px;
 }
 
 .navbar-brand {
@@ -528,16 +549,6 @@ body {
 .logo + span,
 .logo + a {
   margin-left: 8px; /* Ajoute un peu d'espace entre le logo et le texte si nécessaire */
-}
-
-.socials {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.socials img {
-  width: 5vw; /* 5% of the viewport width */
-  height: auto; /* Keeps the aspect ratio */
 }
 
 .map-responsive {
@@ -573,15 +584,6 @@ body {
   line-height: 1.5; /* Améliore la lisibilité */
 }
 
-.contact-info .hours ul {
-  padding-left: 20px; /* Indentation pour les horaires */
-  margin-bottom: 0;
-}
-
-.contact-info .hours li {
-  margin-bottom: 5px; /* Espace entre les horaires */
-}
-
 .fa-map-marker-alt {
   margin-right: 4px;
 }
@@ -591,19 +593,19 @@ body {
   bottom: 20px;
   right: 20px;
   display: none; /* Masqué par défaut */
-  background-color: #f4d03f; /* Couleur du bouton (bleu bootstrap ou personnalisation) */
+  background-color: #457b9d; /* Couleur du bouton (bleu bootstrap ou personnalisation) */
   color: white;
   border: none;
   padding: 10px 15px;
   border-radius: 50%; /* Bouton rond */
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
   transition: opacity 0.3s ease-in-out;
 }
 
 #back-to-top-btn:hover {
-  background-color: #f4d03f; /* Changement de couleur au survol */
+  background-color: #457b9d; /* Changement de couleur au survol */
 }
 
 /* Services */
@@ -621,6 +623,10 @@ body {
 }
 
 /* Style pour les icônes et le contenu des services */
+#services-page {
+  padding: 2rem 0;
+}
+
 .service {
   display: flex;
   flex-direction: column; /* Aligne les éléments en colonne */
@@ -668,6 +674,7 @@ blockquote {
   font-style: italic;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
 }
 
 blockquote p {
@@ -692,53 +699,102 @@ blockquote p {
 
 #gallery img {
   border-radius: 5px; /* Assurez-vous que les coins sont arrondis */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box-shadow pour les images de la galerie */
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
   max-width: 100%;
   height: auto;
   margin-bottom: 1rem;
 }
 
-/* Pied de Page */
+#services-page .card-body {
+  padding: 0.5rem; /* Ajustez cette valeur selon vos besoins */
+}
+
+/* Footer */
 footer {
-  background: #0a3761; /* Couleur de fond du footer */
-  color: #fff; /* Couleur du texte */
-  padding: 1rem; /* Espacement interne */
-  text-align: center; /* Aligne le texte au centre */
-  margin-top: auto;
+  background-color: #0a3761; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 20px 0; /* Espacement interne */
 }
 
 .container {
-  max-width: 1140px; /* Largeur maximale du conteneur */
-  margin: 0 auto; /* Centre le conteneur */
-  padding: 0 1rem; /* Espacement horizontal */
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.copyright {
-  margin: 0; /* Retire les marges par défaut */
-  font-size: 0.9rem; /* Taille du texte */
-  font-weight: 500;
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Alignement en haut */
+  width: 100%; /* Assure que le footer-content prend toute la largeur */
 }
 
-.copyright a {
-  text-decoration: none; /* Supprime le soulignement des liens */
+.footer-hours {
+  flex: 1;
 }
 
-.copyright a:hover {
-  text-decoration: underline; /* Sous-ligne au survol */
+.hours-title {
+  font-family: "PlayfairDisplay", serif;
+  font-weight: 800; /* Plus grand et en gras */
+  color: #ffffff; /* Couleur blanche */
+  margin-bottom: 1rem; /* Espacement inférieur */
+  font-size: 1.2rem; /* Taille de police plus grande */
+}
+
+.footer-hours ul {
+  color: #ffffff;
+  padding: 0;
+  list-style: none; /* Retire les puces */
+}
+
+.footer-hours ul li {
+  margin-bottom: 0.2rem; /* Espacement entre les horaires */
+  font-weight: normal; /* Supprimer le gras */
+}
+
+.footer-info {
+  text-align: right;
+  flex: 1;
+}
+
+.footer-info .copyright {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+/* Retirer la marge droite spécifique pour LinkedIn */
+.footer-info .social-icon.linkedin {
+  margin-right: 0;
+}
+
+.footer-info a {
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
 }
 
 .socials {
-  margin-top: 1rem; /* Espacement au-dessus des icônes sociales */
+  margin-top: 0.5rem; /* Espacement au-dessus des icônes sociales */
+  display: flex; /* Flexbox pour les icônes sociales */
+  justify-content: flex-end; /* Aligner à droite */
 }
 
 .social-icon {
-  display: inline-block; /* Affiche les icônes en ligne */
-  margin: 0 0.5rem; /* Espacement entre les icônes */
+  margin: 0 0.5rem;
+  text-decoration: none;
 }
 
-.social-icon img {
-  width: 24px; /* Largeur des icônes */
-  height: auto; /* Conserve les proportions */
+.social-icon i {
+  font-size: 24px;
+}
+
+/* Les icônes Font Awesome dans le footer seront blanches */
+footer .social-icon i {
+  color: #fff; /* Change la couleur des icônes Font Awesome uniquement dans le footer */
 }
 
 .gallery-grid {
@@ -806,9 +862,162 @@ footer {
   color: #f0f0f0;
 }
 
+/* Styles pour les boutons fléchés */
+.arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.arrow-btn.left {
+  left: 10px;
+}
+.arrow-btn.right {
+  right: 10px;
+}
+.arrow-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 i.fas,
 i.fab {
   color: #0a3761; /* Utilise la couleur principale définie */
+}
+
+/* Style pour les questions de la FAQ */
+.faq .card-header .btn-link {
+  color: #0a3761; /* Couleur des questions */
+  font-weight: bold;
+  text-align: left; /* Alignement à gauche */
+}
+
+.faq .card-header .btn-link:hover {
+  color: #083d6f; /* Couleur des questions au survol */
+}
+
+/* Réduire la taille du texte dans les réponses FAQ */
+.faq .card-body {
+  font-size: 0.875rem; /* Réduit la taille du texte */
+  line-height: 1.4; /* Ajuste l'espacement des lignes */
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 5px;
+  padding: 1.5rem;
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  border: 0;
+  background-color: #f8f9fa;
+}
+.service-card .card-body {
+  text-align: left;
+}
+
+.service-title {
+  font-size: 1.1rem;
+  font-weight: 550;
+}
+
+.service-description {
+  margin-top: 0.5rem;
+}
+
+.pricing {
+  color: #0a3761;
+  font-weight: 600;
+}
+
+.card-body {
+  flex: 1;
+}
+
+.intro-text {
+  margin-bottom: 1.5rem;
+}
+
+.testimonial {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  border-left: 5px solid #0a3761;
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+}
+
+.testimonial h2 {
+  margin-bottom: 1rem;
+}
+
+/* Applique la police Playfair Display aux noms des auteurs */
+.testimonial strong {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  color: #0a3761;
+}
+
+.status-open {
+  color: green; /* Couleur pour ouvert */
+}
+
+.status-closed {
+  color: red; /* Couleur pour fermé */
+}
+
+.status-closing {
+  color: orange; /* Couleur de texte pour "Ferme bientôt" */
+}
+
+/* Styles pour l'indicateur de statut */
+#status-indicator {
+  display: flex;
+  align-items: center; /* Aligne la LED et le texte verticalement */
+  margin: 0 auto; /* Centre le conteneur horizontalement */
+}
+
+/* Styles pour la LED */
+.led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #f00; /* Couleur de la LED, par exemple rouge */
+  margin-right: 0.5rem; /* Espace entre la LED et le texte */
+}
+
+#status-text {
+  font-size: 16px; /* Taille du texte (la même que pour les horaires) */
+  color: white; /* Couleur de texte par défaut */
+}
+
+.status-open .led {
+  background-color: green; /* Couleur de la LED lorsque ouvert */
+}
+
+.status-closed .led {
+  background-color: #e63946; /* Couleur de la LED lorsque fermé */
+}
+
+.status-closing .led {
+  background-color: orange; /* Couleur de la LED lorsque ferme bientôt */
+}
+
+.status-open #status-text {
+  color: green; /* Couleur du texte lorsque ouvert */
+}
+
+.status-closed #status-text {
+  color: #e63946; /* Couleur du texte lorsque fermé */
+}
+
+.status-closing #status-text {
+  color: orange; /* Couleur du texte lorsque ferme bientôt */
 }
 
 /* Computer */
@@ -825,81 +1034,192 @@ i.fab {
   .blockquote {
     margin: 1rem 1rem; /* Ajoute un espacement vertical */
   }
-
-  #services {
-    border-radius: 0; /* Suppression du border-radius pour les petits écrans */
-  }
-
-  #gallery {
-    border-radius: 0; /* Suppression du border-radius pour les petits écrans */
-  }
 }
 
 /* Phone */
+/* Phone */
 @media (max-width: 768px) {
+  #services .col-md-4,
+  #gallery .col-md-4 {
+    margin-bottom: 1rem; /* Espacement sous les colonnes */
+  }
+
+  #about img {
+    margin-bottom: 15px; /* Ajuster l'espace sous les images */
+  }
+
+  #testimonials {
+    padding: 3rem 1rem; /* Padding vertical pour les petits écrans */
+  }
+
+  #testimonials h2 {
+    font-size: 1.5rem; /* Taille du titre */
+    padding-bottom: 1rem; /* Espacement sous le titre */
+  }
+  #status-indicator {
+    flex-direction: row; /* Change la direction en colonne pour mobile */
+  }
+
+  .led {
+    margin-bottom: 0.5rem; /* Espace entre la LED et le texte en version mobile */
+    margin-right: 0; /* Enlève la marge droite en version mobile */
+  }
+
+  #status-text {
+    text-align: center; /* Centre le texte */
+  }
+
+  blockquote {
+    font-size: 1rem; /* Taille de la police */
+    margin: 15px 0; /* Espacement autour des blockquotes */
+  }
+
+  blockquote p {
+    font-size: 0.9rem; /* Taille du texte à l'intérieur du blockquote */
+  }
+
+  blockquote footer {
+    font-size: 0.8rem; /* Taille de la police pour les pieds de page des blockquotes */
+    padding: 5px 0; /* Réduit le padding vertical */
+  }
+
+  .btn-seemore {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .hero .cta-btn {
+    font-size: 0.8rem;
+  }
+
   .navbar-brand {
-    font-size: 1.25rem;
+    font-size: 1.25rem; /* Taille de la police pour la marque de la navbar */
   }
 
   .hero h2 {
-    font-size: 1.5rem;
-  }
-
-  #services .col-md-4,
-  #gallery .col-md-4 {
-    margin-bottom: 1rem;
+    font-size: 1.5rem; /* Taille du titre de la section hero */
   }
 
   .service,
   .gallery-items img {
-    padding: 0.5rem;
+    padding: 0.5rem; /* Padding autour des éléments */
   }
 
-  blockquote {
-    font-size: 1rem; /* Réduit la taille de la police pour les écrans mobiles */
-    margin: 15px 0; /* Réduit l'espacement autour des blockquotes */
+  #services .service h3 {
+    font-size: 1.25rem; /* Réduit la taille des titres h3 dans les services */
   }
 
-  blockquote p {
-    font-size: 0.9rem; /* Réduit la taille du texte à l'intérieur du blockquote */
-  }
-
-  blockquote footer {
-    font-size: 0.8rem; /* Réduit la taille de la police pour les pieds de page des blockquotes */
-    padding: 5px 0; /* Réduit le padding pour que le texte ne soit pas trop espacé */
-  }
-
-  #about img {
-    margin-bottom: 15px; /* Ajuster l'espace pour les écrans plus petits */
-  }
-
-  .socials img {
-    width: 10vw !important; /* Plus grand sur mobile */
-  }
-
-  #testimonials {
-    padding: 3rem 1rem; /* Padding vertical en version mobile */
-  }
-
-  #testimonials h2 {
-    font-size: 1.5rem; /* Réduire la taille du titre si nécessaire */
-    padding-bottom: 1rem; /* Espacement sous le titre */
+  #services .service p {
+    font-size: 0.875rem; /* Réduit la taille de la police pour les paragraphes dans les services */
   }
 
   .container {
-    padding: 0 0.5rem; /* Réduit l'espacement horizontal sur petits écrans */
+    flex-direction: column; /* Alignement en colonne pour les petits écrans */
+    align-items: center; /* Centre les éléments horizontalement */
   }
 
   .copyright {
-    font-size: 0.8rem; /* Réduit la taille du texte sur petits écrans */
-    line-height: 1.4; /* Augmente l'interligne pour plus de lisibilité */
+    margin: 0; /* Enlève les marges par défaut */
+    font-size: 0.9rem; /* Taille du texte */
+    font-weight: 500; /* Légèrement gras pour la lisibilité */
+    text-align: center; /* Centre le texte */
+  }
+
+  .copyright a {
+    text-decoration: none; /* Supprime le soulignement des liens */
+    color: #fff; /* Couleur des liens */
+  }
+
+  .copyright a:hover {
+    text-decoration: underline; /* Soulignement au survol */
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column; /* Arrange les éléments en colonne */
+    align-items: center; /* Centre les éléments horizontalement */
+    text-align: center; /* Centre le texte */
+    padding: 1rem; /* Padding autour du contenu */
+  }
+
+  .footer-hours,
+  .footer-info {
+    margin-bottom: 1rem; /* Espacement entre les sections */
+  }
+
+  .footer-hours p,
+  .footer-info p,
+  .copyright {
+    margin: 0; /* Enlève les marges par défaut */
   }
 
   .socials {
-    margin-top: 0.5rem; /* Réduit l'espacement au-dessus des icônes sociales */
+    display: flex; /* Utilise flexbox pour aligner les éléments */
+    flex-direction: row; /* Aligne les icônes horizontalement */
+    justify-content: center; /* Centre les icônes */
+    gap: 10px; /* Espacement entre les icônes sociales */
+    margin-top: 10px; /* Espacement au-dessus des icônes */
   }
 
-  .social-icon img {
-    width: 20px; /* Réduit la taille des icônes sociales sur petits écrans */
+  .social-icon {
+    font-size: 24px; /* Taille des icônes Font Awesome */
+    color: #fff; /* Couleur des icônes */
+    text-decoration: none; /* Enlève la décoration des liens */
+  }
+
+  .social-icon:hover {
+    color: #ddd; /* Couleur des icônes au survol */
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Affiche 2 colonnes sur mobile */
+    padding: 10px; /* Réduction du padding horizontal */
+  }
+
+  /* Si la dernière image est seule dans une ligne, on la centre */
+  .gallery-item:nth-child(odd):last-child {
+    grid-column: span 2; /* L'image occupe les deux colonnes */
+    justify-self: center; /* Centre horizontalement l'image */
+  }
+
+  .gallery-item img {
+    width: 100%; /* S'assure que les images prennent toute la largeur disponible */
+    height: auto;
+  }
+
+  .info-title {
+    font-size: 1.25rem; /* Réduit la taille des titres */
+  }
+
+  .info-title + p {
+    font-size: 0.875rem; /* Réduit la taille du texte du paragraphe */
+  }
+
+  .list-unstyled li {
+    font-size: 0.875rem; /* Réduit la taille du texte des éléments de liste */
+  }
+
+  .title-contact {
+    font-size: 0.875rem; /* Réduit la taille du texte des labels dans les éléments de liste */
+  }
+
+  .map-responsive iframe {
+    height: 300px; /* Réduit la hauteur de la carte pour les écrans plus petits */
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-grid {
+    padding: 5px; /* Réduction encore plus importante du padding pour très petits écrans */
+    gap: 10px; /* Moins d'espace entre les images */
   }
 }
