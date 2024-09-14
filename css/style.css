@@ -413,6 +413,16 @@ footer {
   height: auto; /* Conserve les proportions */
 }
 
+.map-link {
+  color: #0a3761;
+  text-decoration: none; /* Supprime le soulignement du lien, si souhaité */
+}
+
+.copyright a {
+  text-decoration: none;
+  color: #fff;
+}
+
 html,
 body {
   height: 100%;
@@ -733,14 +743,6 @@ footer {
   flex: 1;
 }
 
-.hours-title {
-  font-family: "PlayfairDisplay", serif;
-  font-weight: 800; /* Plus grand et en gras */
-  color: #ffffff; /* Couleur blanche */
-  margin-bottom: 1rem; /* Espacement inférieur */
-  font-size: 1.2rem; /* Taille de police plus grande */
-}
-
 .footer-hours ul {
   color: #ffffff;
   padding: 0;
@@ -750,18 +752,6 @@ footer {
 .footer-hours ul li {
   margin-bottom: 0.2rem; /* Espacement entre les horaires */
   font-weight: normal; /* Supprimer le gras */
-}
-
-.footer-info {
-  text-align: right;
-  flex: 1;
-}
-
-.footer-info .copyright {
-  font-size: 0.9rem;
-  font-weight: normal;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
 }
 
 /* Retirer la marge droite spécifique pour LinkedIn */
@@ -1056,17 +1046,48 @@ i.fab {
     font-size: 1.5rem; /* Taille du titre */
     padding-bottom: 1rem; /* Espacement sous le titre */
   }
+
   #status-indicator {
-    flex-direction: row; /* Change la direction en colonne pour mobile */
+    display: flex;
+    align-items: center; /* Aligne la LED et le texte verticalement */
+    justify-content: center; /* Centre horizontalement le contenu en mobile */
+    margin: 0.5rem auto;
+    line-height: 1; /* Hauteur de ligne égale pour éviter les décalages */
   }
-
+  /* Styles pour la LED */
   .led {
-    margin-bottom: 0.5rem; /* Espace entre la LED et le texte en version mobile */
-    margin-right: 0; /* Enlève la marge droite en version mobile */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #f00; /* Couleur de la LED */
+    margin-right: 0.5rem; /* Espace entre la LED et le texte */
   }
 
+  /* Ajustement du texte */
   #status-text {
-    text-align: center; /* Centre le texte */
+    font-size: 16px; /* Taille du texte */
+    color: white; /* Couleur du texte par défaut */
+    line-height: 1; /* S'assure que le texte ne s'étire pas */
+  }
+
+  .status-open .led {
+    background-color: green; /* LED verte pour ouvert */
+  }
+
+  .status-closed .led {
+    background-color: #e63946; /* LED rouge pour fermé */
+  }
+
+  .status-closing .led {
+    background-color: orange; /* LED orange pour fermeture imminente */
+  }
+
+  .status-open #status-text {
+    color: green; /* Texte en vert pour ouvert */
+  }
+
+  .status-closed #status-text {
+    color: #e63946; /* Texte en rouge pour fermé */
   }
 
   blockquote {
@@ -1147,7 +1168,6 @@ i.fab {
     flex-direction: column; /* Arrange les éléments en colonne */
     align-items: center; /* Centre les éléments horizontalement */
     text-align: center; /* Centre le texte */
-    padding: 1rem; /* Padding autour du contenu */
   }
 
   .footer-hours,
