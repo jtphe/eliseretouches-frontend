@@ -254,6 +254,10 @@ body {
   flex-direction: column;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .main-content {
   flex: 1;
 }
@@ -394,10 +398,6 @@ footer {
   text-decoration: none;
 }
 
-.footer-info a:hover {
-  text-decoration: underline;
-}
-
 .socials {
   margin-top: 0.5rem; /* Espacement au-dessus des icônes sociales */
   display: flex; /* Flexbox pour les icônes sociales */
@@ -421,17 +421,6 @@ footer {
 .copyright a {
   text-decoration: none;
   color: #fff;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
 }
 
 /* En-tête */
@@ -582,6 +571,10 @@ body {
 
 .contact {
   color: #0a3761;
+}
+
+.contact a :hover {
+  text-decoration: none;
 }
 
 .contact-info ul {
@@ -763,10 +756,6 @@ footer {
   text-decoration: none;
 }
 
-.footer-info a:hover {
-  text-decoration: underline;
-}
-
 .socials {
   margin-top: 0.5rem; /* Espacement au-dessus des icônes sociales */
   display: flex; /* Flexbox pour les icônes sociales */
@@ -912,8 +901,8 @@ i.fab {
 }
 
 .service-title {
-  font-size: 1.1rem;
-  font-weight: 550;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .service-description {
@@ -1009,7 +998,6 @@ i.fab {
 .status-closing #status-text {
   color: orange; /* Couleur du texte lorsque ferme bientôt */
 }
-
 /* Computer */
 @media (min-width: 1200px) {
   /* Pour les écrans très larges */
@@ -1157,10 +1145,6 @@ i.fab {
   .copyright a {
     text-decoration: none; /* Supprime le soulignement des liens */
     color: #fff; /* Couleur des liens */
-  }
-
-  .copyright a:hover {
-    text-decoration: underline; /* Soulignement au survol */
   }
 
   .footer-content {
