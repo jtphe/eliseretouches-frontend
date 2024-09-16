@@ -1,629 +1,1229 @@
+/* Définir les variantes de la police Playfair Display */
 @font-face {
-    font-family: "Adobe Garamond Pro";
-    src: url(./font/AGarmondPro-Regular.otf);
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Brannboll Bold";
-    src: url(./font/BrannbollBold.ttf);
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
 }
 
-li {
-    list-style-type: circle !important;
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
 }
 
-.alert-info {
-    padding: 2rem;
-    font-size: 1.5rem;
-    color: #ff7675;
-    text-align: justify;
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
 }
 
-.alert-info--text {
-    margin: 0;
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
 }
 
-.alert-info--text-thanks{
-    text-align: left;
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
 }
 
-.body-erh {
-    background-color: #0A3761;
-    font-family: Helvetica, Arial, sans-serif;
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
 }
 
-.navbar {
-    margin-bottom: 0;
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
 }
 
-.enterprise-name {
-    color: white;
-    pointer-events: none;
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
 }
 
-.company-name {
-    color: white;
-    font-weight: 300;
-    font-size: 3.5rem;
-    line-height: 3rem;
-    padding: 15px 15px;
-    margin: 0;
-    font-family: "Brannboll Bold";
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
 }
 
-.section-logo {
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../font/PlayfairDisplay-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Définir les variantes de la police Poppins */
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../font/Poppins-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* Appliquer Playfair Display pour le texte général */
+body,
+p,
+ul,
+ol,
+blockquote,
+footer {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  color: #333;
+}
+
+span,
+.testimonial p {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Appliquer Playfair Display en gras pour les titres et éléments spécifiques */
+header,
+.navbar-brand,
+.hero h1,
+.section-title,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "PlayfairDisplay", serif;
+  color: #0a3761; /* Couleur principale pour les titres */
+  font-weight: 800; /* Appliquer la version bold */
+  font-style: italic;
+}
+
+/* Exemple spécifique */
+footer {
+  font-family: "PlayfairDisplay", serif;
+  font-weight: 800;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* En-tête */
+.bg-custom {
+  background: #0a3761 !important; /* Couleur de fond du header */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #ffffff !important;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #0a3761;
+  color: white;
+  padding: 20px; /* Ajuste le padding autour de la section */
+  padding-bottom: 40px; /* Augmente le padding en bas de la section */
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff; /* Assure que le titre est bien blanc */
+}
+
+.hero p {
+  color: #f0f0f0; /* Ajuste la couleur du texte de paragraphe si nécessaire */
+  margin-bottom: 2rem;
+}
+
+.hero .cta-btn {
+  font-family: "Poppins", sans-serif;
+  padding: 10px 20px;
+  background-color: white;
+  color: #0a3761;
+  font-size: 1.2rem;
+  border-radius: 24px;
+  text-decoration: none;
+  margin-vertical: 20px;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* Ratio d'aspect 16:9 */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000; /* Couleur de fond avant chargement */
+  border-radius: 15px;
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 15px; /* Coins arrondis */
+}
+
+/* Section Témoignages */
+#testimonials {
+  padding: 60px 0;
+}
+
+/* Footer */
+footer {
+  background-color: #0a3761; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 20px 0; /* Espacement interne */
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-hours {
+  flex: 1;
+}
+
+.footer-hours p {
+  font-family: "PlayfairDisplay", serif;
+  font-weight: 600;
+  color: white; /* Couleur dorée pour les titres */
+  margin-bottom: 0.5rem;
+}
+
+.footer-hours ul {
+  color: #ffffff;
+  padding: 0;
+  list-style: none; /* Retire les puces */
+}
+
+.footer-hours ul li {
+  margin-bottom: 0.2rem; /* Espacement entre les horaires */
+}
+
+.hours-title {
+  font-family: "PlayfairDisplay", serif;
+  font-weight: 800; /* Plus grand et en gras */
+  color: #ffffff; /* Couleur blanche */
+  margin-bottom: 1rem; /* Espacement inférieur */
+  font-size: 1.2rem; /* Taille de police plus grande */
+}
+
+.footer-info {
+  text-align: right;
+  flex: 1;
+}
+
+.footer-info .copyright {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.footer-info a {
+  text-decoration: none;
+}
+
+.socials {
+  margin-top: 0.5rem; /* Espacement au-dessus des icônes sociales */
+  display: flex; /* Flexbox pour les icônes sociales */
+  justify-content: flex-end; /* Aligner à droite */
+}
+
+.social-icon {
+  margin: 0 0.5rem; /* Espacement entre les icônes */
+}
+
+.social-icon img {
+  width: 24px; /* Largeur des icônes */
+  height: auto; /* Conserve les proportions */
+}
+
+.map-link {
+  color: #0a3761;
+  text-decoration: none; /* Supprime le soulignement du lien, si souhaité */
+}
+
+.copyright a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* En-tête */
+.bg-custom {
+  background: #0a3761 !important; /* Couleur de fond du header */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #0a3761;
+  color: white;
+  padding: 20px; /* Ajuste le padding autour de la section */
+  padding-bottom: 40px; /* Augmente le padding en bas de la section */
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff; /* Assure que le titre est bien blanc */
+}
+
+.hero p {
+  color: #f0f0f0; /* Ajuste la couleur du texte de paragraphe si nécessaire */
+}
+
+/* Section Services */
+#services {
+  padding: 60px 0;
+}
+
+.service {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+}
+
+.service h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.service p {
+  font-size: 1rem;
+}
+
+.service .btn {
+  margin-top: 10px;
+}
+
+.btn-seemore {
+  border-radius: 24px;
+}
+
+/* Style pour les titres des informations de contact */
+.title-contact {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500; /* Gras mais plus fin */
+}
+
+/* Back to top button */
+#back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #457b9d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: none;
+  z-index: 1000;
+}
+
+#back-to-top-btn.show {
+  display: block;
+}
+
+.blockquote-footer {
+  font-family: "PlayfairDisplay", serif;
+  margin-top: 4px;
+  background-color: transparent;
+  font-style: italic;
+  color: #0a3761;
+}
+
+.btn-primary {
+  background-color: #0a3761;
+  border-color: #0a3761;
+}
+
+.btn-primary:hover {
+  background-color: #08405c;
+  border-color: #08405c;
+}
+
+.btn-primary:active {
+  background-color: #08405c !important;
+  border-color: #08405c !important;
+}
+
+.navbar-logo {
+  width: 40px;
+  height: auto;
+  margin-right: 10px; /* Ajuste la marge selon le besoin */
+  border-radius: 8px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center; /* Aligne verticalement le texte et le logo */
+}
+
+.logo + span,
+.logo + a {
+  margin-left: 8px; /* Ajoute un peu d'espace entre le logo et le texte si nécessaire */
+}
+
+.map-responsive {
+  position: relative;
+  padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #f5f5f5; /* Couleur de fond si l'iframe est vide ou en chargement */
+  border-radius: 8px; /* Bords arrondis */
+}
+
+.map-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0; /* Retire la bordure par défaut de l'iframe */
+}
+
+.contact {
+  color: #0a3761;
+}
+
+.contact a :hover {
+  text-decoration: none;
+}
+
+.contact-info ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.contact-info li {
+  margin-bottom: 10px; /* Espace entre les éléments de la liste */
+  line-height: 1.5; /* Améliore la lisibilité */
+}
+
+.fa-map-marker-alt {
+  margin-right: 4px;
+}
+
+#back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none; /* Masqué par défaut */
+  background-color: #457b9d; /* Couleur du bouton (bleu bootstrap ou personnalisation) */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%; /* Bouton rond */
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  transition: opacity 0.3s ease-in-out;
+}
+
+#back-to-top-btn:hover {
+  background-color: #457b9d; /* Changement de couleur au survol */
+}
+
+/* Services */
+#services {
+  padding: 60px 0; /* Ajuste le padding supérieur et inférieur de la section */
+  margin-top: 60px; /* Ajoute de l'espace au-dessus de la section */
+  background-color: #f9f9f9; /* Couleur de fond pour mieux voir l'espacement */
+  border-radius: 15px;
+}
+
+#services h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #0a3761; /* Couleur principale */
+}
+
+/* Style pour les icônes et le contenu des services */
+#services-page {
+  padding: 2rem 0;
+}
+
+.service {
+  display: flex;
+  flex-direction: column; /* Aligne les éléments en colonne */
+  align-items: center; /* Centre le contenu horizontalement */
+  text-align: center; /* Centre le texte */
+  border-radius: 15px;
+}
+
+.service-header {
+  display: flex;
+  align-items: center; /* Aligne l'icône et le titre verticalement */
+  gap: 10px; /* Espacement entre l'icône et le titre */
+}
+
+.service-icon {
+  font-size: 1.5rem; /* Taille de l'icône */
+  color: #0a3761; /* Couleur de l'icône */
+}
+
+.service h3 {
+  margin: 0; /* Enlève la marge au-dessus et en-dessous du titre */
+}
+
+.service p {
+  margin: 10px 0; /* Marge au-dessus et en-dessous du texte de description */
+}
+
+.service a {
+  color: #0a3761; /* Couleur du texte */
+  text-decoration: none; /* Supprime le soulignement */
+  margin-top: 10px; /* Marge au-dessus du lien */
+  display: inline-block; /* Assure que le lien s'affiche correctement */
+}
+
+/* Témoignages */
+#testimonials {
+  padding: 3rem 0;
+}
+
+blockquote {
+  background: #f4f4f4;
+  padding: 1rem;
+  border-left: 5px solid #0a3761; /* Couleur principale */
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+}
+
+blockquote p {
+  font-size: 1rem;
+  margin: 0;
+  color: #333;
+}
+
+/* Galerie */
+#gallery {
+  padding: 3rem 2rem;
+  background-color: #f8f9fa;
+  border-radius: 15px;
+}
+
+#gallery h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  color: #0a3761; /* Couleur principale */
+}
+
+#gallery img {
+  border-radius: 5px; /* Assurez-vous que les coins sont arrondis */
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+#services-page .card-body {
+  padding: 0.5rem; /* Ajustez cette valeur selon vos besoins */
+}
+
+/* Footer */
+footer {
+  background-color: #0a3761; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 20px 0; /* Espacement interne */
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Alignement en haut */
+  width: 100%; /* Assure que le footer-content prend toute la largeur */
+}
+
+.footer-hours {
+  flex: 1;
+}
+
+.footer-hours ul {
+  color: #ffffff;
+  padding: 0;
+  list-style: none; /* Retire les puces */
+}
+
+.footer-hours ul li {
+  margin-bottom: 0.2rem; /* Espacement entre les horaires */
+  font-weight: normal; /* Supprimer le gras */
+}
+
+/* Retirer la marge droite spécifique pour LinkedIn */
+.footer-info .social-icon.linkedin {
+  margin-right: 0;
+}
+
+.footer-info a {
+  text-decoration: none;
+}
+
+.socials {
+  margin-top: 0.5rem; /* Espacement au-dessus des icônes sociales */
+  display: flex; /* Flexbox pour les icônes sociales */
+  justify-content: flex-end; /* Aligner à droite */
+}
+
+.social-icon {
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+
+.social-icon i {
+  font-size: 24px;
+}
+
+/* Les icônes Font Awesome dans le footer seront blanches */
+footer .social-icon i {
+  color: #fff; /* Change la couleur des icônes Font Awesome uniquement dans le footer */
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+  gap: 10px; /* Espace entre les images */
+}
+
+.gallery-item img {
+  width: 100%; /* Rend les images responsive */
+  height: auto;
+  display: block; /* Évite l'espace sous les images */
+}
+
+/* Styles pour le modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-dialog {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  min-height: 100vh; /* Assure que la modal prenne la hauteur complète de l'écran */
+}
+
+.modal-content {
+  position: relative; /* Assure que le bouton de fermeture soit positionné par rapport à la modal */
+  border-radius: 9px; /* Enlève les coins arrondis si nécessaire */
+}
+
+.modal-body {
+  padding: 0; /* Enlève le padding pour que l'image remplisse entièrement le modal */
+}
+.modal.show {
+  display: flex;
+}
+
+.modal img {
+  max-width: 100%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 48px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  opacity: 1;
+}
+
+.modal .close:hover {
+  color: #f0f0f0;
+}
+
+/* Styles pour les boutons fléchés */
+.arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.arrow-btn.left {
+  left: 10px;
+}
+.arrow-btn.right {
+  right: 10px;
+}
+.arrow-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+i.fas,
+i.fab {
+  color: #0a3761; /* Utilise la couleur principale définie */
+}
+
+/* Style pour les questions de la FAQ */
+.faq .card-header .btn-link {
+  color: #0a3761; /* Couleur des questions */
+  font-weight: bold;
+  text-align: left; /* Alignement à gauche */
+}
+
+.faq .card-header .btn-link:hover {
+  color: #083d6f; /* Couleur des questions au survol */
+}
+
+/* Réduire la taille du texte dans les réponses FAQ */
+.faq .card-body {
+  font-size: 0.875rem; /* Réduit la taille du texte */
+  line-height: 1.4; /* Ajuste l'espacement des lignes */
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 5px;
+  padding: 1.5rem;
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  border: 0;
+  background-color: #f8f9fa;
+}
+.service-card .card-body {
+  text-align: left;
+}
+
+.service-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.service-description {
+  margin-top: 0.5rem;
+}
+
+.pricing {
+  color: #0a3761;
+  font-weight: 600;
+}
+
+.card-body {
+  flex: 1;
+}
+
+.intro-text {
+  margin-bottom: 1.5rem;
+}
+
+.testimonial {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  border-left: 5px solid #0a3761;
+  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+}
+
+.testimonial h2 {
+  margin-bottom: 1rem;
+}
+
+/* Applique la police Playfair Display aux noms des auteurs */
+.testimonial strong {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  color: #0a3761;
+}
+
+.status-open {
+  color: green; /* Couleur pour ouvert */
+}
+
+.status-closed {
+  color: red; /* Couleur pour fermé */
+}
+
+.status-closing {
+  color: orange; /* Couleur de texte pour "Ferme bientôt" */
+}
+
+/* Styles pour l'indicateur de statut */
+#status-indicator {
+  display: flex;
+  align-items: center; /* Aligne la LED et le texte verticalement */
+  margin: 0 auto; /* Centre le conteneur horizontalement */
+}
+
+/* Styles pour la LED */
+.led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #f00; /* Couleur de la LED, par exemple rouge */
+  margin-right: 0.5rem; /* Espace entre la LED et le texte */
+}
+
+#status-text {
+  font-size: 16px; /* Taille du texte (la même que pour les horaires) */
+  color: white; /* Couleur de texte par défaut */
+}
+
+.status-open .led {
+  background-color: green; /* Couleur de la LED lorsque ouvert */
+}
+
+.status-closed .led {
+  background-color: #e63946; /* Couleur de la LED lorsque fermé */
+}
+
+.status-closing .led {
+  background-color: orange; /* Couleur de la LED lorsque ferme bientôt */
+}
+
+.status-open #status-text {
+  color: green; /* Couleur du texte lorsque ouvert */
+}
+
+.status-closed #status-text {
+  color: #e63946; /* Couleur du texte lorsque fermé */
+}
+
+.status-closing #status-text {
+  color: orange; /* Couleur du texte lorsque ferme bientôt */
+}
+/* Computer */
+@media (min-width: 1200px) {
+  /* Pour les écrans très larges */
+  .socials img {
+    width: 2vw !important; /* Un peu plus petit pour grands écrans */
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  /* Tablettes en mode paysage ou petits écrans */
+  .blockquote {
+    margin: 1rem 1rem; /* Ajoute un espacement vertical */
+  }
+}
+
+/* Phone */
+/* Phone */
+@media (max-width: 768px) {
+  #services .col-md-4,
+  #gallery .col-md-4 {
+    margin-bottom: 1rem; /* Espacement sous les colonnes */
+  }
+
+  #about img {
+    margin-bottom: 15px; /* Ajuster l'espace sous les images */
+  }
+
+  #testimonials {
+    padding: 3rem 1rem; /* Padding vertical pour les petits écrans */
+  }
+
+  #testimonials h2 {
+    font-size: 1.5rem; /* Taille du titre */
+    padding-bottom: 1rem; /* Espacement sous le titre */
+  }
+
+  #status-indicator {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
+    align-items: center; /* Aligne la LED et le texte verticalement */
+    justify-content: center; /* Centre horizontalement le contenu en mobile */
+    margin: 0.5rem auto;
+    line-height: 1; /* Hauteur de ligne égale pour éviter les décalages */
+  }
+  /* Styles pour la LED */
+  .led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #f00; /* Couleur de la LED */
+    margin-right: 0.5rem; /* Espace entre la LED et le texte */
+  }
 
-.logo-img {
-    padding-top: 0.5rem;
-}
+  /* Ajustement du texte */
+  #status-text {
+    font-size: 16px; /* Taille du texte */
+    color: white; /* Couleur du texte par défaut */
+    line-height: 1; /* S'assure que le texte ne s'étire pas */
+  }
 
-.item-header {
-    color: white;
-    font-size: 1.6rem;
-    line-height: 3.5rem !important;
-    font-weight: 150;
-}
+  .status-open .led {
+    background-color: green; /* LED verte pour ouvert */
+  }
 
-.item-header:hover {
-    color: #0A3761;
-    font-weight: 400;
-}
+  .status-closed .led {
+    background-color: #e63946; /* LED rouge pour fermé */
+  }
 
-#toggle-button {
-    border-color: white;
-}
+  .status-closing .led {
+    background-color: orange; /* LED orange pour fermeture imminente */
+  }
 
-.toggle-bar {
-    background-color: white !important;
-}
+  .status-open #status-text {
+    color: green; /* Texte en vert pour ouvert */
+  }
 
-.welcome-intro {
-    padding-top: 15rem;
-    padding-bottom: 16rem;
-    background: url("../media/wallpaper.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 50rem;
-    color: #0A3761;
-}
+  .status-closed #status-text {
+    color: #e63946; /* Texte en rouge pour fermé */
+  }
 
-.welcome-intro-text {
-    width: 38rem;
-    margin: auto;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-family: "Brannboll Bold";
-    background-color: rgba(255, 255, 255, 0.8);
-}
+  blockquote {
+    font-size: 1rem; /* Taille de la police */
+    margin: 15px 0; /* Espacement autour des blockquotes */
+  }
 
-.welcome-intro-company {
-    font-size: 5rem;
-    font-family: "Brannboll Bold";
-}
+  blockquote p {
+    font-size: 0.9rem; /* Taille du texte à l'intérieur du blockquote */
+  }
 
-.welcome-presentation {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 45%;
-    padding-left: 3.5rem;
-    color: white;
-}
+  blockquote footer {
+    font-size: 0.8rem; /* Taille de la police pour les pieds de page des blockquotes */
+    padding: 5px 0; /* Réduit le padding vertical */
+  }
 
-.section-presentation {
-    text-align: justify;
-    padding-top: 6rem;
-    padding-left: 35rem;
-}
-
-.who-am-i {
-    font-size: 3rem;
-    font-weight: 500;
-    line-height: 1;
+  .btn-seemore {
     margin-top: 0;
-}
+    font-size: 1rem;
+  }
 
-.who-am-i-text {
+  .hero h1 {
     font-size: 2rem;
-    font-weight: 80;
-    text-align: justify;
-}
+  }
 
-.pdp-img {
-    width: 18rem;
+  .lead {
+    font-size: 1rem;
+  }
+
+  .hero .cta-btn {
+    font-size: 0.8rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.25rem; /* Taille de la police pour la marque de la navbar */
+  }
+
+  .hero h2 {
+    font-size: 1.5rem; /* Taille du titre de la section hero */
+  }
+
+  .service,
+  .gallery-items img {
+    padding: 0.5rem; /* Padding autour des éléments */
+  }
+
+  #services .service h3 {
+    font-size: 1.25rem; /* Réduit la taille des titres h3 dans les services */
+  }
+
+  #services .service p {
+    font-size: 0.875rem; /* Réduit la taille de la police pour les paragraphes dans les services */
+  }
+
+  .container {
+    flex-direction: column; /* Alignement en colonne pour les petits écrans */
+    align-items: center; /* Centre les éléments horizontalement */
+  }
+
+  .copyright {
+    margin: 0; /* Enlève les marges par défaut */
+    font-size: 0.9rem; /* Taille du texte */
+    font-weight: 500; /* Légèrement gras pour la lisibilité */
+    text-align: center; /* Centre le texte */
+  }
+
+  .copyright a {
+    text-decoration: none; /* Supprime le soulignement des liens */
+    color: #fff; /* Couleur des liens */
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column; /* Arrange les éléments en colonne */
+    align-items: center; /* Centre les éléments horizontalement */
+    text-align: center; /* Centre le texte */
+  }
+
+  .footer-hours,
+  .footer-info {
+    margin-bottom: 1rem; /* Espacement entre les sections */
+  }
+
+  .footer-hours p,
+  .footer-info p,
+  .copyright {
+    margin: 0; /* Enlève les marges par défaut */
+  }
+
+  .socials {
+    display: flex; /* Utilise flexbox pour aligner les éléments */
+    flex-direction: row; /* Aligne les icônes horizontalement */
+    justify-content: center; /* Centre les icônes */
+    gap: 10px; /* Espacement entre les icônes sociales */
+    margin-top: 10px; /* Espacement au-dessus des icônes */
+  }
+
+  .social-icon {
+    font-size: 24px; /* Taille des icônes Font Awesome */
+    color: #fff; /* Couleur des icônes */
+    text-decoration: none; /* Enlève la décoration des liens */
+  }
+
+  .social-icon:hover {
+    color: #ddd; /* Couleur des icônes au survol */
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Affiche 2 colonnes sur mobile */
+    padding: 10px; /* Réduction du padding horizontal */
+  }
+
+  /* Si la dernière image est seule dans une ligne, on la centre */
+  .gallery-item:nth-child(odd):last-child {
+    grid-column: span 2; /* L'image occupe les deux colonnes */
+    justify-self: center; /* Centre horizontalement l'image */
+  }
+
+  .gallery-item img {
+    width: 100%; /* S'assure que les images prennent toute la largeur disponible */
     height: auto;
+  }
+
+  .info-title {
+    font-size: 1.25rem; /* Réduit la taille des titres */
+  }
+
+  .info-title + p {
+    font-size: 0.875rem; /* Réduit la taille du texte du paragraphe */
+  }
+
+  .list-unstyled li {
+    font-size: 0.875rem; /* Réduit la taille du texte des éléments de liste */
+  }
+
+  .title-contact {
+    font-size: 0.875rem; /* Réduit la taille du texte des labels dans les éléments de liste */
+  }
+
+  .map-responsive iframe {
+    height: 300px; /* Réduit la hauteur de la carte pour les écrans plus petits */
+  }
 }
 
-#elise-pdp {
-    background-color: #042340;
-    border: #042340;
-}
-
-.section-testimonial {
-    color: white;
-    width: 78rem;
-    text-align: justify;
-    margin: 3rem auto 0 auto;
-}
-
-.elina-testi {
-    border: none;
-    font-size: 2rem;
-    font-weight: 80;
-}
-
-.testi-text {
-    font-family: "Adobe Garamond Pro"
-}
-
-.testimonial-author {
-    color: white;
-}
-
-.footer-erh {
-    background-color: white;
-    height: 8rem;
-    text-align: center
-}
-
-.section-social {
-    width: 50%;
-    margin: 0 auto;
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 1.5rem;
-}
-
-.contact-us {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-}
-
-#facebook {
-    margin: auto;
-}
-
-#linkedin {
-    margin: auto;
-}
-
-#mail {
-    margin: auto;
-}
-
-.section-location {
-    color: white;
-    text-align: center;
-}
-
-.section-creations {
-    color: white;
-    text-align: center;
-    font-family: "Adobe Garamond Pro";
-}
-
-.title-location {
-    font-weight: bold;
-    margin-top: 6rem;
-}
-
-.title-creations {
-    font-weight: bold;
-    margin-top: 6rem;
-    margin-bottom: 6rem;
-}
-
-.adress-location {
-    margin-bottom: 20px;
-    font-family: "Adobe Garamond Pro";
-}
-
-#map {
-    text-align: center;
-}
-
-.carousel .item {
-    height: 300px;
-}
-
-.carousel-inner {
-    height: 600px !important;
-}
-
-.time-table-title {
-    color: white;
-    text-align: center;
-    font-weight: bold;
-}
-
-.time-table-list {
-    padding-left: 0;
-    margin-bottom: 6rem;
-}
-
-.time-table-content {
-    color: white;
-    text-align: center;
-    font-size: 2.5rem;
-}
-
-.hours {
-    font-weight: lighter;
-    font-family: "Adobe Garamond Pro"
-}
-
-.shop-close {
-    font-weight: bold;
-    font-family: "Adobe Garamond Pro"
-}
-
-li {
-    list-style-type: none;
-}
-
-.test {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.section-price {
-    color: white;
-    display: flex;
-    flex-direction: column;
-}
-
-.table-price {
-    width: 40%;
-    color: #0A3761;
-    background-color: rgba(255, 255, 255, 0.8);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
-
-.title-price {
-    font-weight: bold;
-}
-
-.text-left {
-    font-family: "Adobe Garamond Pro" !important;
-}
-
-.more-details {
-    font-size: 3rem;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-family: "Adobe Garamond Pro";
-}
-
-.button-more-details {
-    font-size: 2rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.section-contact {
-    display: flex;
-    flex-direction: row;
-}
-
-.contact-form {
-    margin-left: 4%;
-    padding-right: 4rem;
-}
-
-.contact-info {
-    border-left: solid white;
-    padding-left: 4rem;
-}
-
-@media screen and (max-width: 1920px) {
-    .section-presentation {
-        padding-left: 52rem;
-    }
-    .section-testimonial {
-        width: 85rem;
-        margin: 3rem 29% 0 auto;
-    }
-}
-
-@media screen and (max-width: 1440px) {
-    .section-presentation {
-        padding-left: 33rem;
-    }
-    .section-testimonial {
-        width: 78rem;
-        margin: 3rem auto 0 auto;
-    }
-}
-
-@media screen and (max-width: 1287px) {
-    .welcome-presentation {
-        width: 50%;
-    }
-    .section-presentation {
-        padding-left: 32rem;
-    }
-    .section-testimonial {
-        margin: 3rem 19rem 0 auto;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .section-presentation {
-        padding-left: 23rem;
-    }
-}
-
-@media screen and (max-width: 1100px) {
-    .pdp-img {
-        width: 15rem;
-    }
-    .welcome-presentation {
-        width: 60%;
-    }
-    .section-presentation {
-        padding-left: 8rem;
-    }
-    .section-testimonial {
-        margin: 3rem 0 0 6rem;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .pdp-img {
-        width: 12rem;
-    }
-    .welcome-presentation {
-        width: 70%;
-    }
-    .section-presentation {
-        padding-left: 10rem;
-    }
-    .section-testimonial {
-        width: 100%;
-        margin: 0;
-    }
-    .elina-testi {
-        width: 80%;
-        font-size: 1.5rem;
-        margin: 0 auto;
-        padding: 3rem 0 2rem 0;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    #toggle-button {
-        margin-top: 18px;
-    }
-    .erh-header {
-        padding-bottom: 1rem;
-    }
-    .company-name {
-        padding-top: 20px;
-        font-size: 2.5rem;
-    }
-    .logo-img {
-        padding: 1rem 0 1rem 1rem;
-    }
-    .pdp-img {
-        width: 8rem;
-    }
-    .who-am-i-text {
-        font-size: 1.5rem;
-    }
-    .who-am-i {
-        font-size: 2rem;
-        font-weight: 600;
-    }
-    .section-testimonial {
-        margin: 0;
-    }
-    .elina-testi {
-        width: 90%;
-        margin: 0 auto;
-        font-size: 1.5rem;
-    }
-    .contact-form {
-        margin-left: 8%;
-    }
-}
-
-@media screen and (max-width: 655px) {
-    .welcome-presentation {
-        width: 75%;
-    }
-    .table-price {
-        width: 85%;
-    }
-    .more-details {
-        font-size: 2.5rem;
-    }
-    .button-more-details {
-        font-size: 2rem;
-    }
-}
-
-@media screen and (max-width: 555px) {
-    .section-presentation {
-        padding-left: 6rem;
-    }
-    .welcome-presentation {
-        padding-left: 1rem;
-        width: 75%;
-    }
-    .pdp-img {
-        width: 6rem;
-    }
-    .map-display {
-        width: 400px;
-        height: auto;
-    }
-    .pictures-carousel {
-        width: 400px !important;
-    }
-    .more-details {
-        font-size: 2rem;
-        margin-left: 4rem;
-        margin-right: 4rem;
-    }
-    .button-more-details {
-        font-size: 1.5rem;
-    }
-    .table-price {
-        font-size: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .who-am-i-text {
-        font-size: 1rem;
-    }
-    .who-am-i {
-        font-size: 1.5rem;
-    }
-    .section-presentation {
-        padding-left: 4rem;
-    }
-    .testi-text {
-        font-size: 1.2rem;
-    }
-    .title-location {
-        font-size: 2.5rem;
-    }
-    .title-creations {
-        font-size: 2.5rem;
-        padding: 0 3rem;
-    }
-    .adress-location {
-        font-size: 2rem;
-    }
-    .time-table-title {
-        font-size: 2.5rem;
-    }
-    .time-table-content {
-        font-size: 2rem;
-    }
-}
-
-@media screen and (max-width: 414px) {
-    .welcome-intro-text {
-        font-size: 2.5rem;
-    }
-    .welcome-intro-company {
-        font-size: 4rem;
-    }
-    .welcome-intro {
-        height: 35rem;
-    }
-    .fb_icon, .link_icon, .mail_icon {
-        width: 38px;
-        height: auto;
-    }
-    .footer-erh {
-        height: 6rem;
-    }
-    .section-social {
-        padding-top: 1rem;
-    }
-    .map-display {
-        width: 300px;
-        height: auto;
-    }
-    .pictures-carousel {
-        width: 300px !important;
-    }
-    .carousel .item {
-        height: 200px;
-    }
-    .section-contact {
-        flex-direction: column;
-    }
-    .contact-info {
-        border: none;
-        text-align: center;
-        padding-left: 0;
-    }
-    .contact-form {
-        margin-left: 0;
-        padding-right: 15px;
-    }
-    .btn-lg {
-        font-size: 13px !important;
-    }
-    .carousel-inner {
-        height: 400px !important;
-    }
-    .title-creations {
-        font-size: 2rem;
-        padding: 0 2rem;
-    }
-}
-
-@media screen and (max-width: 380px) {
-    .welcome-intro-text {
-        width: 32rem;
-    }
-    .section-presentation {
-        padding-left: 2rem;
-    }
-    .welcome-presentation {
-        width: 75%;
-    }
-    .btn-lg {
-        font-size: 10px !important;
-    }
-    .contact-form--title {
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .welcome-intro-text {
-        font-size: 2.5rem;
-        width: 25rem;
-    }
-    .welcome-intro-company {
-        font-size: 3rem;
-    }
-    .welcome-intro {
-        height: 25rem;
-    }
-    .section-presentation {
-        padding-left: 1rem;
-    }
-    .company-name {
-        font-size: 2rem;
-    }
-    .fb_icon, .link_icon, .mail_icon {
-        width: 30px;
-        height: auto;
-    }
-    .title-location {
-        font-size: 2rem;
-    }
-    .adress-location {
-        font-size: 1.5rem;
-    }
-    .more-details {
-        font-size: 1.5rem;
-    }
-    .button-more-details {
-        font-size: 1rem;
-    }
-    .table-price {
-        margin-top: 0;
-    }
-    .contact-form--title {
-        font-size: 18px !important;
-    }
+@media (max-width: 576px) {
+  .gallery-grid {
+    padding: 5px; /* Réduction encore plus importante du padding pour très petits écrans */
+    gap: 10px; /* Moins d'espace entre les images */
+  }
 }

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elise Retouches</title>
+    <!-- Lien vers Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- En-tête -->
+    <header></header>
+
+    <!-- Bannière Principale -->
+    <section class="hero text-center">
+      <div class="container">
+        <h1>Redonnez vie à vos vêtements</h1>
+        <p class="lead">
+          Expertise en Retouche, Toujours à l’Écoute de Vos Besoins
+        </p>
+        <a href="#services" class="cta-btn">Découvrez nos services</a>
+        <div class="video-container mt-5">
+          <iframe
+            src="https://www.youtube.com/embed/McMatlvAY40"
+            title="Vidéo présentation Elise Retouches"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Présentation des Services -->
+    <section id="services" class="container py-5 px-5">
+      <h2 class="text-center mb-5">Nos Services</h2>
+      <div class="row">
+        <div class="col-md-4 text-center mb-4">
+          <div class="service">
+            <div class="service-header">
+              <i class="bi bi-scissors service-icon"></i>
+              <h3>Retouche de vêtements</h3>
+            </div>
+            <p>
+              Nous réparons et ajustons vos vêtements avec soin, tout en vous
+              offrant des conseils pratiques.
+            </p>
+            <a href="./services.html">En savoir plus</a>
+          </div>
+        </div>
+        <div class="col-md-4 text-center mb-4">
+          <div class="service">
+            <div class="service-header">
+              <i class="bi bi-rulers service-icon"></i>
+              <h3>Ajustements</h3>
+            </div>
+            <p>
+              Nous ajustons vos vêtements pour qu'ils soient plus confortables
+              et mieux adaptés à vous, en vous conseillant sur le meilleur
+              choix.
+            </p>
+            <a href="./services.html">En savoir plus</a>
+          </div>
+        </div>
+        <div class="col-md-4 text-center mb-4">
+          <div class="service">
+            <div class="service-header">
+              <i class="bi bi-bandaid service-icon"></i>
+              <h3>Réparation</h3>
+            </div>
+            <p>
+              Réparations minutieuses pour prolonger la durée de vie de vos
+              vêtements, les maintenir en bon état, et vous vous garantir un
+              service satisfaisant.
+            </p>
+            <a href="./services.html">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section id="testimonials" class="container">
+      <!-- Le contenu de testimony.html sera chargé ici -->
+    </section>
+
+    <!-- Galerie -->
+    <section id="gallery" class="container my-4">
+      <h2 class="text-center mb-4">Galerie</h2>
+      <div class="row">
+        <div
+          class="col-md-4 mb-4 gallery-item"
+          data-toggle="modal"
+          data-target="#imageModal"
+          data-src="./media/photos/Homepage_gallery_1.jpeg"
+        >
+          <img src="./media/photos/Homepage_gallery_1.jpeg" class="img-fluid"
+          alt="Devanture Elise Retouches loading="lazy" />
+        </div>
+        <div
+          class="col-md-4 mb-4 gallery-item"
+          data-toggle="modal"
+          data-target="#imageModal"
+          data-src="./media/photos/Homepage_gallery_2.jpeg"
+        >
+          <img
+            src="./media/photos/Homepage_gallery_2.jpeg"
+            class="img-fluid"
+            alt="Elise avec une cliente"
+            loading="lazy"
+          />
+        </div>
+        <div
+          class="col-md-4 mb-4 gallery-item"
+          data-toggle="modal"
+          data-target="#imageModal"
+          data-src="./media/photos/Homepage_gallery_3.jpeg"
+        >
+          <img
+            src="./media/photos/Homepage_gallery_3.jpeg"
+            class="img-fluid"
+            alt="Dressing habits des clients"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Bouton pour en voir plus -->
+      <div class="text-center mt-4">
+        <a href="./gallery.html" class="btn btn-primary btn-lg btn-seemore"
+          >En voir plus</a
+        >
+      </div>
+    </section>
+
+    <!-- Modal pour la prévisualisation d'image -->
+    <div
+      class="modal fade"
+      id="imageModal"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body position-relative">
+            <button class="arrow-btn left" id="prevBtn">&#8249;</button>
+            <img id="modalImage" src="" alt="Image Preview" class="img-fluid" />
+            <button class="arrow-btn right" id="nextBtn">&#8250;</button>
+          </div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pied de Page -->
+    <footer></footer>
+
+    <button id="back-to-top-btn" title="Remonter en haut">&#8679;</button>
+
+    <!-- Lien vers Bootstrap JS et jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+      const galleryItems = document.querySelectorAll(".gallery-item")
+      const modalImage = document.getElementById("modalImage")
+      let currentIndex = 0
+
+      galleryItems.forEach((item, index) => {
+        item.addEventListener("click", function () {
+          const src = this.getAttribute("data-src")
+          modalImage.src = src
+          currentIndex = index // Mettre à jour l'index courant
+        })
+      })
+
+      // Fonction pour afficher l'image précédente
+      function showPrevImage() {
+        currentIndex =
+          currentIndex === 0 ? galleryItems.length - 1 : currentIndex - 1
+        const prevSrc = galleryItems[currentIndex].getAttribute("data-src")
+        modalImage.src = prevSrc
+      }
+
+      // Fonction pour afficher l'image suivante
+      function showNextImage() {
+        currentIndex =
+          currentIndex === galleryItems.length - 1 ? 0 : currentIndex + 1
+        const nextSrc = galleryItems[currentIndex].getAttribute("data-src")
+        modalImage.src = nextSrc
+      }
+
+      // Ajouter des événements pour les boutons des flèches
+      document
+        .getElementById("prevBtn")
+        .addEventListener("click", showPrevImage)
+      document
+        .getElementById("nextBtn")
+        .addEventListener("click", showNextImage)
+
+      // Navigation avec les touches du clavier
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowLeft") {
+          showPrevImage()
+        } else if (event.key === "ArrowRight") {
+          showNextImage()
+        }
+      })
+    </script>
+  </body>
+</html>

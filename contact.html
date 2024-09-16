@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Elise Retouches</title>
+    <!-- Lien vers Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Lien vers Font Awesome pour les icônes -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- Inclusion du header -->
+    <header></header>
+
+    <main class="main-content">
+      <!-- Section principale "Contact" -->
+      <section id="contact" class="container my-5">
+        <div class="row">
+          <!-- Informations de contact -->
+          <div class="col-md-6">
+            <h3 class="info-title">Nous Contacter</h3>
+            <p>
+              Vous pouvez nous contacter par téléphone, sur Facebook, ou nous
+              rendre visite à notre boutique :
+            </p>
+            <ul class="list-unstyled">
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <span class="title-contact">Téléphone :</span>
+                <a class="contact" href="tel:+33615567047">0615567047</a>
+              </li>
+              <li>
+                <i class="fab fa-facebook"></i>
+                <span class="title-contact">Facebook :</span>
+                <a
+                  class="contact"
+                  href="https://www.facebook.com/eliseretouches"
+                  target="_blank"
+                  >Elise Retouches</a
+                >
+              </li>
+              <li class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="title-contact">Adresse :</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=3+Rue+Saint-Maurice,+67000+Strasbourg" target="_blank" class="map-link">
+                  3 Rue Saint-Maurice, 67000 Strasbourg
+                </a>
+              </li>              
+              <li class="hours">
+                <i class="fas fa-clock"></i>
+                <span class="title-contact">Horaires d'Ouverture :</span>
+                <ul class="list-unstyled">
+                  <li>
+                    <span class="title-contact">Lundi</span> : 10h-12h / 14h-18h
+                  </li>
+                  <li>
+                    <span class="title-contact">Mardi</span> : 10h-12h / 14h-18h
+                  </li>
+                  <li><span class="title-contact">Mercredi</span> : Fermé</li>
+                  <li>
+                    <span class="title-contact">Jeudi</span> : 10h-12h / 14h-18h
+                  </li>
+                  <li>
+                    <span class="title-contact">Vendredi</span> : 10h-12h /
+                    14h-18h
+                  </li>
+                  <li><span class="title-contact">Samedi</span> : 10h-12h</li>
+                  <li><span class="title-contact">Dimanche</span> : Fermé</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- Carte Google Maps -->
+          <div class="col-md-6">
+            <h3>Où Nous Trouver</h3>
+            <div class="map-responsive">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!3m2!1sfr!2sfr!4v1725964659153!5m2!1sfr!2sfr!6m8!1m7!1sPnipE_dzTUaa_rYxVEnX0Q!2m2!1d48.58509757360929!2d7.770681716576582!3f326.2456445616025!4f2.6762706310296807!5f0.7820865974627469"
+                width="100%"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              >
+              </iframe>
+            </div>
+          </div>
+        </div>
+        <!-- Section FAQ -->
+        <section id="faq" class="my-5 faq">
+          <h3>Questions Fréquemment Posées (FAQ)</h3>
+          <div class="accordion" id="faqAccordion">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button
+                    class="btn btn-link"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Combien de temps faut-il pour que mes vêtements soient
+                    retouchés ?
+                  </button>
+                </h5>
+              </div>
+              <div
+                id="collapseOne"
+                class="collapse"
+                aria-labelledby="headingOne"
+                data-parent="#faqAccordion"
+              >
+                <div class="card-body">
+                  En moyenne, <strong>une semaine</strong> pour des prestations basiques
+                  (<strong
+                    >ourlets de pantalons, jupes, réparation des accros, pose de
+                    coudières, etc.</strong
+                  >).
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <button
+                    class="btn btn-link collapsed"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Quel est le prix pour telle ou telle prestation ?
+                  </button>
+                </h5>
+              </div>
+              <div
+                id="collapseTwo"
+                class="collapse"
+                aria-labelledby="headingTwo"
+                data-parent="#faqAccordion"
+              >
+                <div class="card-body">
+                  <p>
+                    Pour estimer le coût d'une retouche, plusieurs facteurs
+                    doivent être pris en compte. Il est important de visiter la
+                    boutique pour que nous puissions évaluer directement votre
+                    vêtement et déterminer la faisabilité de la prestation. Les
+                    éléments suivants peuvent influencer le tarif :
+                  </p>
+                  <ul>
+                    <li>
+                      <strong
+                        >La nature et l'ampleur des retouches
+                        nécessaires</strong
+                      >
+                      (celles pour lesquelles vous vous présentez) 🧵
+                    </li>
+                    <li>
+                      <strong
+                        >La coupe et la structure du vêtement existant</strong
+                      >
+                      👗
+                    </li>
+                    <li>
+                      <strong>Les matériaux et les tissus utilisés</strong> 🧵🪡
+                    </li>
+                    <li>
+                      <strong
+                        >Les spécificités des réparations ou ajustements</strong
+                      >
+                      (comme le type de couture ou les finitions requises) 🪡
+                    </li>
+                  </ul>
+                  <p>
+                    Nous pourrons ainsi vous fournir un
+                    <strong>devis personnalisé</strong> 📋 basé sur une
+                    évaluation complète de ces facteurs.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                  <button
+                    class="btn btn-link collapsed"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    Où nous trouver ?
+                  </button>
+                </h5>
+              </div>
+              <div
+                id="collapseThree"
+                class="collapse"
+                aria-labelledby="headingThree"
+                data-parent="#faqAccordion"
+              >
+              <div class="card-body">
+                Nous sommes situés à côté du 
+                <a href="https://www.google.com/maps/search/?api=1&query=3+Rue+Saint-Maurice,+67000+Strasbourg" target="_blank">
+                  <strong style="color: #0a3761">3 rue Saint-Maurice, 67000 Strasbourg</strong>
+                </a>.
+              </div>              
+              </div>
+            </div>
+          </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- Inclusion du footer -->
+    <footer></footer>
+
+    <!-- Lien vers Bootstrap JS et jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Script pour inclure les fichiers de header et footer -->
+    <script src="script.js"></script>
+  </body>
+</html>
