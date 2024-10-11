@@ -50,64 +50,148 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateStatus() {
     console.log("Script exécuté")
+
+    // Initialisation de la date et récupération du jour et de l'heure actuels
     const now = new Date()
     const day = now.getDay() // 0 (dimanche) à 6 (samedi)
-    const hour = now.getHours()
-    const minute = now.getMinutes()
+    const currentWeekStart = new Date(now)
+    currentWeekStart.setDate(now.getDate() - (day === 0 ? 6 : day - 1)) // Début de la semaine (lundi)
+
     const indicator = document.getElementById("status-indicator")
     const statusText = document.getElementById("status-text")
 
-    // Horaires de fermeture en heures et minutes
-    const closingTimes = {
-      1: [18, 0], // Lundi
-      2: [18, 0], // Mardi
-      4: [18, 0], // Jeudi
-      5: [18, 0], // Vendredi
-      6: [12, 0], // Samedi
-    }
+    // Jours spécifiques de fermeture
+    const specificClosedDays = ["2024-10-25", "2024-10-26"] // Liste des jours fermés
 
-    // Vérification des horaires d'ouverture
-    const isOpen =
-      (day === 1 && ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) || // Lundi
-      (day === 2 && ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) || // Mardi
-      (day === 4 && ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) || // Jeudi
-      (day === 5 && ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) || // Vendredi
-      (day === 6 && hour >= 10 && hour < 12) // Samedi
+    // Statut des jours de la semaine
+    const weekDays = [
+      { name: "Lundi", openHours: "10h-12h / 14h-18h" },
+      { name: "Mardi", openHours: "10h-12h / 14h-18h" },
+      { name: "Mercredi", openHours: null },
+      { name: "Jeudi", openHours: "10h-12h / 14h-18h" },
+      { name: "Vendredi", openHours: "10h-12h / 14h-18h" },
+      { name: "Samedi", openHours: "10h-12h" },
+      { name: "Dimanche", openHours: null },
+    ]
 
-    // Fermé le mercredi et le dimanche
-    const isClosedOnWednesday = day === 3 // Mercredi
-    const isClosedOnSunday = day === 0 // Dimanche
+    // Récupération et stockage des heures et minutes actuelles
+    const currentHours = now.getHours()
+    const currentMinutes = now.getMinutes()
 
-    if (isClosedOnWednesday || isClosedOnSunday) {
-      indicator.classList.remove("status-open", "status-closing")
-      indicator.classList.add("status-closed")
-      statusText.textContent = "Fermé actuellement"
-    } else if (isOpen) {
-      const closingTime = closingTimes[day] || [18, 0] // Obtenir l'heure de fermeture pour aujourd'hui
-      const closingHour = closingTime[0]
-      const closingMinute = closingTime[1]
-
-      // Calculer le temps restant avant la fermeture
-      const minutesUntilClosing =
-        (closingHour - hour) * 60 + (closingMinute - minute)
-
-      if (minutesUntilClosing <= 30 && minutesUntilClosing > 0) {
-        indicator.classList.remove("status-open", "status-closed")
-        indicator.classList.add("status-closing")
-        statusText.textContent = "Ferme bientôt"
-      } else {
-        indicator.classList.remove("status-closed", "status-closing")
-        indicator.classList.add("status-open")
-        statusText.textContent = "Ouvert actuellement"
-      }
-    } else {
-      indicator.classList.remove("status-open", "status-closing")
-      indicator.classList.add("status-closed")
-      statusText.textContent = "Fermé actuellement"
-    }
-
-    console.log(
-      `Jour: ${day}, Heure: ${hour}, Minute: ${minute}, Ouvert: ${isOpen}`
+    // Vérifie l'état de chaque jour et met à jour l'affichage
+    weekDays.forEach((dayInfo, index) =>
+      updateDayStatus(dayInfo, index, currentWeekStart, specificClosedDays)
     )
+
+    // Vérification du statut actuel
+    const isClosedToday = weekDays[day].isClosed // Vérifie si aujourd'hui est fermé
+    updateCurrentStatus(
+      isClosedToday,
+      indicator,
+      statusText,
+      day,
+      currentHours,
+      currentMinutes
+    )
+  }
+
+  function updateDayStatus(
+    dayInfo,
+    index,
+    currentWeekStart,
+    specificClosedDays
+  ) {
+    const dayDate = new Date(currentWeekStart)
+    dayDate.setDate(currentWeekStart.getDate() + index) // Obtient la date du jour correspondant
+    const formattedDate = dayDate.toISOString().split("T")[0]
+
+    // Vérifie si la date est dans la liste des jours spécifiques de fermeture
+    dayInfo.isClosed =
+      specificClosedDays.includes(formattedDate) || dayInfo.openHours === null
+
+    // Met à jour l'affichage pour le jour
+    const statusElement = document.getElementById(
+      `status-${dayInfo.name.toLowerCase()}`
+    )
+    if (statusElement) {
+      statusElement.textContent = `${dayInfo.name} : ${
+        dayInfo.isClosed ? "Fermé" : dayInfo.openHours
+      }`
+      console.log(
+        `${dayInfo.name} : ${dayInfo.isClosed ? "Fermé" : dayInfo.openHours}`
+      )
+    } else {
+      console.warn(`Element pour ${dayInfo.name} non trouvé`)
+    }
+  }
+
+  function updateCurrentStatus(
+    isClosedToday,
+    indicator,
+    statusText,
+    day,
+    currentHours,
+    currentMinutes
+  ) {
+    // Stockage des classes à ajouter/supprimer
+    const classClosed = "status-closed"
+    const classOpen = "status-open"
+    const classClosing = "status-closing"
+
+    // Réinitialisation des classes
+    indicator.classList.remove(classOpen, classClosing)
+
+    if (isClosedToday) {
+      indicator.classList.add(classClosed)
+      statusText.textContent = "Fermé"
+    } else {
+      const closingTimes = {
+        1: [18, 0], // Lundi
+        2: [18, 0], // Mardi
+        4: [18, 0], // Jeudi
+        5: [18, 0], // Vendredi
+        6: [12, 0], // Samedi
+      }
+
+      // Vérification des heures d'ouverture
+      const isOpen = checkIfOpen(day, currentHours)
+
+      // Calcul de l'indicateur d'état
+      if (isOpen) {
+        const closingTime = closingTimes[day] || [18, 0] // Obtenir l'heure de fermeture pour aujourd'hui
+        const closingHour = closingTime[0]
+        const closingMinute = closingTime[1]
+
+        // Calculer le temps restant avant la fermeture
+        const minutesUntilClosing =
+          (closingHour - currentHours) * 60 + (closingMinute - currentMinutes)
+
+        if (minutesUntilClosing <= 30 && minutesUntilClosing > 0) {
+          indicator.classList.add(classClosing)
+          statusText.textContent = "Ferme bientôt"
+        } else {
+          indicator.classList.add(classOpen)
+          statusText.textContent = "Ouvert actuellement"
+        }
+      }
+    }
+  }
+
+  function checkIfOpen(day, currentHours) {
+    return (
+      (day === 1 &&
+        ((currentHours >= 10 && currentHours < 12) ||
+          (currentHours >= 14 && currentHours < 18))) || // Lundi
+      (day === 2 &&
+        ((currentHours >= 10 && currentHours < 12) ||
+          (currentHours >= 14 && currentHours < 18))) || // Mardi
+      (day === 4 &&
+        ((currentHours >= 10 && currentHours < 12) ||
+          (currentHours >= 14 && currentHours < 18))) || // Jeudi
+      (day === 5 &&
+        ((currentHours >= 10 && currentHours < 12) ||
+          (currentHours >= 14 && currentHours < 18))) || // Vendredi
+      (day === 6 && currentHours >= 10 && currentHours < 12)
+    ) // Samedi
   }
 })
