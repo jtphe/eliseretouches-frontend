@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const statusText = document.getElementById("status-text")
 
     // Jours spécifiques de fermeture
-    const specificClosedDays = ["2024-10-25", "2024-10-26"] // Liste des jours fermés
+    const specificClosedDays = ["2024-11-01", "2024-11-02"] // Liste des jours fermés
 
     // Statut des jours de la semaine
     const weekDays = [
