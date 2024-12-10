@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const statusText = document.getElementById("status-text")
 
     // Jours spécifiques de fermeture
-    const specificClosedDays = ["2024-11-11"] // Liste des jours fermés
+    const specificClosedDays = [] // Liste des jours fermés
 
     // Statut des jours de la semaine
     const weekDays = [
@@ -80,7 +80,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Vérifie l'état de chaque jour et met à jour l'affichage
     weekDays.forEach((dayInfo, index) =>
-      updateDayStatus(dayInfo, index, currentWeekStart, specificClosedDays)
+      updateDayStatus(
+        dayInfo,
+        index,
+        currentWeekStart,
+        specificClosedDays,
+        currentHours
+      )
     )
 
     // Vérification du statut actuel
@@ -94,32 +100,70 @@ document.addEventListener("DOMContentLoaded", function () {
       currentMinutes
     )
   }
+  // Intervalles de dates spécifiques de fermeture
+  const specificClosedDateRanges = [{ start: "2024-12-25", end: "2025-01-01" }]
+
+  // Jours avec des horaires spécifiques
+  const specificPartialClosures = {
+    "2024-12-10": { openMorning: true, openAfternoon: false },
+  }
+
+  function isDateInRange(date, range) {
+    const currentDate = new Date(date)
+    const startDate = new Date(range.start)
+    const endDate = new Date(range.end)
+    return currentDate >= startDate && currentDate <= endDate
+  }
 
   function updateDayStatus(
     dayInfo,
     index,
     currentWeekStart,
-    specificClosedDays
+    specificClosedDays,
+    currentHours
   ) {
     const dayDate = new Date(currentWeekStart)
     dayDate.setDate(currentWeekStart.getDate() + index) // Obtient la date du jour correspondant
+
     const formattedDate = dayDate.toISOString().split("T")[0]
+    const partialClosure = specificPartialClosures[formattedDate]
+    let statusMessage
 
     // Vérifie si la date est dans la liste des jours spécifiques de fermeture
-    dayInfo.isClosed =
-      specificClosedDays.includes(formattedDate) || dayInfo.openHours === null
+    if (partialClosure) {
+      // Gestion des fermetures partielles
+      if (partialClosure.openMorning && !partialClosure.openAfternoon) {
+        statusMessage = `${dayInfo.name} :  10h-12h / Fermé l'après-midi`
+        dayInfo.isClosed = currentHours >= 14 // Fermé l'après-midi
+      } else if (!partialClosure.openMorning && partialClosure.openAfternoon) {
+        statusMessage = `${dayInfo.name} : Fermé le matin / 14h-18h`
+        dayInfo.isClosed = currentHours < 14 // Fermé le matin
+      } else if (!partialClosure.openMorning && !partialClosure.openAfternoon) {
+        statusMessage = `${dayInfo.name} : Fermé toute la journée`
+        dayInfo.isClosed = true
+      }
+    } else {
+      // Logique de fermeture classique
+      dayInfo.isClosed =
+        specificClosedDays.includes(formattedDate) ||
+        dayInfo.openHours === null ||
+        specificClosedDateRanges.some((range) =>
+          isDateInRange(formattedDate, range)
+        )
+      statusMessage = `${dayInfo.name} : ${
+        dayInfo.isClosed ? "Fermé" : dayInfo.openHours
+      }`
+    }
+
+    console.log("statusMessage", statusMessage)
 
     // Met à jour l'affichage pour le jour
     const statusElement = document.getElementById(
       `status-${dayInfo.name.toLowerCase()}`
     )
     if (statusElement) {
-      statusElement.textContent = `${dayInfo.name} : ${
-        dayInfo.isClosed ? "Fermé" : dayInfo.openHours
-      }`
-      console.log(
-        `${dayInfo.name} : ${dayInfo.isClosed ? "Fermé" : dayInfo.openHours}`
-      )
+      statusElement.textContent = statusMessage
+      console.log(statusMessage)
     } else {
       console.warn(`Element pour ${dayInfo.name} non trouvé`)
     }
