@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     )
   }
   // Intervalles de dates spécifiques de fermeture
-  const specificClosedDateRanges = [{ start: "2024-12-25", end: "2025-01-01" }]
+  const specificClosedDateRanges = []
 
   // Jours avec des horaires spécifiques
   const specificPartialClosures = {
