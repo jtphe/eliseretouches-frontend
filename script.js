@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const statusText = document.getElementById("status-text")
 
     // Liste des fermetures exceptionnelles au format 'YYYY-MM-DD'
-    const specialClosures = ["2024-10-24", "2024-10-25", "2024-10-26"]
+    const specialClosures = ["2025-01-06", "2025-01-31"]
 
     // Fonction pour vérifier si un jour est dans les fermetures exceptionnelles
     function isSpecialClosureForDay(dayOfWeek, formattedDate) {
