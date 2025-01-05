@@ -50,190 +50,139 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateStatus() {
     console.log("Script exécuté")
-
-    // Initialisation de la date et récupération du jour et de l'heure actuels
     const now = new Date()
     const day = now.getDay() // 0 (dimanche) à 6 (samedi)
-    const currentWeekStart = new Date(now)
-    currentWeekStart.setDate(now.getDate() - (day === 0 ? 6 : day - 1)) // Début de la semaine (lundi)
-
+    const hour = now.getHours()
+    const minute = now.getMinutes()
+    const date = now.toISOString().split("T")[0] // Formate la date actuelle au format 'YYYY-MM-DD'
     const indicator = document.getElementById("status-indicator")
     const statusText = document.getElementById("status-text")
 
-    // Jours spécifiques de fermeture
-    const specificClosedDays = ["2025-01-06", "2025-01-31"] // Liste des jours fermés
+    // Liste des fermetures exceptionnelles au format 'YYYY-MM-DD'
+    const specialClosures = ["2025-01-06", "2025-01-31"]
 
-    // Statut des jours de la semaine
-    const weekDays = [
-      { name: "Lundi", openHours: "10h-12h / 14h-18h" },
-      { name: "Mardi", openHours: "10h-12h / 14h-18h" },
-      { name: "Mercredi", openHours: null },
-      { name: "Jeudi", openHours: "10h-12h / 14h-18h" },
-      { name: "Vendredi", openHours: "10h-12h / 14h-18h" },
-      { name: "Samedi", openHours: "10h-12h" },
-      { name: "Dimanche", openHours: null },
-    ]
-
-    // Récupération et stockage des heures et minutes actuelles
-    const currentHours = now.getHours()
-    const currentMinutes = now.getMinutes()
-
-    // Vérifie l'état de chaque jour et met à jour l'affichage
-    weekDays.forEach((dayInfo, index) =>
-      updateDayStatus(
-        dayInfo,
-        index,
-        currentWeekStart,
-        specificClosedDays,
-        currentHours
-      )
-    )
-
-    // Vérification du statut actuel
-    const isClosedToday = weekDays[day].isClosed // Vérifie si aujourd'hui est fermé
-    updateCurrentStatus(
-      isClosedToday,
-      indicator,
-      statusText,
-      day,
-      currentHours,
-      currentMinutes
-    )
-  }
-  // Intervalles de dates spécifiques de fermeture
-  const specificClosedDateRanges = []
-
-  // Jours avec des horaires spécifiques
-  const specificPartialClosures = {
-    "2024-12-10": { openMorning: true, openAfternoon: false },
-  }
-
-  function isDateInRange(date, range) {
-    const currentDate = new Date(date)
-    const startDate = new Date(range.start)
-    const endDate = new Date(range.end)
-    return currentDate >= startDate && currentDate <= endDate
-  }
-
-  function updateDayStatus(
-    dayInfo,
-    index,
-    currentWeekStart,
-    specificClosedDays,
-    currentHours
-  ) {
-    const dayDate = new Date(currentWeekStart)
-    dayDate.setDate(currentWeekStart.getDate() + index) // Obtient la date du jour correspondant
-
-    const formattedDate = dayDate.toISOString().split("T")[0]
-    const partialClosure = specificPartialClosures[formattedDate]
-    let statusMessage
-
-    // Vérifie si la date est dans la liste des jours spécifiques de fermeture
-    if (partialClosure) {
-      // Gestion des fermetures partielles
-      if (partialClosure.openMorning && !partialClosure.openAfternoon) {
-        statusMessage = `${dayInfo.name} :  10h-12h / Fermé l'après-midi`
-        dayInfo.isClosed = currentHours >= 14 // Fermé l'après-midi
-      } else if (!partialClosure.openMorning && partialClosure.openAfternoon) {
-        statusMessage = `${dayInfo.name} : Fermé le matin / 14h-18h`
-        dayInfo.isClosed = currentHours < 14 // Fermé le matin
-      } else if (!partialClosure.openMorning && !partialClosure.openAfternoon) {
-        statusMessage = `${dayInfo.name} : Fermé toute la journée`
-        dayInfo.isClosed = true
-      }
-    } else {
-      // Logique de fermeture classique
-      dayInfo.isClosed =
-        specificClosedDays.includes(formattedDate) ||
-        dayInfo.openHours === null ||
-        specificClosedDateRanges.some((range) =>
-          isDateInRange(formattedDate, range)
-        )
-      statusMessage = `${dayInfo.name} : ${
-        dayInfo.isClosed ? "Fermé" : dayInfo.openHours
-      }`
+    // Fonction pour vérifier si un jour est dans les fermetures exceptionnelles
+    function isSpecialClosureForDay(dayOfWeek, formattedDate) {
+      return specialClosures.includes(formattedDate)
     }
 
-    // Met à jour l'affichage pour le jour
-    const statusElement = document.getElementById(
-      `status-${dayInfo.name.toLowerCase()}`
-    )
-    if (statusElement) {
-      statusElement.textContent = statusMessage
-      console.log(statusMessage)
-    } else {
-      console.warn(`Element pour ${dayInfo.name} non trouvé`)
+    // Horaires de fermeture en heures et minutes
+    const closingTimes = {
+      1: [18, 0], // Lundi
+      2: [18, 0], // Mardi
+      4: [18, 0], // Jeudi
+      5: [18, 0], // Vendredi
+      6: [12, 0], // Samedi
     }
-  }
 
-  function updateCurrentStatus(
-    isClosedToday,
-    indicator,
-    statusText,
-    day,
-    currentHours,
-    currentMinutes
-  ) {
-    // Stockage des classes à ajouter/supprimer
-    const classClosed = "status-closed"
-    const classOpen = "status-open"
-    const classClosing = "status-closing"
+    // Fonction pour mettre à jour les horaires en "Fermé" si c'est une fermeture exceptionnelle
+    function updateHoursForSpecialClosure() {
+      const hoursList = document.querySelectorAll(".footer-hours ul li")
+      hoursList.forEach((li) => {
+        const dayName = li.textContent.split(" :")[0] // Extrait le nom du jour
+        let dayToCheck = null
 
-    // Réinitialisation des classes
-    indicator.classList.remove(classOpen, classClosing)
+        // On détermine le jour en fonction de son nom
+        switch (dayName) {
+          case "Lundi":
+            dayToCheck = 1
+            break
+          case "Mardi":
+            dayToCheck = 2
+            break
+          case "Mercredi":
+            dayToCheck = 3
+            break
+          case "Jeudi":
+            dayToCheck = 4
+            break
+          case "Vendredi":
+            dayToCheck = 5
+            break
+          case "Samedi":
+            dayToCheck = 6
+            break
+          case "Dimanche":
+            dayToCheck = 0
+            break
+          default:
+            dayToCheck = null
+        }
 
-    if (isClosedToday) {
-      indicator.classList.add(classClosed)
-      statusText.textContent = "Fermé"
+        if (dayToCheck !== null) {
+          // On génère la date pour chaque jour à partir d'aujourd'hui
+          const futureDate = new Date(now)
+          futureDate.setDate(now.getDate() + ((dayToCheck + 7 - day) % 7)) // Calcul de la date pour ce jour de la semaine
+          const formattedFutureDate = futureDate.toISOString().split("T")[0] // Formate la date future
+
+          // Si ce jour est dans les fermetures exceptionnelles
+          if (isSpecialClosureForDay(dayToCheck, formattedFutureDate)) {
+            li.textContent = `${dayName} : Fermé`
+          }
+        }
+      })
+    }
+
+    // Mettre à jour les horaires pour les jours futurs avec les fermetures exceptionnelles
+    updateHoursForSpecialClosure()
+
+    // Vérifie si aujourd'hui est une fermeture exceptionnelle
+    const isSpecialClosureToday = isSpecialClosureForDay(day, date)
+
+    if (isSpecialClosureToday) {
+      // Fermeture exceptionnelle aujourd'hui
+      indicator.classList.remove("status-open", "status-closing")
+      indicator.classList.add("status-closed")
+      statusText.textContent = "Fermé actuellement"
     } else {
-      const closingTimes = {
-        1: [18, 0], // Lundi
-        2: [18, 0], // Mardi
-        4: [18, 0], // Jeudi
-        5: [18, 0], // Vendredi
-        6: [12, 0], // Samedi
-      }
+      // Vérification des horaires d'ouverture réguliers
+      const isOpen =
+        (day === 1 &&
+          ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) || // Lundi
+        (day === 2 &&
+          ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) || // Mardi
+        (day === 4 &&
+          ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) || // Jeudi
+        (day === 5 &&
+          ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) || // Vendredi
+        (day === 6 && hour >= 10 && hour < 12) // Samedi
 
-      // Vérification des heures d'ouverture
-      const isOpen = checkIfOpen(day, currentHours)
+      const isClosedOnWednesday = day === 3 // Mercredi
+      const isClosedOnSunday = day === 0 // Dimanche
 
-      // Calcul de l'indicateur d'état
-      if (isOpen) {
+      if (isClosedOnWednesday || isClosedOnSunday) {
+        indicator.classList.remove("status-open", "status-closing")
+        indicator.classList.add("status-closed")
+        statusText.textContent = "Fermé actuellement"
+      } else if (isOpen) {
         const closingTime = closingTimes[day] || [18, 0] // Obtenir l'heure de fermeture pour aujourd'hui
         const closingHour = closingTime[0]
         const closingMinute = closingTime[1]
 
         // Calculer le temps restant avant la fermeture
         const minutesUntilClosing =
-          (closingHour - currentHours) * 60 + (closingMinute - currentMinutes)
+          (closingHour - hour) * 60 + (closingMinute - minute)
 
         if (minutesUntilClosing <= 30 && minutesUntilClosing > 0) {
-          indicator.classList.add(classClosing)
+          indicator.classList.remove("status-open", "status-closed")
+          indicator.classList.add("status-closing")
           statusText.textContent = "Ferme bientôt"
         } else {
-          indicator.classList.add(classOpen)
+          indicator.classList.remove("status-closed", "status-closing")
+          indicator.classList.add("status-open")
           statusText.textContent = "Ouvert actuellement"
         }
+      } else {
+        indicator.classList.remove("status-open", "status-closing")
+        indicator.classList.add("status-closed")
+        statusText.textContent = "Fermé actuellement"
       }
     }
-  }
 
-  function checkIfOpen(day, currentHours) {
-    return (
-      (day === 1 &&
-        ((currentHours >= 10 && currentHours < 12) ||
-          (currentHours >= 14 && currentHours < 18))) || // Lundi
-      (day === 2 &&
-        ((currentHours >= 10 && currentHours < 12) ||
-          (currentHours >= 14 && currentHours < 18))) || // Mardi
-      (day === 4 &&
-        ((currentHours >= 10 && currentHours < 12) ||
-          (currentHours >= 14 && currentHours < 18))) || // Jeudi
-      (day === 5 &&
-        ((currentHours >= 10 && currentHours < 12) ||
-          (currentHours >= 14 && currentHours < 18))) || // Vendredi
-      (day === 6 && currentHours >= 10 && currentHours < 12)
-    ) // Samedi
+    console.log(
+      `Jour: ${day}, Heure: ${hour}, Minute: ${minute}, Ouvert: ${
+        !isSpecialClosureToday && isOpen
+      }`
+    )
   }
 })
