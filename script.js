@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const statusText = document.getElementById("status-text")
 
     // Jours spécifiques de fermeture
-    const specificClosedDays = [] // Liste des jours fermés
+    const specificClosedDays = ["2025-01-06", "2025-01-31"] // Liste des jours fermés
 
     // Statut des jours de la semaine
     const weekDays = [
@@ -154,8 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
         dayInfo.isClosed ? "Fermé" : dayInfo.openHours
       }`
     }
-
-    console.log("statusMessage", statusMessage)
 
     // Met à jour l'affichage pour le jour
     const statusElement = document.getElementById(
