@@ -58,12 +58,36 @@ document.addEventListener("DOMContentLoaded", function () {
     const indicator = document.getElementById("status-indicator")
     const statusText = document.getElementById("status-text")
 
-    // Liste des fermetures exceptionnelles au format 'YYYY-MM-DD'
-    const specialClosures = ["2025-01-06", "2025-01-31"]
+    // Liste des fermetures exceptionnelles
+    const specialClosures = [
+      { date: "2025-01-06", allDay: true },
+      { date: "2025-01-31", allDay: true },
+      { date: "2025-04-18", allDay: true }, // Vendredi 18 avril
+      { date: "2025-04-19", allDay: true }, // Samedi 19 avril
+      { date: "2025-04-20", allDay: true }, // Dimanche 20 avril
+      { date: "2025-04-21", allDay: true }, // Lundi 21 avril
+      { date: "2025-05-16", afternoon: true }, // Vendredi 16 mai (après-midi)
+      { date: "2025-05-17", allDay: true }, // Samedi 17 mai
+      { date: "2025-05-18", allDay: true }, // Dimanche 18 mai
+    ]
 
     // Fonction pour vérifier si un jour est dans les fermetures exceptionnelles
-    function isSpecialClosureForDay(dayOfWeek, formattedDate) {
-      return specialClosures.includes(formattedDate)
+    function isSpecialClosureForDay(formattedDate, hour) {
+      const closure = specialClosures.find(
+        (closure) => closure.date === formattedDate
+      )
+      if (closure) {
+        if (closure.allDay) {
+          return true // Fermé toute la journée
+        }
+        if (closure.afternoon && hour >= 12) {
+          return true // Fermé l'après-midi
+        }
+        if (closure.morning && hour < 12) {
+          return true // Fermé le matin
+        }
+      }
+      return false // Ouvert
     }
 
     // Horaires de fermeture en heures et minutes
@@ -116,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const formattedFutureDate = futureDate.toISOString().split("T")[0] // Formate la date future
 
           // Si ce jour est dans les fermetures exceptionnelles
-          if (isSpecialClosureForDay(dayToCheck, formattedFutureDate)) {
+          if (isSpecialClosureForDay(formattedFutureDate, hour)) {
             li.textContent = `${dayName} : Fermé`
           }
         }
@@ -127,10 +151,19 @@ document.addEventListener("DOMContentLoaded", function () {
     updateHoursForSpecialClosure()
 
     // Vérifie si aujourd'hui est une fermeture exceptionnelle
-    const isSpecialClosureToday = isSpecialClosureForDay(day, date)
+    const isSpecialClosureToday = isSpecialClosureForDay(date, hour)
 
-    if (isSpecialClosureToday) {
-      // Fermeture exceptionnelle aujourd'hui
+    // Vérification si c'est le matin et que l'on est normalement ouvert
+    const isMorning = hour < 12
+    const isOpenMorning =
+      (day === 1 && hour >= 10 && hour < 12) || // Lundi
+      (day === 2 && hour >= 10 && hour < 12) || // Mardi
+      (day === 4 && hour >= 10 && hour < 12) || // Jeudi
+      (day === 5 && hour >= 10 && hour < 12) || // Vendredi
+      (day === 6 && hour >= 10 && hour < 12) // Samedi
+
+    if (isSpecialClosureToday || (isMorning && !isOpenMorning)) {
+      // Fermeture exceptionnelle aujourd'hui ou fermé le matin
       indicator.classList.remove("status-open", "status-closing")
       indicator.classList.add("status-closed")
       statusText.textContent = "Fermé actuellement"
