@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const specialClosures = [
         // { date: "2025-04-21", allDay: true },
         // { date: "2025-05-16", afternoon: true }
+        { date: "2025-09-18", allDay: true } // Fermé aujourd'hui
       ]
       function isSpecialClosureForDay(formattedDate, hour) {
         const closure = specialClosures.find(
