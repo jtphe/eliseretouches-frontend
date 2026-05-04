@@ -276,6 +276,11 @@ a:hover {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #ffffff !important;
+  transition: color 0.25s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #c9a67a !important;
 }
 
 /* Hero Section */
@@ -306,6 +311,12 @@ a:hover {
   border-radius: 24px;
   text-decoration: none;
   margin-vertical: 20px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.hero .cta-btn:hover {
+  background-color: #c9a67a;
+  color: #ffffff;
 }
 
 .video-container {
@@ -521,16 +532,17 @@ footer {
 .btn-primary {
   background-color: #0a3761;
   border-color: #0a3761;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .btn-primary:hover {
-  background-color: #08405c;
-  border-color: #08405c;
+  background-color: #c9a67a;
+  border-color: #c9a67a;
 }
 
 .btn-primary:active {
-  background-color: #08405c !important;
-  border-color: #08405c !important;
+  background-color: #b8925f !important;
+  border-color: #b8925f !important;
 }
 
 .navbar-logo {
@@ -604,11 +616,11 @@ footer {
   font-size: 24px;
   cursor: pointer;
   box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out, background-color 0.25s ease;
 }
 
 #back-to-top-btn:hover {
-  background-color: #457b9d; /* Changement de couleur au survol */
+  background-color: #c9a67a;
 }
 
 /* Services */
@@ -658,10 +670,15 @@ footer {
 }
 
 .service a {
-  color: #0a3761; /* Couleur du texte */
-  text-decoration: none; /* Supprime le soulignement */
-  margin-top: 10px; /* Marge au-dessus du lien */
-  display: inline-block; /* Assure que le lien s'affiche correctement */
+  color: #0a3761;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  transition: color 0.25s ease;
+}
+
+.service a:hover {
+  color: #c9a67a;
 }
 
 /* Témoignages */
@@ -773,7 +790,21 @@ footer {
 
 /* Les icônes Font Awesome dans le footer seront blanches */
 footer .social-icon i {
-  color: #fff; /* Change la couleur des icônes Font Awesome uniquement dans le footer */
+  color: #fff;
+  transition: color 0.25s ease;
+}
+
+footer .social-icon:hover i {
+  color: #c9a67a;
+}
+
+/* Hover sur les liens texte du footer (téléphone, adresse, copyright, PHE PRODUCTION) */
+.copyright a {
+  transition: color 0.25s ease;
+}
+
+.copyright a:hover {
+  color: #c9a67a;
 }
 
 .gallery-grid {
