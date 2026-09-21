@@ -1,74 +1,298 @@
+// ============================================================================
+// CONFIGURATION DES HORAIRES — seule source à modifier pour changer les horaires
+// hebdomadaires, ajouter une fermeture ponctuelle (un jour de congé) ou déclarer
+// une fermeture prolongée (vacances). Utilisée à la fois par la liste d'horaires
+// du footer, celle de la page Contact, et l'indicateur "Ouvert / Fermé".
+// ============================================================================
+const SCHEDULE_CONFIG = {
+  // Horaires hebdomadaires. Clé = jour de la semaine, même convention que
+  // Date.getDay() en JS : 0 = dimanche ... 6 = samedi.
+  // Chaque jour a une liste de créneaux ["HH:MM", "HH:MM"] (ouverture, fermeture).
+  // Un jour fermé = tableau vide [].
+  weeklyHours: {
+    0: [], // Dimanche
+    1: [
+      ["10:00", "12:00"],
+      ["14:00", "18:00"],
+    ], // Lundi
+    2: [
+      ["10:00", "12:00"],
+      ["14:00", "18:00"],
+    ], // Mardi
+    3: [], // Mercredi
+    4: [
+      ["10:00", "12:00"],
+      ["14:00", "18:00"],
+    ], // Jeudi
+    5: [
+      ["10:00", "12:00"],
+      ["14:00", "18:00"],
+    ], // Vendredi
+    6: [["10:00", "12:00"]], // Samedi
+  },
+
+  // Fermetures ponctuelles : un jour précis fermé exceptionnellement (congé,
+  // jour férié...). Ajouter une ligne par date, au format :
+  //   { date: "AAAA-MM-JJ", allDay: true }
+  // ou pour ne fermer qu'une demi-journée :
+  //   { date: "AAAA-MM-JJ", morning: true }   (ferme le matin)
+  //   { date: "AAAA-MM-JJ", afternoon: true } (ferme l'après-midi)
+  specialClosures: [
+    // { date: "2026-12-24", allDay: true },
+  ],
+
+  // Fermeture prolongée (vacances). Laisser startDate/endDate à null quand
+  // inactif : ça évite qu'une fermeture d'une année précédente, oubliée dans
+  // le code, se réactive toute seule l'année suivante.
+  // Pour activer : renseigner les deux dates au format "AAAA-MM-JJ".
+  extendedClosure: {
+    startDate: null, // ex : "2026-07-30"
+    endDate: null, // ex : "2026-08-24"
+    label: "Fermeture estivale",
+  },
+}
+
+const DAY_NAMES = [
+  "Dimanche",
+  "Lundi",
+  "Mardi",
+  "Mercredi",
+  "Jeudi",
+  "Vendredi",
+  "Samedi",
+]
+// Ordre d'affichage habituel (Lundi → Dimanche), différent de l'ordre JS natif
+// (Dimanche → Samedi) utilisé par Date.getDay().
+const DISPLAY_ORDER = [1, 2, 3, 4, 5, 6, 0]
+const FRENCH_MONTHS = [
+  "janvier",
+  "février",
+  "mars",
+  "avril",
+  "mai",
+  "juin",
+  "juillet",
+  "août",
+  "septembre",
+  "octobre",
+  "novembre",
+  "décembre",
+]
+
+// -- Fonctions utilitaires sur la config (pures, sans dépendance au DOM) ----
+
+function toMinutes(hhmm) {
+  const [h, m] = hhmm.split(":").map(Number)
+  return h * 60 + m
+}
+
+function formatTime(hhmm) {
+  // "10:00" -> "10h", "17:30" -> "17h30"
+  const [h, m] = hhmm.split(":")
+  return m === "00" ? `${h}h` : `${h}h${m}`
+}
+
+// Date locale au format "AAAA-MM-JJ" — volontairement pas toISOString(),
+// qui convertit en UTC et peut afficher la mauvaise date en pleine nuit
+// selon le fuseau horaire du visiteur.
+function formatLocalISODate(d) {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, "0")
+  const day = String(d.getDate()).padStart(2, "0")
+  return `${y}-${m}-${day}`
+}
+
+function formatClosureRangeLabel(startDate, endDate) {
+  const [, ms, ds] = startDate.split("-").map(Number)
+  const [ye, me, de] = endDate.split("-").map(Number)
+  return `${ds} ${FRENCH_MONTHS[ms - 1]} au ${de} ${FRENCH_MONTHS[me - 1]} ${ye}`
+}
+
+function formatHoursForDay(dayIndex) {
+  const slots = SCHEDULE_CONFIG.weeklyHours[dayIndex] || []
+  if (!slots.length) return "Fermé"
+  return slots
+    .map(([open, close]) => `${formatTime(open)}-${formatTime(close)}`)
+    .join(" / ")
+}
+
+function isExtendedClosureActive(dateStr) {
+  const { startDate, endDate } = SCHEDULE_CONFIG.extendedClosure
+  if (!startDate || !endDate) return false
+  return dateStr >= startDate && dateStr <= endDate
+}
+
+function isSpecialClosureForDate(dateStr, hour) {
+  const closure = SCHEDULE_CONFIG.specialClosures.find(
+    (c) => c.date === dateStr
+  )
+  if (!closure) return false
+  if (closure.allDay) return true
+  if (closure.afternoon && hour >= 12) return true
+  if (closure.morning && hour < 12) return true
+  return false
+}
+
+// Texte à afficher pour la prochaine occurrence d'un jour de la semaine donné
+// (ex: le prochain lundi à venir), en tenant compte d'une éventuelle fermeture
+// ponctuelle ou prolongée qui tomberait ce jour-là.
+function getUpcomingDayHoursText(dayIndex) {
+  const now = new Date()
+  const today = now.getDay()
+  const futureDate = new Date(now)
+  futureDate.setDate(now.getDate() + ((dayIndex + 7 - today) % 7))
+  const dateStr = formatLocalISODate(futureDate)
+  if (
+    isExtendedClosureActive(dateStr) ||
+    isSpecialClosureForDate(dateStr, 12) // 12h : couvre "allDay" et "afternoon"
+  ) {
+    return "Fermé"
+  }
+  return formatHoursForDay(dayIndex)
+}
+
+// -- Rendu de la liste d'horaires (footer + page Contact), à partir de la même
+// config et du même balisage, pour ne plus jamais avoir à maintenir deux
+// listes en parallèle. Marque le jour du jour ("is-today") et les jours
+// fermés ("data-closed") pour que le CSS puisse les mettre en valeur.
+// Regroupe les jours qui partagent exactement les mêmes horaires sur une seule
+// ligne ("Lundi, Mardi, Jeudi, Vendredi : 10h-12h / 14h-18h" plutôt que 4
+// lignes identiques) : 7 lignes deviennent 3 dans le cas courant, ce qui
+// change tout sur mobile en particulier, sans rien cacher derrière un clic.
+function renderHoursList(ul) {
+  if (!ul) return
+  const today = new Date().getDay()
+  const groups = new Map() // "10h-12h / 14h-18h" -> [1, 2, 4, 5]
+  DISPLAY_ORDER.forEach((dayIndex) => {
+    const hoursText = getUpcomingDayHoursText(dayIndex)
+    if (!groups.has(hoursText)) groups.set(hoursText, [])
+    groups.get(hoursText).push(dayIndex)
+  })
+
+  const rows = Array.from(groups.entries())
+    .map(([hoursText, days]) => ({ hoursText, days }))
+    // Ordonne les groupes selon le premier jour où ils apparaissent, pour
+    // rester dans l'ordre naturel de la semaine (Lundi... en premier)
+    .sort(
+      (a, b) =>
+        DISPLAY_ORDER.indexOf(a.days[0]) - DISPLAY_ORDER.indexOf(b.days[0])
+    )
+
+  ul.innerHTML = rows
+    .map(({ hoursText, days }) => {
+      const isClosed = hoursText === "Fermé"
+      const includesToday = days.includes(today)
+      const dayLabel = days.map((d) => DAY_NAMES[d]).join(", ")
+      const todayBadge = includesToday
+        ? '<span class="today-badge">(aujourd\'hui)</span>'
+        : ""
+      return `<li class="${includesToday ? "is-today" : ""}"${
+        isClosed ? ' data-closed="true"' : ""
+      }><span class="hours-day">${dayLabel}${todayBadge}</span><span class="hours-value">${hoursText}</span></li>`
+    })
+    .join("")
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   // Load header
-  fetch("header.html")
+  const headerLoaded = fetch("header.html")
     .then((response) => response.text())
     .then((data) => {
       document.querySelector("header").innerHTML = data
       // Appeler la bannière estivale ici pour garantir qu'elle s'affiche sous le header
       displayGlobalSummerBanner()
-      console.log("Affichage bannière estivale") // Debug
+
+      // Ombre discrète sur la nav une fois que la page est scrollée (rendu plus premium qu'une nav plate)
+      const navbar = document.querySelector(".navbar")
+      if (navbar) {
+        const toggleNavbarShadow = () => {
+          navbar.classList.toggle("navbar-scrolled", window.scrollY > 10)
+        }
+        toggleNavbarShadow()
+        window.addEventListener("scroll", toggleNavbarShadow, {
+          passive: true,
+        })
+      }
     })
 
   // Load testimonials only on index.html
-  if (/index\.html/.test(window.location.pathname)) {
-    fetch("testimony.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.querySelector("#testimonials").innerHTML = data
-      })
-  }
+  const isIndexPage = /index\.html/.test(window.location.pathname)
+  const testimonyLoaded = isIndexPage
+    ? fetch("testimony.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.querySelector("#testimonials").innerHTML = data
+        })
+    : Promise.resolve()
 
   // Load footer
-  fetch("footer.html")
+  const footerLoaded = fetch("footer.html")
     .then((response) => response.text())
     .then((data) => {
       document.querySelector("footer").innerHTML = data
+
+      // Année du copyright toujours à jour, sans retouche manuelle chaque année
+      const copyrightYear = document.getElementById("copyright-year")
+      if (copyrightYear) {
+        copyrightYear.textContent = new Date().getFullYear()
+      }
 
       // Appeler updateStatus() après que le footer ait été chargé
       updateStatus()
     })
 
-  // Affiche le bouton quand l'utilisateur scroll vers le bas
-  window.onscroll = function () {
-    const backToTopBtn = document.getElementById("back-to-top-btn")
-    if (
-      document.body.scrollTop > 300 ||
-      document.documentElement.scrollTop > 300
-    ) {
-      backToTopBtn.style.display = "block"
-    } else {
-      backToTopBtn.style.display = "none"
-    }
-  }
+  // L'apparition au scroll ne démarre qu'une fois header/footer/témoignages injectés :
+  // tant que ces blocs arrivent en asynchrone, ils décalent la mise en page et faussent
+  // la toute première mesure d'intersection (élément qui reste bloqué invisible).
+  Promise.all([headerLoaded, testimonyLoaded, footerLoaded]).then(() => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        initScrollReveal()
+      })
+    })
+  })
 
-  // Scroll vers le haut quand on clique sur le bouton
-  document
-    .getElementById("back-to-top-btn")
-    .addEventListener("click", function () {
+  // Bouton "retour en haut" : présent uniquement sur certaines pages (ex. index.html)
+  const backToTopBtn = document.getElementById("back-to-top-btn")
+  if (backToTopBtn) {
+    // Affiche le bouton quand l'utilisateur scroll vers le bas
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 300 ||
+        document.documentElement.scrollTop > 300
+      ) {
+        backToTopBtn.style.display = "block"
+      } else {
+        backToTopBtn.style.display = "none"
+      }
+    }
+
+    // Scroll vers le haut quand on clique sur le bouton
+    backToTopBtn.addEventListener("click", function () {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       })
     })
+  }
 
-  // Fonction pour afficher la bannière estivale générale en haut du site
+  // Fonction pour afficher la bannière estivale générale en haut du site,
+  // pilotée par SCHEDULE_CONFIG.extendedClosure (seule source pour ces dates).
   function displayGlobalSummerBanner() {
-    const now = new Date()
-    const date = now.toISOString().split("T")[0]
-    const summerClosure = {
-      startDate: "2025-07-31",
-      endDate: "2025-08-31",
-    }
-    // Vérifier si on est pendant la fermeture estivale
-    if (date >= summerClosure.startDate && date <= summerClosure.endDate) {
-      if (!document.querySelector(".summer-closure-banner-global")) {
+    const dateStr = formatLocalISODate(new Date())
+    const existingBanner = document.querySelector(
+      ".summer-closure-banner-global"
+    )
+    if (isExtendedClosureActive(dateStr)) {
+      if (!existingBanner) {
+        const { startDate, endDate, label } = SCHEDULE_CONFIG.extendedClosure
         const banner = document.createElement("div")
         banner.className = "summer-closure-banner-global"
         banner.innerHTML = `
           <div class="banner-couture-bg">
             <span class="banner-icon">✂️</span>
             <span class="banner-text">
-              Fermeture estivale du 31 juillet au 31 août 2025
+              ${label} du ${formatClosureRangeLabel(startDate, endDate)}
             </span>
             <span class="banner-icon">🧵</span>
           </div>
@@ -80,33 +304,8 @@ document.addEventListener("DOMContentLoaded", function () {
           document.body.insertBefore(banner, document.body.firstChild)
         }
       }
-    } else {
-      const existingBanner = document.querySelector(
-        ".summer-closure-banner-global"
-      )
-      if (existingBanner) existingBanner.remove()
-    }
-  }
-
-  // Fonction pour afficher la notice de fermeture estivale dans le footer
-  function displaySummerNotice() {
-    const now = new Date()
-    const date = now.toISOString().split("T")[0]
-
-    // Fermeture estivale (du 31 juillet au 31 août 2025) - TEMPORAIREMENT MODIFIÉ POUR TEST
-    const summerClosure = {
-      startDate: "2025-01-01", // Temporairement modifié pour test
-      endDate: "2025-12-31", // Temporairement modifié pour test
-      message: "Fermeture estivale",
-    }
-
-    const summerNotice = document.getElementById("summer-notice")
-    if (summerNotice) {
-      if (date >= summerClosure.startDate && date <= summerClosure.endDate) {
-        summerNotice.style.display = "block"
-      } else {
-        summerNotice.style.display = "none"
-      }
+    } else if (existingBanner) {
+      existingBanner.remove()
     }
   }
 
@@ -115,176 +314,160 @@ document.addEventListener("DOMContentLoaded", function () {
     const day = now.getDay()
     const hour = now.getHours()
     const minute = now.getMinutes()
-    const date = now.toISOString().split("T")[0]
+    const dateStr = formatLocalISODate(now)
     const indicator = document.getElementById("status-indicator")
     const statusText = document.getElementById("status-text")
-    // Définir la période estivale
-    const summerClosure = {
-      startDate: "2025-07-31",
-      endDate: "2025-08-31",
-    }
-    if (date >= summerClosure.startDate && date <= summerClosure.endDate) {
-      indicator.classList.remove("status-open", "status-closing")
-      indicator.classList.add("status-closed")
-      statusText.textContent = "Fermeture estivale"
-      // Mettre tous les horaires à Fermé
-      const days = [
-        "lundi",
-        "mardi",
-        "mercredi",
-        "jeudi",
-        "vendredi",
-        "samedi",
-        "dimanche",
-      ]
-      days.forEach((jour) => {
-        const li = document.getElementById(`status-${jour}`)
-        if (li)
-          li.textContent = `${
-            jour.charAt(0).toUpperCase() + jour.slice(1)
-          } : Fermé`
-      })
+
+    // Régénère les deux listes d'horaires (footer + page Contact) à partir de
+    // la config commune : impossible qu'elles désynchronisent l'une de l'autre.
+    // Sur la page Contact, le détail est déjà affiché dans "Nous Contacter" :
+    // on masque la liste du footer pour ne pas répéter la même info sur la même
+    // page, en gardant juste l'indicateur Ouvert/Fermé (repère utile en scrollant).
+    const isContactPage = /contact\.html/.test(window.location.pathname)
+    const footerHoursTitle = document.querySelector(".hours-title")
+    const footerHoursList = document.getElementById("footer-hours-list")
+    if (isContactPage) {
+      if (footerHoursTitle) footerHoursTitle.style.display = "none"
+      if (footerHoursList) footerHoursList.style.display = "none"
     } else {
-      // --- Logique normale d'ouverture/fermeture ---
-      // Liste des fermetures exceptionnelles
-      const specialClosures = [
-        // { date: "2025-04-21", allDay: true },
-        // { date: "2025-05-16", afternoon: true }
-        { date: "2025-09-18", allDay: true } // Fermé aujourd'hui
-      ]
-      function isSpecialClosureForDay(formattedDate, hour) {
-        const closure = specialClosures.find(
-          (closure) => closure.date === formattedDate
+      if (footerHoursTitle) footerHoursTitle.style.display = ""
+      renderHoursList(footerHoursList)
+    }
+    renderHoursList(document.getElementById("contact-hours-list"))
+
+    if (indicator && statusText) {
+      const setStatus = (cls, text) => {
+        indicator.classList.remove(
+          "status-open",
+          "status-closed",
+          "status-closing"
         )
-        if (closure) {
-          if (closure.allDay) return true
-          if (closure.afternoon && hour >= 12) return true
-          if (closure.morning && hour < 12) return true
-        }
-        return false
+        indicator.classList.add(cls)
+        statusText.textContent = text
       }
-      // Horaires de fermeture en heures et minutes
-      const closingTimes = {
-        1: [18, 0], // Lundi
-        2: [18, 0], // Mardi
-        4: [18, 0], // Jeudi
-        5: [18, 0], // Vendredi
-        6: [12, 0], // Samedi
-      }
-      // Fonction pour mettre à jour les horaires en "Fermé" si c'est une fermeture exceptionnelle
-      function updateHoursForSpecialClosure() {
-        const hoursList = document.querySelectorAll(".footer-hours ul li")
-        hoursList.forEach((li) => {
-          const dayName = li.textContent.split(" :")[0]
-          let dayToCheck = null
-          switch (dayName) {
-            case "Lundi":
-              dayToCheck = 1
-              break
-            case "Mardi":
-              dayToCheck = 2
-              break
-            case "Mercredi":
-              dayToCheck = 3
-              break
-            case "Jeudi":
-              dayToCheck = 4
-              break
-            case "Vendredi":
-              dayToCheck = 5
-              break
-            case "Samedi":
-              dayToCheck = 6
-              break
-            case "Dimanche":
-              dayToCheck = 0
-              break
-            default:
-              dayToCheck = null
-          }
-          if (dayToCheck !== null) {
-            const futureDate = new Date(now)
-            futureDate.setDate(now.getDate() + ((dayToCheck + 7 - day) % 7))
-            const formattedFutureDate = futureDate.toISOString().split("T")[0]
-            if (isSpecialClosureForDay(formattedFutureDate, hour)) {
-              li.textContent = `${dayName} : Fermé`
-            } else {
-              // Remettre les horaires normaux
-              switch (dayName) {
-                case "Lundi":
-                case "Mardi":
-                case "Jeudi":
-                case "Vendredi":
-                  li.textContent = `${dayName} : 10h-12h / 14h-18h`
-                  break
-                case "Samedi":
-                  li.textContent = `${dayName} : 10h-12h`
-                  break
-                case "Mercredi":
-                case "Dimanche":
-                  li.textContent = `${dayName} : Fermé`
-                  break
-              }
-            }
-          }
-        })
-      }
-      updateHoursForSpecialClosure()
-      // Vérifie si aujourd'hui est une fermeture exceptionnelle
-      const isSpecialClosureToday = isSpecialClosureForDay(date, hour)
-      // Vérification si c'est le matin et que l'on est normalement ouvert
-      const isMorning = hour < 12
-      const isOpenMorning =
-        (day === 1 && hour >= 10 && hour < 12) ||
-        (day === 2 && hour >= 10 && hour < 12) ||
-        (day === 4 && hour >= 10 && hour < 12) ||
-        (day === 5 && hour >= 10 && hour < 12) ||
-        (day === 6 && hour >= 10 && hour < 12)
-      if (isSpecialClosureToday || (isMorning && !isOpenMorning)) {
-        indicator.classList.remove("status-open", "status-closing")
-        indicator.classList.add("status-closed")
-        statusText.textContent = "Fermé actuellement"
+
+      if (isExtendedClosureActive(dateStr)) {
+        setStatus("status-closed", SCHEDULE_CONFIG.extendedClosure.label)
+      } else if (isSpecialClosureForDate(dateStr, hour)) {
+        setStatus("status-closed", "Fermé actuellement")
       } else {
-        // Vérification des horaires d'ouverture réguliers
-        const isOpen =
-          (day === 1 &&
-            ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) ||
-          (day === 2 &&
-            ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) ||
-          (day === 4 &&
-            ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) ||
-          (day === 5 &&
-            ((hour >= 10 && hour < 12) || (hour >= 14 && hour < 18))) ||
-          (day === 6 && hour >= 10 && hour < 12)
-        const isClosedOnWednesday = day === 3
-        const isClosedOnSunday = day === 0
-        if (isClosedOnWednesday || isClosedOnSunday) {
-          indicator.classList.remove("status-open", "status-closing")
-          indicator.classList.add("status-closed")
-          statusText.textContent = "Fermé actuellement"
-        } else if (isOpen) {
-          const closingTime = closingTimes[day] || [18, 0]
-          const closingHour = closingTime[0]
-          const closingMinute = closingTime[1]
-          const minutesUntilClosing =
-            (closingHour - hour) * 60 + (closingMinute - minute)
-          if (minutesUntilClosing <= 30 && minutesUntilClosing > 0) {
-            indicator.classList.remove("status-open", "status-closed")
-            indicator.classList.add("status-closing")
-            statusText.textContent = "Ferme bientôt"
-          } else {
-            indicator.classList.remove("status-closed", "status-closing")
-            indicator.classList.add("status-open")
-            statusText.textContent = "Ouvert actuellement"
-          }
+        const nowMinutes = hour * 60 + minute
+        const slots = SCHEDULE_CONFIG.weeklyHours[day] || []
+        const openSlot = slots.find(
+          ([open, close]) =>
+            nowMinutes >= toMinutes(open) && nowMinutes < toMinutes(close)
+        )
+        if (!openSlot) {
+          setStatus("status-closed", "Fermé actuellement")
         } else {
-          indicator.classList.remove("status-open", "status-closing")
-          indicator.classList.add("status-closed")
-          statusText.textContent = "Fermé actuellement"
+          const minutesUntilClosing = toMinutes(openSlot[1]) - nowMinutes
+          if (minutesUntilClosing <= 30) {
+            setStatus("status-closing", "Ferme bientôt")
+          } else {
+            setStatus("status-open", "Ouvert actuellement")
+          }
         }
       }
     }
+
     // Afficher la bannière générale si besoin
     displayGlobalSummerBanner()
+  }
+
+  // Carrousel de la modal galerie (utilisé sur index.html et gallery.html)
+  // Factorisé ici pour éviter la duplication du même script inline sur les deux pages
+  function initGalleryModal() {
+    const galleryItems = document.querySelectorAll(".gallery-item")
+    const modalImage = document.getElementById("modalImage")
+    const prevBtn = document.getElementById("prevBtn")
+    const nextBtn = document.getElementById("nextBtn")
+
+    // Ne s'exécute que sur les pages qui possèdent effectivement une galerie/modal
+    if (!galleryItems.length || !modalImage || !prevBtn || !nextBtn) return
+
+    const imageSources = Array.from(galleryItems).map((item) =>
+      item.getAttribute("data-src")
+    )
+    let currentIndex = 0
+
+    galleryItems.forEach((item, index) => {
+      item.addEventListener("click", function () {
+        modalImage.src = imageSources[index]
+        currentIndex = index
+      })
+    })
+
+    function showPrevImage() {
+      currentIndex =
+        (currentIndex - 1 + imageSources.length) % imageSources.length
+      modalImage.src = imageSources[currentIndex]
+    }
+
+    function showNextImage() {
+      currentIndex = (currentIndex + 1) % imageSources.length
+      modalImage.src = imageSources[currentIndex]
+    }
+
+    prevBtn.addEventListener("click", showPrevImage)
+    nextBtn.addEventListener("click", showNextImage)
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft") {
+        showPrevImage()
+      } else if (event.key === "ArrowRight") {
+        showNextImage()
+      }
+    })
+  }
+
+  initGalleryModal()
+
+  // Apparition douce des éléments ".reveal" au scroll (cascade légère entre voisins)
+  function initScrollReveal() {
+    const revealEls = document.querySelectorAll(".reveal:not(.is-visible)")
+    if (!revealEls.length) return
+
+    // Environnement sans IntersectionObserver (très rare) : on affiche direct, pas de dégradation silencieuse
+    if (!("IntersectionObserver" in window)) {
+      revealEls.forEach((el) => el.classList.add("is-visible"))
+      return
+    }
+
+    // Petit décalage entre éléments d'un même parent pour un effet de cascade (ex: les cartes services)
+    const siblingCounters = new Map()
+    revealEls.forEach((el) => {
+      const parent = el.parentElement
+      const count = siblingCounters.get(parent) || 0
+      el.style.transitionDelay = `${Math.min(count, 5) * 90}ms`
+      siblingCounters.set(parent, count + 1)
+    })
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible")
+            obs.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    )
+
+    // On attend deux frames avant de démarrer l'observation : juste après le chargement,
+    // la mise en page peut encore bouger (chargement des polices custom, etc.), ce qui fausse
+    // la toute première mesure d'intersection et peut laisser un élément bloqué invisible.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        revealEls.forEach((el) => observer.observe(el))
+      })
+    })
+
+    // Filet de sécurité : si un élément n'a toujours pas été révélé après quelques secondes
+    // (cas limite non prévu), on l'affiche quand même. Le contenu ne doit jamais rester
+    // invisible indéfiniment.
+    setTimeout(() => {
+      revealEls.forEach((el) => el.classList.add("is-visible"))
+    }, 4000)
   }
 })

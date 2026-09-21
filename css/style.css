@@ -1,3 +1,28 @@
+/* ==========================================================================
+   Design tokens — base de cohérence pour un rendu premium
+   ========================================================================== */
+:root {
+  --color-navy: #0a3761;
+  --color-navy-deep: #072a4a;
+  --color-gold: #c9a67a;
+  --color-gold-deep: #8a6d47; /* Doré accessible (texte sur fond clair) */
+  --color-cream: #faf7f2;
+  --color-ink: #333333;
+
+  --shadow-sm: 0 2px 8px rgba(10, 55, 97, 0.08);
+  --shadow-md: 0 7px 20px rgba(146, 166, 185, 0.2);
+  --shadow-lg: 0 16px 40px rgba(10, 55, 97, 0.16);
+  --shadow-gold: 0 10px 24px rgba(201, 166, 122, 0.35);
+
+  --radius-sm: 8px;
+  --radius-md: 15px;
+  --radius-pill: 999px;
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 0.25s;
+  --duration-base: 0.4s;
+}
+
 /* Définir les variantes de la police Playfair Display */
 @font-face {
   font-family: "PlayfairDisplay";
@@ -245,11 +270,14 @@ footer {
 
 html,
 body {
-  height: 100%;
   margin: 0;
 }
 
 body {
+  /* min-height (et non height) : garde le footer collé en bas sur les pages courtes
+     sans plafonner la hauteur du body à un seul écran — un body à height:100% cassait
+     le header sticky au-delà de cette limite (plus de marge de manœuvre pour "coller"). */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -267,6 +295,26 @@ a:hover {
   background: #0a3761 !important; /* Couleur de fond du header */
 }
 
+/* Le sticky se pose sur <header> (et non .navbar) : .navbar a exactement la même
+   hauteur que son parent <header>, ce qui ne laisse aucune marge de manœuvre pour
+   "coller" et annule silencieusement le sticky si on le pose directement sur elle. */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.navbar {
+  transition: box-shadow var(--duration-fast) var(--ease-premium),
+    background-color var(--duration-fast) var(--ease-premium);
+}
+
+/* Ombre subtile qui apparaît une fois que la page est scrollée (classe posée en JS) */
+.navbar.navbar-scrolled {
+  box-shadow: var(--shadow-lg);
+  background: var(--color-navy-deep) !important;
+}
+
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
@@ -276,23 +324,49 @@ a:hover {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #ffffff !important;
-  transition: color 0.25s ease;
+  position: relative;
+  transition: color var(--duration-fast) ease;
+}
+
+/* Petit soulignement animé au survol, plus premium qu'un simple changement de couleur */
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.1rem;
+  height: 2px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-fast) var(--ease-premium);
 }
 
 .navbar-nav .nav-link:hover {
   color: #c9a67a !important;
 }
 
+.navbar-nav .nav-link:hover::after {
+  transform: scaleX(1);
+}
+
 /* Hero Section */
 .hero {
-  background-color: #0a3761;
+  position: relative;
+  background: radial-gradient(
+      circle at 15% 20%,
+      rgba(201, 166, 122, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(160deg, var(--color-navy) 0%, var(--color-navy-deep) 100%);
   color: white;
   padding: 20px; /* Ajuste le padding autour de la section */
   padding-bottom: 40px; /* Augmente le padding en bas de la section */
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 3.25rem;
+  letter-spacing: 0.01em;
   margin-bottom: 20px;
   color: #ffffff; /* Assure que le titre est bien blanc */
 }
@@ -304,19 +378,30 @@ a:hover {
 
 .hero .cta-btn {
   font-family: "Poppins", sans-serif;
-  padding: 10px 20px;
+  padding: 12px 28px;
   background-color: white;
   color: #0a3761;
   font-size: 1.2rem;
-  border-radius: 24px;
+  border-radius: var(--radius-pill);
   text-decoration: none;
   margin-vertical: 20px;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  display: inline-block;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--duration-fast) var(--ease-premium),
+    color var(--duration-fast) var(--ease-premium),
+    transform var(--duration-fast) var(--ease-premium),
+    box-shadow var(--duration-fast) var(--ease-premium);
 }
 
 .hero .cta-btn:hover {
   background-color: #c9a67a;
-  color: #ffffff;
+  color: #0a3761; /* Texte foncé au survol pour garder un contraste lisible (AA) sur fond doré */
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-gold);
+}
+
+.hero .cta-btn:active {
+  transform: translateY(-1px);
 }
 
 .video-container {
@@ -327,7 +412,7 @@ a:hover {
   max-width: 100%;
   background: #000; /* Couleur de fond avant chargement */
   border-radius: 15px;
-  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 .video-container iframe {
@@ -361,10 +446,16 @@ footer {
 .footer-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 3rem;
+  width: 100%;
 }
 
-.footer-hours {
+/* Pas de bordure ni de fond : juste un écart généreux entre les deux blocs
+   (voir gap ci-dessus) et l'alignement (gauche / droite) pour les séparer
+   à l'œil, sans ajouter d'élément visuel supplémentaire. */
+.footer-hours,
+.footer-info {
   flex: 1;
 }
 
@@ -381,21 +472,160 @@ footer {
   list-style: none; /* Retire les puces */
 }
 
+/* ==========================================================================
+   Liste des horaires (footer + carte "Nous Contacter") : même structure de
+   pastille que la liste de prix de la page Services, pour que ce composant
+   parle le même langage visuel que le reste du site. Le balisage (classes
+   .hours-day / .hours-value, li.is-today, li[data-closed]) est généré par
+   renderHoursList() dans script.js et partagé entre les deux contextes.
+   ========================================================================== */
+.hours-day {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-weight: 500;
+}
+
+/* Simple mention textuelle plutôt qu'une pastille dans la pastille : plus net,
+   et évite l'effet "boîte dans la boîte" d'un badge encapsulé dans la ligne. */
+.today-badge {
+  font-size: 0.72em;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* -- Contexte clair : carte "Nous Contacter" sur la page Contact ---------- */
+#contact-hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+#contact-hours-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration-fast) ease;
+}
+
+#contact-hours-list .hours-day {
+  color: var(--color-navy);
+  font-size: 0.9rem;
+}
+
+#contact-hours-list .hours-value {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  background: rgba(10, 55, 97, 0.08);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+#contact-hours-list li[data-closed="true"] .hours-value {
+  color: #9099a6;
+  background: rgba(0, 0, 0, 0.045);
+}
+
+/* Jour actuel : bordure dorée à gauche + texte doré, même motif que les
+   témoignages du site — pas de fond en aplat (un doré transparent sur fond
+   clair passe encore, mais donnait un gris terne une fois sur fond marine
+   dans le footer ; on garde donc un seul traitement cohérent dans les deux
+   contextes plutôt que de bricoler une exception). */
+#contact-hours-list li.is-today {
+  border-left: 3px solid var(--color-gold-deep);
+  padding-left: calc(0.6rem - 3px);
+}
+
+#contact-hours-list li.is-today .hours-day {
+  color: var(--color-gold-deep);
+  font-weight: 600;
+}
+
+#contact-hours-list .today-badge {
+  color: var(--color-gold-deep);
+}
+
+/* -- Contexte sombre : footer, sur fond bleu marine ------------------------ */
 .footer-hours ul li {
-  margin-bottom: 0.2rem; /* Espacement entre les horaires */
+  margin-bottom: 0.2rem; /* Espacement entre les horaires (ancienne liste, gardé par sécurité) */
+}
+
+#footer-hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+#footer-hours-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+#footer-hours-list .hours-day {
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+#footer-hours-list .hours-value {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+#footer-hours-list li[data-closed="true"] .hours-value {
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+#footer-hours-list li.is-today {
+  border-left: 3px solid var(--color-gold);
+  padding-left: calc(0.5rem - 3px);
+}
+
+#footer-hours-list li.is-today .hours-day {
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+#footer-hours-list .today-badge {
+  color: var(--color-gold);
+}
+
+/* Sur mobile, "jour + badge Aujourd'hui + pastille horaires" sur une seule
+   ligne ne tient plus (le texte de la pastille sortait de l'écran) : on passe
+   chaque ligne en deux niveaux, empilés proprement. */
+@media (max-width: 576px) {
+  .contact-panel {
+    padding: 1.5rem 1.25rem;
+  }
+
+  #contact-hours-list li,
+  #footer-hours-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
 }
 
 .hours-title {
   font-family: "PlayfairDisplay", serif;
-  font-weight: 800; /* Plus grand et en gras */
-  color: #ffffff; /* Couleur blanche */
-  margin-bottom: 1rem; /* Espacement inférieur */
-  font-size: 1.2rem; /* Taille de police plus grande */
-}
-
-.footer-info {
-  text-align: right;
-  flex: 1;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
 }
 
 .footer-info .copyright {
@@ -427,43 +657,17 @@ footer {
 .map-link {
   color: #0a3761;
   text-decoration: none; /* Supprime le soulignement du lien, si souhaité */
+  transition: color var(--duration-fast) ease;
+}
+
+/* Même effet doré que le reste des liens du site (cohérence de la DA) */
+.map-link:hover {
+  color: var(--color-gold-deep);
 }
 
 .copyright a {
   text-decoration: none;
   color: #fff;
-}
-
-/* En-tête */
-.bg-custom {
-  background: #0a3761 !important; /* Couleur de fond du header */
-}
-
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.navbar-nav .nav-link {
-  color: #ffffff !important;
-}
-
-/* Hero Section */
-.hero {
-  background-color: #0a3761;
-  color: white;
-  padding: 20px; /* Ajuste le padding autour de la section */
-  padding-bottom: 40px; /* Augmente le padding en bas de la section */
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  color: #ffffff; /* Assure que le titre est bien blanc */
-}
-
-.hero p {
-  color: #f0f0f0; /* Ajuste la couleur du texte de paragraphe si nécessaire */
 }
 
 /* Section Services */
@@ -475,7 +679,14 @@ footer {
   background-color: #f9f9f9;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration-base) var(--ease-premium),
+    box-shadow var(--duration-base) var(--ease-premium);
+}
+
+.service:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
 }
 
 .service h3 {
@@ -532,17 +743,27 @@ footer {
 .btn-primary {
   background-color: #0a3761;
   border-color: #0a3761;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  transition: background-color var(--duration-fast) var(--ease-premium),
+    border-color var(--duration-fast) var(--ease-premium),
+    transform var(--duration-fast) var(--ease-premium),
+    box-shadow var(--duration-fast) var(--ease-premium);
 }
 
+/* Même langage d'interaction que les autres boutons premium du site (.cta-btn, .call-btn) :
+   lever + ombre dorée au survol, pas juste un changement de couleur. */
 .btn-primary:hover {
   background-color: #c9a67a;
   border-color: #c9a67a;
+  color: #0a3761; /* Texte foncé au survol pour garder un contraste lisible (AA) sur fond doré */
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-gold);
 }
 
 .btn-primary:active {
   background-color: #b8925f !important;
   border-color: #b8925f !important;
+  color: #0a3761 !important; /* Même correctif de contraste pour l'état actif/pressé */
+  transform: translateY(-1px);
 }
 
 .navbar-logo {
@@ -570,6 +791,8 @@ footer {
   max-width: 100%;
   background: #f5f5f5; /* Couleur de fond si l'iframe est vide ou en chargement */
   border-radius: 8px; /* Bords arrondis */
+  /* Même ombre portée que les autres blocs de contenu du site (vidéo, cartes, galerie) */
+  box-shadow: var(--shadow-md);
 }
 
 .map-responsive iframe {
@@ -583,9 +806,14 @@ footer {
 
 .contact {
   color: #0a3761;
+  transition: color var(--duration-fast) ease;
 }
 
-.contact a :hover {
+/* Le sélecteur ".contact a :hover" (avec l'espace) ne ciblait rien de réel — corrigé,
+   et même effet doré que les autres liens texte du site. */
+.contact:hover,
+a.contact:hover {
+  color: var(--color-gold-deep);
   text-decoration: none;
 }
 
@@ -599,7 +827,60 @@ footer {
   line-height: 1.5; /* Améliore la lisibilité */
 }
 
-.fa-map-marker-alt {
+/* ==========================================================================
+   Page Contact : mêmes panneaux (fond + ombre) que les cartes du reste du
+   site, pour que la page ne paraisse pas nue par rapport à Services/Accueil.
+   ========================================================================== */
+.contact-panel {
+  height: 100%;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-panel .map-responsive {
+  margin-top: 1rem;
+  box-shadow: none; /* Le panneau porte déjà l'ombre, pas besoin de la doubler */
+}
+
+.contact-details li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(10, 55, 97, 0.08);
+}
+
+.contact-details li:last-child {
+  border-bottom: 0;
+}
+
+.contact-detail-text {
+  flex: 1;
+  padding-top: 0.4rem; /* Aligne le texte avec le centre du badge d'icône */
+}
+
+/* Même badge circulaire que les icônes de service (cohérence de la DA),
+   dans une version un peu plus compacte adaptée à une ligne de liste. */
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(10, 55, 97, 0.08);
+}
+
+.contact-icon i {
+  color: var(--color-navy);
+  font-size: 1rem;
+}
+
+
+.bi-geo-alt-fill {
   margin-right: 4px;
 }
 
@@ -615,7 +896,7 @@ footer {
   border-radius: 50%; /* Bouton rond */
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  box-shadow: var(--shadow-md);
   transition: opacity 0.3s ease-in-out, background-color 0.25s ease;
 }
 
@@ -657,8 +938,23 @@ footer {
 }
 
 .service-icon {
-  font-size: 1.5rem; /* Taille de l'icône */
-  color: #0a3761; /* Couleur de l'icône */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.25rem; /* Taille de l'icône */
+  color: var(--color-navy); /* Couleur de l'icône */
+  background: rgba(10, 55, 97, 0.08);
+  border-radius: 50%;
+  transition: background var(--duration-base) var(--ease-premium),
+    transform var(--duration-base) var(--ease-premium);
+}
+
+.service:hover .service-icon {
+  background: var(--color-gold);
+  color: #ffffff;
+  transform: scale(1.08);
 }
 
 .service h3 {
@@ -678,7 +974,7 @@ footer {
 }
 
 .service a:hover {
-  color: #c9a67a;
+  color: var(--color-gold-deep); /* Doré foncé : conserve l'esprit "hover doré" tout en respectant le contraste AA sur fond clair */
 }
 
 /* Témoignages */
@@ -694,7 +990,7 @@ blockquote {
   font-style: italic;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 blockquote p {
@@ -719,10 +1015,21 @@ blockquote p {
 
 #gallery img {
   border-radius: 5px; /* Assurez-vous que les coins sont arrondis */
-  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  box-shadow: var(--shadow-md);
   max-width: 100%;
   height: auto;
   margin-bottom: 1rem;
+}
+
+/* Effet de zoom doux au survol, cohérent sur la home (#gallery) et la page galerie complète */
+.gallery-item {
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
 }
 
 #services-page .card-body {
@@ -734,34 +1041,6 @@ footer {
   background-color: #0a3761; /* Couleur de fond */
   color: white; /* Couleur du texte */
   padding: 20px 0; /* Espacement interne */
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Alignement en haut */
-  width: 100%; /* Assure que le footer-content prend toute la largeur */
-}
-
-.footer-hours {
-  flex: 1;
-}
-
-.footer-hours ul {
-  color: #ffffff;
-  padding: 0;
-  list-style: none; /* Retire les puces */
-}
-
-.footer-hours ul li {
-  margin-bottom: 0.2rem; /* Espacement entre les horaires */
-  font-weight: normal; /* Supprimer le gras */
 }
 
 /* Retirer la marge droite spécifique pour LinkedIn */
@@ -815,8 +1094,10 @@ footer .social-icon:hover i {
 
 .gallery-item img {
   width: 100%; /* Rend les images responsive */
-  height: auto;
+  aspect-ratio: 4 / 3; /* Grille homogène quelle que soit l'orientation de la photo d'origine */
+  object-fit: cover;
   display: block; /* Évite l'espace sous les images */
+  transition: transform var(--duration-base) var(--ease-premium);
 }
 
 /* Styles pour le modal */
@@ -864,12 +1145,13 @@ footer .social-icon:hover i {
   font-size: 48px;
   color: white;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color var(--duration-fast) ease, transform var(--duration-fast) var(--ease-premium);
   opacity: 1;
 }
 
 .modal .close:hover {
-  color: #f0f0f0;
+  color: var(--color-gold);
+  transform: scale(1.1);
 }
 
 /* Styles pour les boutons fléchés */
@@ -882,6 +1164,8 @@ footer .social-icon:hover i {
   color: white;
   font-size: 2rem;
   padding: 10px;
+  border-radius: 50%;
+  transition: background-color var(--duration-fast) ease, transform var(--duration-fast) var(--ease-premium);
   cursor: pointer;
   z-index: 1000;
 }
@@ -892,23 +1176,48 @@ footer .social-icon:hover i {
   right: 10px;
 }
 .arrow-btn:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--color-gold);
+  color: var(--color-navy);
+  /* On combine avec translateY(-50%) (centrage vertical déjà posé sur .arrow-btn) :
+     un transform seul ici écraserait le centrage au lieu de s'y ajouter. */
+  transform: translateY(-50%) scale(1.1);
 }
 
-i.fas,
-i.fab {
+i.bi {
   color: #0a3761; /* Utilise la couleur principale définie */
 }
 
 /* Style pour les questions de la FAQ */
 .faq .card-header .btn-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   color: #0a3761; /* Couleur des questions */
   font-weight: bold;
   text-align: left; /* Alignement à gauche */
+  text-decoration: none;
 }
 
 .faq .card-header .btn-link:hover {
   color: #083d6f; /* Couleur des questions au survol */
+}
+
+/* Chevron qui indique visuellement que la question est dépliable, et tourne à l'ouverture */
+.faq .card-header .btn-link::after {
+  content: "";
+  flex-shrink: 0;
+  width: 0.55em;
+  height: 0.55em;
+  margin-left: 1rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--duration-base) var(--ease-premium);
+}
+
+.faq .card-header .btn-link[aria-expanded="true"]::after {
+  transform: rotate(225deg);
 }
 
 /* Réduire la taille du texte dans les réponses FAQ */
@@ -917,32 +1226,110 @@ i.fab {
   line-height: 1.4; /* Ajuste l'espacement des lignes */
 }
 
+/* Même relief (ombre + radius) que les autres cartes du site : sans ça, la FAQ
+   reste à plat façon Bootstrap par défaut, détonne avec le reste des pages. */
+.faq .accordion .card {
+  border: 0;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  transition: box-shadow var(--duration-fast) var(--ease-premium);
+}
+
+.faq .accordion .card:last-child {
+  margin-bottom: 0;
+}
+
+.faq .accordion .card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.faq .card-header {
+  background-color: #f8f9fa;
+  border-bottom: 0;
+}
+
 .service-card {
   display: flex;
   flex-direction: column;
   height: 100%;
   border-radius: 5px;
   padding: 1.5rem;
-  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  box-shadow: var(--shadow-md);
   border: 0;
+  border-top: 3px solid transparent;
   background-color: #f8f9fa;
+  transition: transform var(--duration-base) var(--ease-premium),
+    box-shadow var(--duration-base) var(--ease-premium),
+    border-color var(--duration-base) var(--ease-premium);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-top-color: var(--color-gold);
+}
+
+.service-card:hover .service-icon {
+  background: var(--color-gold);
+  color: #ffffff;
+  transform: scale(1.08);
 }
 .service-card .card-body {
   text-align: left;
 }
 
-.service-title {
-  font-size: 1rem;
-  font-weight: 500;
+.service-card .card-title {
+  /* 1.75rem (28px) : s'intercale proprement entre le h1 de page (40px) et les h2
+     de section plus bas (32px) — avant, ce titre tombait à 24px, plus petit qu'un
+     h2 "normal" alors qu'il a le même niveau sémantique. */
+  font-size: 1.75rem;
+  /* Réserve la hauteur de 2 lignes : évite que la carte dont le titre est le plus
+     long ("Retouche de vêtements") désaligne le début du texte des 2 autres cartes. */
+  min-height: 4.5rem;
 }
 
 .service-description {
   margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Liste de prix : une ligne = nom du service à gauche, tarif en pastille à droite,
+   plutôt qu'un texte "Nom - prix" qui revient à la ligne n'importe où. */
+.service-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.service-card ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(10, 55, 97, 0.08);
+}
+
+.service-card ul li:last-child {
+  border-bottom: 0;
+}
+
+.service-title {
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .pricing {
-  color: #0a3761;
+  flex-shrink: 0;
+  color: var(--color-navy);
   font-weight: 600;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  background: rgba(10, 55, 97, 0.07);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
 }
 
 .card-body {
@@ -959,7 +1346,7 @@ i.fab {
   background-color: #f8f9fa;
   border-radius: 5px;
   border-left: 5px solid #0a3761;
-  box-shadow: 0px 7px 20px rgba(146, 166, 185, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 .testimonial h2 {
@@ -1205,8 +1592,8 @@ i.fab {
   #status-indicator {
     display: flex;
     align-items: center; /* Aligne la LED et le texte verticalement */
-    justify-content: center; /* Centre horizontalement le contenu en mobile */
-    margin: 0.5rem auto;
+    justify-content: flex-start; /* Aligné à gauche, cohérent avec le reste du footer mobile */
+    margin: 0.5rem 0;
     line-height: 1; /* Hauteur de ligne égale pour éviter les décalages */
   }
   /* Styles pour la LED */
@@ -1306,7 +1693,7 @@ i.fab {
     margin: 0; /* Enlève les marges par défaut */
     font-size: 0.9rem; /* Taille du texte */
     font-weight: 500; /* Légèrement gras pour la lisibilité */
-    text-align: center; /* Centre le texte */
+    text-align: left;
   }
 
   .copyright a {
@@ -1317,13 +1704,15 @@ i.fab {
   .footer-content {
     display: flex;
     flex-direction: column; /* Arrange les éléments en colonne */
-    align-items: center; /* Centre les éléments horizontalement */
-    text-align: center; /* Centre le texte */
+    align-items: stretch; /* Pleine largeur : les lignes d'horaires (jour à
+      gauche / pastille à droite) s'étirent déjà bord à bord, un conteneur
+      "centré" à côté créait un mélange d'alignements peu cohérent. */
   }
 
   .footer-hours,
   .footer-info {
-    margin-bottom: 1rem; /* Espacement entre les sections */
+    width: 100%;
+    text-align: left;
   }
 
   .footer-hours p,
@@ -1335,7 +1724,7 @@ i.fab {
   .socials {
     display: flex; /* Utilise flexbox pour aligner les éléments */
     flex-direction: row; /* Aligne les icônes horizontalement */
-    justify-content: center; /* Centre les icônes */
+    justify-content: flex-start; /* Aligné à gauche, cohérent avec le reste */
     gap: 10px; /* Espacement entre les icônes sociales */
     margin-top: 10px; /* Espacement au-dessus des icônes */
   }
@@ -1453,4 +1842,109 @@ i.fab {
   margin-top: 2px;
   margin-bottom: 6px;
   letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
+   Apparition douce au scroll — pilotée par IntersectionObserver dans script.js
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-premium), transform 0.7s var(--ease-premium);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respecte le choix des personnes sensibles au mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Bloc de contact en bas de page Services : le vrai point de conversion
+   de la page mérite plus qu'un lien texte perdu dans un paragraphe.
+   ========================================================================== */
+.contact-cta-block {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--color-cream);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.contact-cta-block h2 {
+  margin-bottom: 0.5rem;
+}
+
+.contact-cta-block p {
+  max-width: 42rem;
+  margin: 0 auto 1.5rem;
+}
+
+.contact-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--color-navy);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--duration-fast) var(--ease-premium),
+    transform var(--duration-fast) var(--ease-premium),
+    box-shadow var(--duration-fast) var(--ease-premium);
+}
+
+/* La règle globale "i.bi { color: var(--color-navy) }" forçait l'icône en marine
+   même ici, où le fond EST marine — icône invisible. Elle doit suivre la couleur
+   du bouton (blanc par défaut, marine au survol), pas une couleur fixe. */
+.call-btn i.bi,
+.faq-link-btn i.bi {
+  color: inherit;
+}
+
+.call-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  text-decoration: none;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-gold);
+}
+
+.faq-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: var(--color-navy);
+  font-weight: 600;
+  border: 1px solid rgba(10, 55, 97, 0.25);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-premium),
+    border-color var(--duration-fast) var(--ease-premium);
+}
+
+.faq-link-btn:hover {
+  background: rgba(10, 55, 97, 0.06);
+  border-color: var(--color-navy);
+  color: var(--color-navy);
+  text-decoration: none;
 }

@@ -3,10 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galerie - Elise Retouches</title>
+    <title>Galerie Photos – Elise Retouches Strasbourg</title>
+    <meta
+      name="description"
+      content="Découvrez en images l'atelier Elise Retouches à Strasbourg : devanture, matériel de couture et savoir-faire au quotidien."
+    />
+    <link rel="canonical" href="https://eliseretouches.com/gallery.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Elise Retouches" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="Galerie Photos – Elise Retouches Strasbourg" />
+    <meta
+      property="og:description"
+      content="L'atelier Elise Retouches en images : devanture, matériel de couture et savoir-faire au quotidien."
+    />
+    <meta property="og:url" content="https://eliseretouches.com/gallery.html" />
+    <meta property="og:image" content="https://eliseretouches.com/media/logo_erh.jpeg" />
+    <meta name="twitter:card" content="summary" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
@@ -15,11 +35,11 @@
 
     <main class="main-content">
       <section class="container py-5">
-        <h2 class="text-center">Galerie</h2>
+        <h1 class="text-center reveal">Galerie</h1>
         <div class="row">
           <div class="gallery-grid">
             <div
-              class="gallery-item"
+              class="gallery-item reveal"
               data-toggle="modal"
               data-target="#imageModal"
               data-src="./media/photos/gallery/1.jpeg"
@@ -31,7 +51,7 @@
               />
             </div>
             <div
-              class="gallery-item"
+              class="gallery-item reveal"
               data-toggle="modal"
               data-target="#imageModal"
               data-src="./media/photos/gallery/2.jpeg"
@@ -43,7 +63,7 @@
               />
             </div>
             <div
-              class="gallery-item"
+              class="gallery-item reveal"
               data-toggle="modal"
               data-target="#imageModal"
               data-src="./media/photos/gallery/3.jpeg"
@@ -55,7 +75,7 @@
               />
             </div>
             <div
-              class="gallery-item"
+              class="gallery-item reveal"
               data-toggle="modal"
               data-target="#imageModal"
               data-src="./media/photos/gallery/8.jpeg"
@@ -67,7 +87,7 @@
               />
             </div>
             <div
-              class="gallery-item"
+              class="gallery-item reveal"
               data-toggle="modal"
               data-target="#imageModal"
               data-src="./media/photos/gallery/9.jpeg"
@@ -79,7 +99,7 @@
               />
             </div>
             <div
-              class="gallery-item"
+              class="gallery-item reveal"
               data-toggle="modal"
               data-target="#imageModal"
               data-src="./media/photos/gallery/4.jpeg"
@@ -91,7 +111,7 @@
               />
             </div>
             <div
-              class="gallery-item"
+              class="gallery-item reveal"
               data-toggle="modal"
               data-target="#imageModal"
               data-src="./media/photos/gallery/7.jpeg"
@@ -103,7 +123,7 @@
               />
             </div>
             <div
-              class="gallery-item"
+              class="gallery-item reveal"
               data-toggle="modal"
               data-target="#imageModal"
               data-src="./media/photos/gallery/6.jpeg"
@@ -115,7 +135,7 @@
               />
             </div>
             <div
-              class="gallery-item"
+              class="gallery-item reveal"
               data-toggle="modal"
               data-target="#imageModal"
               data-src="./media/photos/gallery/5.jpeg"
@@ -170,51 +190,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
-    <script>
-      // Script pour changer l'image du modal lors du clic sur une image de la galerie
-      const galleryItems = document.querySelectorAll(".gallery-item")
-      const modalImage = document.getElementById("modalImage")
-      const prevBtn = document.getElementById("prevBtn")
-      const nextBtn = document.getElementById("nextBtn")
-      let currentIndex = 0 // Pour garder la trace de l'image actuelle
-
-      const imageSources = Array.from(galleryItems).map((item) =>
-        item.getAttribute("data-src")
-      )
-
-      galleryItems.forEach((item, index) => {
-        item.addEventListener("click", function () {
-          const src = this.getAttribute("data-src")
-          modalImage.src = src
-          currentIndex = index // Mettre à jour l'index de l'image actuelle
-        })
-      })
-
-      // Fonction pour afficher l'image précédente
-      function showPrevImage() {
-        currentIndex =
-          (currentIndex - 1 + imageSources.length) % imageSources.length
-        modalImage.src = imageSources[currentIndex]
-      }
-
-      // Fonction pour afficher l'image suivante
-      function showNextImage() {
-        currentIndex = (currentIndex + 1) % imageSources.length
-        modalImage.src = imageSources[currentIndex]
-      }
-
-      // Gérer les clics sur les boutons fléchés
-      prevBtn.addEventListener("click", showPrevImage)
-      nextBtn.addEventListener("click", showNextImage)
-
-      // Gérer les flèches gauche et droite du clavier
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "ArrowRight") {
-          showNextImage() // Passer à l'image suivante
-        } else if (event.key === "ArrowLeft") {
-          showPrevImage() // Passer à l'image précédente
-        }
-      })
-    </script>
   </body>
 </html>

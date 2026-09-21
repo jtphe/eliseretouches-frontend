@@ -1,68 +1,46 @@
-<!doctype html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Footer</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="./css/style.css" />
-  </head>
-  <body>
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-hours">
-            <div id="status-indicator" class="status-closed">
-              <span class="led"></span>
-              <span id="status-text">Actuellement Fermé</span>
-            </div>
-            <p class="hours-title">Horaires d'ouverture :</p>
-            <ul>
-              <li id="status-lundi">Lundi : 10h-12h / 14h-18h</li>
-              <li id="status-mardi">Mardi : 10h-12h / 14h-18h</li>
-              <li id="status-mercredi">Mercredi : Fermé</li>
-              <li id="status-jeudi">Jeudi : 10h-12h / 14h-18h</li>
-              <li id="status-vendredi">Vendredi : 10h-12h / 14h-18h</li>
-              <li id="status-samedi">Samedi : 10h-12h</li>
-              <li id="status-dimanche">Dimanche : Fermé</li>
-            </ul>
-          </div>
-          <div class="footer-info">
-            <p class="copyright">
-              <a class="copyright" href="tel:+33615567047">0615567047</a><br />
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=3+Rue+Saint-Maurice,+67000+Strasbourg"
-                target="_blank"
-              >
-                3 Rue Saint-Maurice, 67000 Strasbourg </a
-              ><br />
-              &copy; 2026 Elise Retouches<br />
-              <a href="https://pheproduction.com" target="_blank" rel="noopener noreferrer"
-                >Site réalisé par <em>PHE PRODUCTION</em></a
-              >
-            </p>
-            <div class="socials">
-              <a
-                href="https://www.facebook.com/eliseretouches"
-                class="social-icon"
-                target="_blank"
-              >
-                <i class="fab fa-facebook"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/elise-ph%C3%A9-660031a6/"
-                class="social-icon linkedin"
-                target="_blank"
-              >
-                <i class="fab fa-linkedin"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+<div class="container">
+  <div class="footer-content">
+    <div class="footer-hours">
+      <div id="status-indicator" class="status-closed">
+        <span class="led"></span>
+        <span id="status-text">Actuellement Fermé</span>
       </div>
-    </footer>
-  </body>
-</html>
+      <p class="hours-title">Horaires d'ouverture :</p>
+      <!-- Rempli automatiquement par script.js à partir de SCHEDULE_CONFIG,
+           avec regroupement des jours aux horaires identiques (3 lignes au
+           lieu de 7) : tout reste visible directement, sans clic. -->
+      <ul id="footer-hours-list"></ul>
+    </div>
+    <div class="footer-info">
+      <p class="copyright">
+        <a class="copyright" href="tel:+33615567047">0615567047</a><br />
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=3+Rue+Saint-Maurice,+67000+Strasbourg"
+          target="_blank"
+        >
+          3 Rue Saint-Maurice, 67000 Strasbourg </a
+        ><br />
+        &copy; <span id="copyright-year">2026</span> Elise Retouches<br />
+        <a href="https://pheproduction.com" target="_blank" rel="noopener noreferrer"
+          >Site réalisé par <em>PHE PRODUCTION</em></a
+        >
+      </p>
+      <div class="socials">
+        <a
+          href="https://www.facebook.com/eliseretouches"
+          class="social-icon"
+          target="_blank"
+        >
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/elise-ph%C3%A9-660031a6/"
+          class="social-icon linkedin"
+          target="_blank"
+        >
+          <i class="bi bi-linkedin"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

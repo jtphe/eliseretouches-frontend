@@ -1,1 +1,4 @@
-# bloque l'indexation des images pour les robotsUser-agent: *Disallow: /media/Allow: /
+# Bloque l'indexation des images pour les robots
+User-agent: *
+Disallow: /media/
+Allow: /

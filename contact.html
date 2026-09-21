@@ -3,16 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact - Elise Retouches</title>
+    <title>Contact & Horaires – Elise Retouches Strasbourg</title>
+    <meta
+      name="description"
+      content="Contactez Elise Retouches à Strasbourg : téléphone, adresse, horaires d'ouverture et FAQ. Atelier situé 3 Rue Saint-Maurice, 67000 Strasbourg."
+    />
+    <link rel="canonical" href="https://eliseretouches.com/contact.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Elise Retouches" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="Contact & Horaires – Elise Retouches Strasbourg" />
+    <meta
+      property="og:description"
+      content="Téléphone, adresse, horaires d'ouverture et FAQ pour l'atelier Elise Retouches à Strasbourg."
+    />
+    <meta property="og:url" content="https://eliseretouches.com/contact.html" />
+    <meta property="og:image" content="https://eliseretouches.com/media/logo_erh.jpeg" />
+    <meta name="twitter:card" content="summary" />
     <!-- Lien vers Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <!-- Lien vers Font Awesome pour les icônes -->
+    <!-- Lien vers Bootstrap Icons (unifié avec le reste du site) -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
@@ -23,85 +39,82 @@
     <main class="main-content">
       <!-- Section principale "Contact" -->
       <section id="contact" class="container my-5">
+        <h1 class="text-center mb-4 reveal">Contact</h1>
         <div class="row">
           <!-- Informations de contact -->
-          <div class="col-md-6">
-            <h3 class="info-title">Nous Contacter</h3>
-            <p>
-              Vous pouvez nous contacter par téléphone, sur Facebook, ou nous
-              rendre visite à notre boutique :
-            </p>
-            <ul class="list-unstyled">
-              <li>
-                <i class="fas fa-phone-alt"></i>
-                <span class="title-contact">Téléphone :</span>
-                <a class="contact" href="tel:+33615567047">0615567047</a>
-              </li>
-              <li>
-                <i class="fab fa-facebook"></i>
-                <span class="title-contact">Facebook :</span>
-                <a
-                  class="contact"
-                  href="https://www.facebook.com/eliseretouches"
-                  target="_blank"
-                  >Elise Retouches</a
-                >
-              </li>
-              <li class="location">
-                <i class="fas fa-map-marker-alt"></i>
-                <span class="title-contact">Adresse :</span>
-                <a href="https://www.google.com/maps/search/?api=1&query=3+Rue+Saint-Maurice,+67000+Strasbourg" target="_blank" class="map-link">
-                  3 Rue Saint-Maurice, 67000 Strasbourg
-                </a>
-              </li>              
-              <li class="hours">
-                <i class="fas fa-clock"></i>
-                <span class="title-contact">Horaires d'Ouverture :</span>
-                <ul class="list-unstyled">
-                  <li>
-                    <span class="title-contact">Lundi</span> : 10h-12h / 14h-18h
-                  </li>
-                  <li>
-                    <span class="title-contact">Mardi</span> : 10h-12h / 14h-18h
-                  </li>
-                  <li><span class="title-contact">Mercredi</span> : Fermé</li>
-                  <li>
-                    <span class="title-contact">Jeudi</span> : 10h-12h / 14h-18h
-                  </li>
-                  <li>
-                    <span class="title-contact">Vendredi</span> : 10h-12h /
-                    14h-18h
-                  </li>
-                  <li><span class="title-contact">Samedi</span> : 10h-12h</li>
-                  <li><span class="title-contact">Dimanche</span> : Fermé</li>
-                </ul>
-              </li>
-            </ul>
+          <div class="col-md-6 reveal">
+            <div class="contact-panel">
+              <h2 class="info-title">Nous Contacter</h2>
+              <p>
+                Vous pouvez nous contacter par téléphone, sur Facebook, ou nous
+                rendre visite à notre boutique :
+              </p>
+              <ul class="list-unstyled contact-details">
+                <li>
+                  <span class="contact-icon"><i class="bi bi-telephone-fill"></i></span>
+                  <span class="contact-detail-text">
+                    <span class="title-contact">Téléphone :</span>
+                    <a class="contact" href="tel:+33615567047">0615567047</a>
+                  </span>
+                </li>
+                <li>
+                  <span class="contact-icon"><i class="bi bi-facebook"></i></span>
+                  <span class="contact-detail-text">
+                    <span class="title-contact">Facebook :</span>
+                    <a
+                      class="contact"
+                      href="https://www.facebook.com/eliseretouches"
+                      target="_blank"
+                      >Elise Retouches</a
+                    >
+                  </span>
+                </li>
+                <li class="location">
+                  <span class="contact-icon"><i class="bi bi-geo-alt-fill"></i></span>
+                  <span class="contact-detail-text">
+                    <span class="title-contact">Adresse :</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=3+Rue+Saint-Maurice,+67000+Strasbourg" target="_blank" class="map-link">
+                      3 Rue Saint-Maurice, 67000 Strasbourg
+                    </a>
+                  </span>
+                </li>
+                <li class="hours">
+                  <span class="contact-icon"><i class="bi bi-clock-fill"></i></span>
+                  <span class="contact-detail-text">
+                    <span class="title-contact">Horaires d'Ouverture :</span>
+                    <!-- Rempli automatiquement par script.js à partir de SCHEDULE_CONFIG -->
+                    <ul class="list-unstyled" id="contact-hours-list"></ul>
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
           <!-- Carte Google Maps -->
-          <div class="col-md-6">
-            <h3>Où Nous Trouver</h3>
-            <div class="map-responsive">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!3m2!1sfr!2sfr!4v1725964659153!5m2!1sfr!2sfr!6m8!1m7!1sPnipE_dzTUaa_rYxVEnX0Q!2m2!1d48.58509757360929!2d7.770681716576582!3f326.2456445616025!4f2.6762706310296807!5f0.7820865974627469"
-                width="100%"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              >
-              </iframe>
+          <div class="col-md-6 reveal">
+            <div class="contact-panel">
+              <h2>Où Nous Trouver</h2>
+              <div class="map-responsive">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!3m2!1sfr!2sfr!4v1725964659153!5m2!1sfr!2sfr!6m8!1m7!1sPnipE_dzTUaa_rYxVEnX0Q!2m2!1d48.58509757360929!2d7.770681716576582!3f326.2456445616025!4f2.6762706310296807!5f0.7820865974627469"
+                  width="100%"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                >
+                </iframe>
+              </div>
             </div>
           </div>
         </div>
         <!-- Section FAQ -->
         <section id="faq" class="my-5 faq">
-          <h3>Questions Fréquemment Posées (FAQ)</h3>
+          <h2>Questions Fréquemment Posées (FAQ)</h2>
           <div class="accordion" id="faqAccordion">
-            <div class="card">
+            <div class="card reveal">
               <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
+                <h3 class="mb-0">
                   <button
                     class="btn btn-link"
                     type="button"
@@ -113,7 +126,7 @@
                     Combien de temps faut-il pour que mes vêtements soient
                     retouchés ?
                   </button>
-                </h5>
+                </h3>
               </div>
               <div
                 id="collapseOne"
@@ -130,9 +143,9 @@
                 </div>
               </div>
             </div>
-            <div class="card">
+            <div class="card reveal">
               <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
+                <h3 class="mb-0">
                   <button
                     class="btn btn-link collapsed"
                     type="button"
@@ -143,7 +156,7 @@
                   >
                     Quel est le prix pour telle ou telle prestation ?
                   </button>
-                </h5>
+                </h3>
               </div>
               <div
                 id="collapseTwo"
@@ -191,9 +204,9 @@
                 </div>
               </div>
             </div>
-            <div class="card">
+            <div class="card reveal">
               <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
+                <h3 class="mb-0">
                   <button
                     class="btn btn-link collapsed"
                     type="button"
@@ -204,7 +217,7 @@
                   >
                     Où nous trouver ?
                   </button>
-                </h5>
+                </h3>
               </div>
               <div
                 id="collapseThree"
@@ -213,11 +226,11 @@
                 data-parent="#faqAccordion"
               >
               <div class="card-body">
-                Nous sommes situés à côté du 
-                <a href="https://www.google.com/maps/search/?api=1&query=3+Rue+Saint-Maurice,+67000+Strasbourg" target="_blank">
-                  <strong style="color: #0a3761">3 rue Saint-Maurice, 67000 Strasbourg</strong>
+                Nous sommes situés à côté du
+                <a href="https://www.google.com/maps/search/?api=1&query=3+Rue+Saint-Maurice,+67000+Strasbourg" target="_blank" class="map-link">
+                  <strong>3 rue Saint-Maurice, 67000 Strasbourg</strong>
                 </a>.
-              </div>              
+              </div>
               </div>
             </div>
           </div>

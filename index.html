@@ -3,7 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elise Retouches</title>
+    <title>Elise Retouches – Retouche & Couture à Strasbourg</title>
+    <meta
+      name="description"
+      content="Elise Retouches, atelier de retouche et couture à Strasbourg. Ourlets, ajustements, réparations de vêtements : un savoir-faire artisanal et un accueil chaleureux."
+    />
+    <link rel="canonical" href="https://eliseretouches.com/" />
+
+    <!-- Open Graph / réseaux sociaux -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Elise Retouches" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="Elise Retouches – Retouche & Couture à Strasbourg" />
+    <meta
+      property="og:description"
+      content="Ourlets, ajustements, réparations de vêtements avec soin et savoir-faire artisanal, au cœur de Strasbourg."
+    />
+    <meta property="og:url" content="https://eliseretouches.com/" />
+    <meta property="og:image" content="https://eliseretouches.com/media/logo_erh.jpeg" />
+    <meta name="twitter:card" content="summary" />
 
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -60,12 +78,12 @@
     <!-- Bannière Principale -->
     <section class="hero text-center">
       <div class="container">
-        <h1>Redonnez vie à vos vêtements</h1>
-        <p class="lead">
+        <h1 class="reveal">Redonnez vie à vos vêtements</h1>
+        <p class="lead reveal">
           Expertise en Retouche, Toujours à l'Écoute de Vos Besoins
         </p>
-        <a href="#services" class="cta-btn">Découvrez nos services</a>
-        <div class="video-container mt-5">
+        <a href="#services" class="cta-btn reveal">Découvrez nos services</a>
+        <div class="video-container mt-5 reveal">
           <iframe
             src="https://www.youtube.com/embed/McMatlvAY40"
             title="Vidéo présentation Elise Retouches"
@@ -78,9 +96,9 @@
 
     <!-- Présentation des Services -->
     <section id="services" class="container py-5 px-5">
-      <h2 class="text-center mb-5">Nos Services</h2>
+      <h2 class="text-center mb-5 reveal">Nos Services</h2>
       <div class="row">
-        <div class="col-md-4 text-center mb-4">
+        <div class="col-md-4 text-center mb-4 reveal">
           <div class="service">
             <div class="service-header">
               <i class="bi bi-scissors service-icon"></i>
@@ -93,7 +111,7 @@
             <a href="./services.html">En savoir plus</a>
           </div>
         </div>
-        <div class="col-md-4 text-center mb-4">
+        <div class="col-md-4 text-center mb-4 reveal">
           <div class="service">
             <div class="service-header">
               <i class="bi bi-rulers service-icon"></i>
@@ -107,7 +125,7 @@
             <a href="./services.html">En savoir plus</a>
           </div>
         </div>
-        <div class="col-md-4 text-center mb-4">
+        <div class="col-md-4 text-center mb-4 reveal">
           <div class="service">
             <div class="service-header">
               <i class="bi bi-bandaid service-icon"></i>
@@ -131,19 +149,23 @@
 
     <!-- Galerie -->
     <section id="gallery" class="container my-4">
-      <h2 class="text-center mb-4">Galerie</h2>
+      <h2 class="text-center mb-4 reveal">Galerie</h2>
       <div class="row">
         <div
-          class="col-md-4 mb-4 gallery-item"
+          class="col-md-4 mb-4 gallery-item reveal"
           data-toggle="modal"
           data-target="#imageModal"
           data-src="./media/photos/Homepage_gallery_1.jpeg"
         >
-          <img src="./media/photos/Homepage_gallery_1.jpeg" class="img-fluid"
-          alt="Devanture Elise Retouches loading="lazy" />
+          <img
+            src="./media/photos/Homepage_gallery_1.jpeg"
+            class="img-fluid"
+            alt="Devanture Elise Retouches"
+            loading="lazy"
+          />
         </div>
         <div
-          class="col-md-4 mb-4 gallery-item"
+          class="col-md-4 mb-4 gallery-item reveal"
           data-toggle="modal"
           data-target="#imageModal"
           data-src="./media/photos/Homepage_gallery_2.jpeg"
@@ -156,7 +178,7 @@
           />
         </div>
         <div
-          class="col-md-4 mb-4 gallery-item"
+          class="col-md-4 mb-4 gallery-item reveal"
           data-toggle="modal"
           data-target="#imageModal"
           data-src="./media/photos/Homepage_gallery_3.jpeg"
@@ -215,51 +237,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
-    <script>
-      const galleryItems = document.querySelectorAll(".gallery-item")
-      const modalImage = document.getElementById("modalImage")
-      let currentIndex = 0
-
-      galleryItems.forEach((item, index) => {
-        item.addEventListener("click", function () {
-          const src = this.getAttribute("data-src")
-          modalImage.src = src
-          currentIndex = index // Mettre à jour l'index courant
-        })
-      })
-
-      // Fonction pour afficher l'image précédente
-      function showPrevImage() {
-        currentIndex =
-          currentIndex === 0 ? galleryItems.length - 1 : currentIndex - 1
-        const prevSrc = galleryItems[currentIndex].getAttribute("data-src")
-        modalImage.src = prevSrc
-      }
-
-      // Fonction pour afficher l'image suivante
-      function showNextImage() {
-        currentIndex =
-          currentIndex === galleryItems.length - 1 ? 0 : currentIndex + 1
-        const nextSrc = galleryItems[currentIndex].getAttribute("data-src")
-        modalImage.src = nextSrc
-      }
-
-      // Ajouter des événements pour les boutons des flèches
-      document
-        .getElementById("prevBtn")
-        .addEventListener("click", showPrevImage)
-      document
-        .getElementById("nextBtn")
-        .addEventListener("click", showNextImage)
-
-      // Navigation avec les touches du clavier
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "ArrowLeft") {
-          showPrevImage()
-        } else if (event.key === "ArrowRight") {
-          showNextImage()
-        }
-      })
-    </script>
   </body>
 </html>
